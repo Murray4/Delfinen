@@ -1,7 +1,7 @@
 public class Economy {
 
     //METODER
-    public static void calculateExpectedYeralyIncome() {}
+    public static void calculateExpectedYearlyIncome() {}
 
     public static void registerPayment() {}
 

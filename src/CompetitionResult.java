@@ -9,4 +9,7 @@ public class CompetitionResult {
 
     // METODER
     public String toString() {}
+
+    public static void top5() {}
+
 }
