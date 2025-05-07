@@ -37,6 +37,80 @@ public class Member {
     }
 
 
+
+// GETTERS OG SETTERS
+public String getMemberName() {
+    return memberName;}
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;}
+
+    public Membership getMembership() {
+        return membership;}
+
+    public void setMembership(Membership membership) {
+        this.membership = membership;}
+
+    public boolean isActive() {
+        return isActive;}
+
+    public void setActive(boolean active) {
+        isActive = active;}
+
+    public String getEmail() {
+        return email;}
+
+    public void setEmail(String email) {
+        this.email = email;}
+
+    public int getPhoneNumber() {
+        return phoneNumber;}
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;}
+
+    public Boolean getIsCompetitionSwimmer() {
+        return isCompetitionSwimmer;}
+
+    public void setIsCompetitionSwimmer(Boolean isCompetitionSwimmer) {
+        this.isCompetitionSwimmer = isCompetitionSwimmer;}
+
+    public boolean isHasPayed() {
+        return hasPayed;}
+
+    public void setHasPayed(boolean hasPayed) {
+        this.hasPayed = hasPayed;}
+
+    public boolean isSenior() {
+        return isSenior;}
+
+    public void setSenior(boolean senior) {
+        isSenior = senior;}
+
+    public Map<Dicipline, TrainingResult> getTrainingResult() {
+        return trainingResult;}
+
+    public void setTrainingResult(Map<Dicipline, TrainingResult> trainingResult) {
+        this.trainingResult = trainingResult;}
+
+    public ArrayList<CompetitionResult> getCompetitionResult() {
+        return competitionResult;}
+
+    public void setCompetitionResult(ArrayList<CompetitionResult> competitionResult) {
+        this.competitionResult = competitionResult;}
+
+    public int getMemberPrice() {
+        return memberPrice;}
+
+    public void setMemberPrice(int memberPrice) {
+        this.memberPrice = memberPrice;}
+
+    public int getMemberID() {
+        return memberID;}
+
+    public void setMemberID(int memberID) {
+        this.memberID = memberID;}
+
     // METODER
     @Override
     public String toString() {
@@ -57,4 +131,4 @@ public class Member {
         }
     }
 
-}
+
