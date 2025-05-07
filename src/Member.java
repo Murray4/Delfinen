@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -5,10 +6,11 @@ public class Member {
 
     // ATTRIBUTER
     String memberName;
+    LocalDate birthDate;
     Membership membership;
     boolean isActive;
     String email;
-    int phoneNumber;
+    String phoneNumber;
     Boolean isCompetitionSwimmer;
     boolean hasPayed;
     boolean isSenior;
@@ -18,12 +20,13 @@ public class Member {
     int memberID;
 
 
-    public Member(String memberName, Membership membership, boolean isActive, String email,
-                  int phoneNumber, Boolean isCompetitionSwimmer, boolean hasPayed, boolean isSenior,
+    public Member(String memberName, LocalDate birthDate, Membership membership, boolean isActive, String email,
+                  String phoneNumber, Boolean isCompetitionSwimmer, boolean hasPayed, boolean isSenior,
                   Map<Dicipline, TrainingResult> trainingResult, ArrayList<CompetitionResult> competitionResult,
                   int memberPrice, int memberID) {
 
         this.memberName = memberName;
+        this.birthDate = birthDate;
         this.membership = membership;
         this.isActive = isActive;
         this.email = email;
@@ -49,6 +52,13 @@ public class Member {
         this.memberName = memberName;
     }
 
+    public LocalDate getBirthDate()  {
+        return birthDate;
+    }
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public Membership getMembership() {
         return membership;
     }
@@ -57,11 +67,11 @@ public class Member {
         this.membership = membership;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setIsActive(boolean active) {
         isActive = active;
     }
 
@@ -73,11 +83,11 @@ public class Member {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -11,7 +11,6 @@ public class CompetitionResult {
     public String toString() {
         return "TEST";
     }
-    public String toString() {}
 
     public static void top5() {}
 
