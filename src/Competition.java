@@ -10,5 +10,7 @@ public class Competition {
     ArrayList<CompetitionResult> competitionResult;
 
     // METODER
-    public String toString() {}
+    public String toString() {
+        return "TEST";
+    }
 }

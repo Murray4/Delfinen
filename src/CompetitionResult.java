@@ -8,6 +8,9 @@ public class CompetitionResult {
     int rank;
 
     // METODER
+    public String toString() {
+        return "TEST";
+    }
     public String toString() {}
 
     public static void top5() {}
