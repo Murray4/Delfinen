@@ -197,32 +197,18 @@ public class ConsoleHandler {
                 default:
                     System.out.println("Ugyldigt valg. Prøv igen.");
             }
-        switch (choice) {
-            case 1:
-                MemberController.registerNewMember(scanner);
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
+            switch (choice) {
+                case 1:
+                    MemberController.registerNewMember(scanner);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
 
+            }
         }
     }
 
-    public static String memberMenuTekst() {
-        return Farver.CYAN + "=== Member Menu ===" + Farver.RESET + "\n" +
-                """
-                        1. Registrer Nyt Medlem
-                        2. Rediger Medlem
-                        3. Søg På Medlem
-                        
-                        0. Tilbage
-                        """;
-                1. Register Member
-                2. Edit Member
-                3. Search Member
-                0. Tilbage.
-                """;
-    }
-}
+
