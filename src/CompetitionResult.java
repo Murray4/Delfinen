@@ -8,5 +8,7 @@ public class CompetitionResult {
     int rank;
 
     // METODER
-    public String toString() {}
+    public String toString() {
+        return "TEST";
+    }
 }

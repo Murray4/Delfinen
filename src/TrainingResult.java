@@ -4,5 +4,7 @@ public class TrainingResult {
     String comment;
 
     // METODER
-    public String toString() {}
+    public String toString() {
+        return "TEST";
+    }
 }

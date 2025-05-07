@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class ConsoleHandler {
 
-    public static void main(String[] args) {}
-    Scanner scanner = new Scanner(System.in);
-
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        memberMenu(scanner);
+    }
     // METODER (- main)
     public static void run() {}
 
@@ -21,6 +22,7 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
+                MemberController.registerNewMember(scanner);
                 break;
             case 2:
                 break;
@@ -30,7 +32,8 @@ public class ConsoleHandler {
     }
 
     public static String memberMenuTekst() {
-        return """
+        return Farver.MAGENTA + "Member Menu" + Farver.RESET + "\n" +
+                """
                 1. Register Member
                 2. Edit Member
                 3. Search Member

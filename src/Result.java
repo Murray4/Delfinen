@@ -10,5 +10,7 @@ public class Result {
     Member member;
 
     // METODER
-    public String toString() {}
+    public String toString() {
+        return "TEST";
+    }
 }
