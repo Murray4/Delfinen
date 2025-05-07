@@ -9,7 +9,7 @@ public class MemberController {
 
 
     // METODER
-    public static void searchByFilter() {}
+    public static void searchByFilter(Scanner scanner) {}
 
     public static void registerNewMember(Scanner scanner) {
         System.out.println(Farver.MAGENTA + "Register New Member" + Farver.RESET);
@@ -40,7 +40,7 @@ public class MemberController {
 
     public static void pauseMember() {}
 
-    public static void editMember() {}
+    public static void editMember(Scanner scanner) {}
 
     public static void isCompetetive() {}
 
