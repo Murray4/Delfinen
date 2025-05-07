@@ -225,5 +225,4 @@ public class ConsoleHandler {
                 0. Tilbage.
                 """;
     }
-
 }
