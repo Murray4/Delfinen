@@ -65,6 +65,5 @@ public void setResults(List<CompetitionResult> results) {
             ", date=" + date +
             ", results=" + results +
             '}';
-        //return "TEST";
     }
 }

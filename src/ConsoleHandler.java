@@ -96,7 +96,7 @@ public class ConsoleHandler {
                 CompetitionStatistic.getTopFive();
                 break;
             case 3:
-                CompetitionManager.showCompetition();
+                //CompetitionManager.showCompetition();
                 break;
             case 0:
                 break;
@@ -136,7 +136,7 @@ public class ConsoleHandler {
         }
     }
 
-
+/*
     public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
@@ -161,7 +161,7 @@ public class ConsoleHandler {
         }
 
     }
-
+*/
     public static String competitionMenuText() {
         return "===Konkurrence Menu===" + """
                 1. Vis konkurrencer.
@@ -242,6 +242,11 @@ public class ConsoleHandler {
                           3. Søg På Medlem
                           0. Tilbage
                         """;
+    }
+
+    public static String inputFejl(String enhed) {
+        System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen" + Farver.RESET);
+        return "Ugyldig " + enhed + "prøv igen";
     }
 }
 
