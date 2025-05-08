@@ -107,11 +107,11 @@ public class Member {
         this.hasPayed = hasPayed;
     }
 
-    public boolean isSenior() {
+    public boolean getIsSenior() {
         return isSenior;
     }
 
-    public void setSenior(boolean senior) {
+    public void setIsSenior(boolean senior) {
         isSenior = senior;
     }
 
@@ -150,19 +150,16 @@ public class Member {
     // METODER
     @Override
     public String toString() {
-        return "Member{" +
-                "memberName='" + memberName + '\'' +
-                ", membership=" + membership +
-                ", isActive=" + isActive +
-                ", email='" + email + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", isCompetitionSwimmer=" + isCompetitionSwimmer +
-                ", hasPayed=" + hasPayed +
-                ", isSenior=" + isSenior +
-                ", trainingResult=" + trainingResult +
-                ", competitionResult=" + competitionResult +
-                ", memberPrice=" + memberPrice +
-                ", memberID=" + memberID +
-                '}';
+        return "[ID = " + memberID + "] , [MedlemsNavn = " + memberName + "]\n" +
+                "[Medlemskab = " + membership + "]" +
+                ", [Aktiv = " + isActive + "]" +
+                ", [Medlemspris = " + memberPrice + "]" +
+                ", [Email = " + email + '\'' + "]" +
+                ", [Telefonnummer = " + phoneNumber + "]" +
+                ", [Betalt = " + hasPayed + "]" +
+                ", [Senior = " + isSenior + "]" +
+                ", [Træningsresultater = " + trainingResult + "]" +
+                ", [Konkurrencesvømmer = " + isCompetitionSwimmer + "]" +
+                ", [Konkurrenceresultater=" + competitionResult + "]\n";
     }
 }

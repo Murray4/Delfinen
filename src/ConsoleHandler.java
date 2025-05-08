@@ -6,7 +6,6 @@ public class ConsoleHandler {
         FileHandler.createFile("MedlemsListe.txt");
         Scanner scanner = new Scanner(System.in);
         run(scanner);
-        int ID = 0;
 
     }
 
