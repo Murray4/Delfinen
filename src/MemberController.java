@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class MemberController {
 
     // ATTRIBUTTER
-    static ArrayList<Member> MemberList = new ArrayList<>();
+    public static ArrayList<Member> MemberList = new ArrayList<>();
 
 
     // METODER
@@ -86,6 +86,10 @@ public class MemberController {
         } else {
             x.setHasPayed(false);
         }
+
+        // TODO: IS_SENIOR // Skal vurderes ud fra alder
+
+        // TODO: MEMBERPRICE // Skal udregnes ud fra alder
 
         // TODO: MemberID // ud fra fil
         x.setMemberID(FileHandler.readFileForID("MedlemsListe.txt"));
