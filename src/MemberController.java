@@ -36,7 +36,7 @@ public class MemberController {
         String telefonnummer = scanner.nextLine();
         x.setPhoneNumber(telefonnummer);
 
-        // MEMBERSHIP // Skal udregnes ud fra alder
+        // TODO: MEMBERSHIP // Skal udregnes ud fra alder
 
         System.out.println("Er medlem aktiv eller passiv? (A/P): ");
         String aktiv = scanner.nextLine();
@@ -62,9 +62,13 @@ public class MemberController {
             x.setHasPayed(false);
         }
 
-        // IS_SENIOR // Skal vurderes ud fra alder
+        // TODO: IS_SENIOR // Skal vurderes ud fra alder
 
-        // MEMBERPRICE // Skal udregnes ud fra alder
+        // TODO: MEMBERPRICE // Skal udregnes ud fra alder
+
+        // TODO: MemberID // ud fra fil
+
+        // TODO: tilføj medlemmer til fil
 
         System.out.println(Farver.GREEN + "\nNyt Medlem oprettet:\n" + Farver.RESET + x);
 

@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     public static void main(String[] args) {
+        FileHandler.createFile("MedlemsListe.txt");
         Scanner scanner = new Scanner(System.in);
         run(scanner);
         int ID = 0;
@@ -66,6 +67,7 @@ public class ConsoleHandler {
                 break;
             case 0:
                 break;
+
             default:
                 System.out.println("Ugyldigt valg. Prøv igen.");
                 economyMenu(scanner);

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CompetitionResult {
+public class CompetitionResult extends Result {
     // ATTRIBUTER
     Competition competition;
     Member swimmer;

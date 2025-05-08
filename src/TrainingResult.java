@@ -1,4 +1,4 @@
-public class TrainingResult {
+public class TrainingResult extends Result {
 
     // ATTRIBUTTER
     String comment;
