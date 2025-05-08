@@ -87,11 +87,6 @@ public class MemberController {
             x.setHasPayed(false);
         }
 
-        // TODO: IS_SENIOR // Skal vurderes ud fra alder
-
-        // TODO: MEMBERPRICE // Skal udregnes ud fra alder
-
-        // TODO: MemberID // ud fra fil
         x.setMemberID(FileHandler.readFileForID("MedlemsListe.txt"));
 
         FileHandler.writeToFile(x.toString(), "MedlemsListe.txt");
