@@ -1,5 +1,5 @@
 public enum Membership {
+    UNGDOMSSVØMMER,
     SENIORSVØMMER,
-    PASSIV,
     SENIORSVØMMER_60_PLUS
 }

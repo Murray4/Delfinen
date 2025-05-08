@@ -14,6 +14,9 @@ public class CompetitionResult extends Result {
         return "TEST";
     }
 
-    public static void top5() {}
+    public static void top5() {
+
+        System.out.println("Top 5 for disciplinen: " + d);
+    }
 
 }

@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +7,7 @@ import java.util.Scanner;
 public class MemberController {
 
     // ATTRIBUTTER
-    ArrayList<Member> MemberList;
+    public static ArrayList<Member> MemberList = new ArrayList<>();
 
 
     // METODER
@@ -17,10 +18,12 @@ public class MemberController {
         Member x = new Member();
         scanner.nextLine();
 
+        // Navn
         System.out.println("Navn: ");
         String navn = scanner.nextLine();
         x.setMemberName(navn);
 
+        // Fødselsdato
         System.out.println("Fødselsdato: (dd-MM-yyyy");
         String føds = scanner.nextLine();
 
@@ -28,16 +31,22 @@ public class MemberController {
         LocalDate fødselsdato = LocalDate.parse(føds, format);
         x.setBirthDate(fødselsdato);
 
+        // Alders_udregning
+        LocalDate iDag = LocalDate.now();
+        Period periode = Period.between(fødselsdato, iDag);
+        int alder = periode.getYears();
+
+        // Email
         System.out.println("Email: ");
         String email = scanner.nextLine();
         x.setEmail(email);
 
+        // TelefonNummer
         System.out.println("Telefonnummer: ");
         String telefonnummer = scanner.nextLine();
         x.setPhoneNumber(telefonnummer);
 
-        // TODO: MEMBERSHIP // Skal udregnes ud fra alder
-
+        // Aktiv vs. Passiv
         System.out.println("Er medlem aktiv eller passiv? (A/P): ");
         String aktiv = scanner.nextLine();
         if (aktiv.equalsIgnoreCase("A")) {
@@ -46,6 +55,21 @@ public class MemberController {
             x.setIsActive(false);
         }
 
+        if (!x.getIsActive()) {
+            x.setMemberPrice(500);
+        } else if (alder < 18) {
+            x.setMembership(Membership.UNGDOMSSVØMMER);
+            x.setMemberPrice(1000);
+        } else if (alder <= 60) {
+            x.setMembership(Membership.SENIORSVØMMER);
+            x.setMemberPrice(1600);
+        } else {
+            x.setMembership(Membership.SENIORSVØMMER_60_PLUS);
+            x.setIsSenior(true);
+            x.setMemberPrice((int)(1600*0.75));
+        }
+
+        // isCompetetive
         System.out.println("Er medlem konkurrencesvømmer? (Y/N): ");
         String konksvøm = scanner.nextLine();
         if (konksvøm.equalsIgnoreCase("Y")) {
@@ -54,6 +78,7 @@ public class MemberController {
             x.setIsCompetitionSwimmer(false);
         }
 
+        // hasPayed
         System.out.println("Betaler medlemmet nu? (Y/N): ");
         String betaling = scanner.nextLine();
         if (betaling.equalsIgnoreCase("Y")) {
@@ -62,14 +87,10 @@ public class MemberController {
             x.setHasPayed(false);
         }
 
-        // TODO: IS_SENIOR // Skal vurderes ud fra alder
+        x.setMemberID(FileHandler.readFileForID("MedlemsListe.txt"));
 
-        // TODO: MEMBERPRICE // Skal udregnes ud fra alder
-
-        // TODO: MemberID // ud fra fil
-
-        // TODO: tilføj medlemmer til fil
-
+        FileHandler.writeToFile(x.toString(), "MedlemsListe.txt");
+        MemberList.add(x);
         System.out.println(Farver.GREEN + "\nNyt Medlem oprettet:\n" + Farver.RESET + x);
 
     }
@@ -80,7 +101,9 @@ public class MemberController {
 
     public static void showTrainingResults() {}
 
-    public static void addTrainingResults() {}
+    public static void addTrainingResults() {
+
+    }
 
     public static void pauseMember() {}
 

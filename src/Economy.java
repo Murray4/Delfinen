@@ -1,12 +1,60 @@
+import java.util.*;
+
 public class Economy {
 
     //METODER
     public static void calculateExpectedYearlyIncome() {}
 
-    public static void registerPayment() {}
+    public static void registerPayment(Scanner scanner) {
+
+        System.out.println("Indtast medlems ID, på det medlem du vil finde: \n");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        boolean found = false;
+
+        for (Member m : MemberController.MemberList) {
+            if (m.getMemberID() == id) {
+                System.out.println("\nFundet medlem: \nNavn: " + m.getMemberName() + "\n Fødselsdag: " + m.getBirthDate());
+
+                System.out.println("Korrekt medlem? (J/N): \n");
+
+                String answer = scanner.nextLine().trim();
+                scanner.nextLine();
+
+                if (answer.equalsIgnoreCase("J")) {
+                    System.out.println("Har personen betalt? (J/N)\n");
+                    String Payed = scanner.nextLine().trim();
+                    scanner.nextLine();
+
+                    if (Payed.equalsIgnoreCase("J")) {
+                        m.setHasPayed(true);
+                        System.out.println(Farver.GREEN + "Betaling registreret: " + Farver.RESET);
+                    } else if (Payed.equalsIgnoreCase("N")) {
+                        m.setHasPayed(false);
+                        System.out.println(Farver.ORANGE + "Betaling registreret som IKKE BETALT." + Farver.RESET);
+                    } else {
+                        System.out.println(Farver.RED + "Ugyldigt svar. - Betaling blev ikke ændret." + Farver.RESET);
+                    }
+
+                    found = true;
+                    break;
+                } else {
+                    System.out.println("Svar ugyldigt..");
+                    found = true;
+                    break;
+                }
+
+            }
+
+        }
+        if (!found) {
+            System.out.println(Farver.RED + "Ingen medlem funder med det indtastet ID" + Farver.RESET);
+            ConsoleHandler.economyMenu(scanner);
+        }
+    }
 
     public static void printOutstandingFeesReport() {}
 
     public static void getPriceForMember() {}
-
 }
