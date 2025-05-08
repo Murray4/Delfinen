@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MemberController {
 
     // ATTRIBUTTER
-    ArrayList<Member> MemberList;
+    public static ArrayList<Member> MemberList = new ArrayList<>();
 
 
     // METODER

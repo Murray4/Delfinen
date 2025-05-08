@@ -63,7 +63,7 @@ public class ConsoleHandler {
                 Economy.calculateExpectedYearlyIncome();
                 break;
             case 3:
-                Economy.registerPayment();
+                Economy.registerPayment(scanner);
                 break;
             case 0:
                 break;
@@ -90,10 +90,14 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                Economy.printOutstandingFeesReport();
+                CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
-                Economy.calculateExpectedYearlyIncome();
+                Dicipline valgtDiciplin = askForDicipline(scanner);
+                CompetitionStatistic.getTopFive();
+                break;
+            case 3:
+                CompetitionManager.showCompetition();
                 break;
             case 0:
                 break;
@@ -107,10 +111,32 @@ public class ConsoleHandler {
     public static String trainerMenuText() {
         return "=== Træner Menu ===" + """
                 1. Konkurrencesvømmere
-                2. Konkurrencer
+                2. Top5
+                3. Konkurrencer
                 0. Tilbage
                 """;
     }
+
+    public static Dicipline askForDicipline(Scanner scanner) {
+        System.out.println("Vælg en disciplin:");
+        Dicipline[] discipliner = Dicipline.values();
+
+        for (int i = 0; i < discipliner.length; i++) {
+            System.out.println((i + 1) + ". " + discipliner[i]);
+        }
+
+        System.out.print("Indtast nummer: ");
+        int valg = scanner.nextInt();
+        scanner.nextLine();
+
+        if (valg > 0 && valg <= discipliner.length) {
+            return discipliner[valg - 1];
+        } else {
+            System.out.println("Ugyldigt valg. Prøv igen.\n");
+            return askForDicipline(scanner);
+        }
+    }
+
 
     public static void competitionMenu(Scanner scanner) {
 
