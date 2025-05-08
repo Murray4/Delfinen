@@ -147,6 +147,8 @@ public class Member {
         this.memberID = memberID;
     }
 
+
+
     // METODER
     @Override
     public String toString() {

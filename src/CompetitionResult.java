@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+
+
 public class CompetitionResult extends Result {
     // ATTRIBUTER
     Competition competition;
