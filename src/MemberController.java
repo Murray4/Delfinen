@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.time.LocalTime;
 public class MemberController {
 
     // ATTRIBUTTER
@@ -146,9 +146,52 @@ public class MemberController {
     public static void showTrainingResults() {
     }
 
-    public static void addTrainingResults() {
 
+    public static void addTrainingResults() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Indtast medlems-ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Member valgt = null;
+        for (Member m : MemberList) {
+            if (m.getMemberID() == id) {
+                valgt = m;
+                break;
+            }
+        }
+
+        if (valgt == null) {
+            System.out.println("Medlem ikke fundet!");
+            return;
+        }
+
+        System.out.println("Vælg disciplin:");
+        Dicipline[] discipliner = Dicipline.values();
+        for (int i = 0; i < discipliner.length; i++) {
+            System.out.println((i + 1) + ". " + discipliner[i]);
+        }
+        int disciplinValg = scanner.nextInt();
+        scanner.nextLine();
+        Dicipline valgtDisciplin = discipliner[disciplinValg - 1];
+
+        System.out.print("Tid (mm:ss): ");
+        String tidInput = scanner.nextLine();
+        LocalTime tid = LocalTime.parse("00:" + tidInput);
+
+        System.out.print("Dato (yyyy-mm-dd): ");
+        LocalDate dato = LocalDate.parse(scanner.nextLine());
+
+        System.out.print("Kommentar: ");
+        String kommentar = scanner.nextLine();
+
+        TrainingResult nytResultat = TrainingResult.createTrainingResult(valgtDisciplin, tid, dato, kommentar, valgt);
+        valgt.getTrainingResult().put(valgtDisciplin, nytResultat);
+
+        System.out.println("Træningsresultat tilføjet!");
     }
+
 
     public static void pauseMember() {
     }
