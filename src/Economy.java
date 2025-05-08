@@ -39,25 +39,22 @@ public class Economy {
 
                     found = true;
                     break;
-            } else {
+                } else {
                     System.out.println("Svar ugyldigt..");
                     found = true;
                     break;
                 }
 
-        }
+            }
 
-    }
+        }
         if (!found) {
             System.out.println(Farver.RED + "Ingen medlem funder med det indtastet ID" + Farver.RESET);
             ConsoleHandler.economyMenu(scanner);
         }
+    }
 
     public static void printOutstandingFeesReport() {}
 
     public static void getPriceForMember() {}
-
 }
-
-    public static void printOutstandingFeesReport() {
-    }
