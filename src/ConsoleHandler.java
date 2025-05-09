@@ -176,40 +176,6 @@ public class ConsoleHandler {
                 """;
     }
 
-    public static void competitiveSwimmerMenu(Scanner scanner) {
-
-        System.out.println(competitionSwimmerMenuText());
-
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                CompetitionResult.top5();
-                break;
-            case 2:
-                CompetitionSwimmer.getResultsByDicipline();
-                break;
-            case 3:
-                CompetitionSwimmer.registerResult();
-            case 0:
-                trainerMenu(scanner);
-                break;
-
-            default:
-                System.out.println("Ugyldigt valg. Prøv igen.");
-                break;
-
-        }
-
-    }
-
-    public static String competitionSwimmerMenuText() {
-        return "===Konkurrencesvømmer Menu===" + """
-                1. Top 5.
-                2. Vis resultat for disciplin.
-                3. Tilføj Resultat.
-                0. Tilbage.
-                """;
-    }
 
 
     public static void memberMenu(Scanner scanner) {

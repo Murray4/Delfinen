@@ -203,16 +203,92 @@ public class MemberController {
     }
 
 
-    public static void pauseMember() {
+    public static void pauseMember(Member m, Scanner scanner) {
+
+        System.out.print("Skal medlemmet være aktiv? (J/N): \n");
+
+        String choice = scanner.nextLine().trim();
+
+        if (choice.equalsIgnoreCase("J")) {
+
+            m.setIsActive(true);
+            System.out.println(Farver.GREEN + "Medlem er nu aktiv.\n" + Farver.RESET);
+            editMember(scanner);
+        } else if (choice.equalsIgnoreCase("N")) {
+            m.setIsActive(false);
+            System.out.println(Farver.GREEN + "Medlem er nu passiv.\n" + Farver.RESET);
+            editMember(scanner);
+        } else {
+            ConsoleHandler.inputFejl("valg", "er et ugyldigt input – skriv J eller N\n");
+            editMember(scanner);
+        }
     }
 
     public static void editMember(Scanner scanner) {
 
+        System.out.print("Indtast ID på medlemmet du vil redigere:\n ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Member choiceMember = null;
+
+        for (Member m : MemberList) {
+            if (m.getMemberID() == id) {
+                choiceMember = m;
+                break;
+            } else {
+                System.out.println(Farver.RED + "Medlem med ID " + id + " blev ikke fundet." + Farver.RESET);
+                return;
+            }
+        }
+
+        while (true) {
+            System.out.println("\nHvad ønsker du at ændre?\n");
+            System.out.println("1. Aktivt / Passivt medlemskab");
+            System.out.println("2. Konkurrencesvømmer status");
+            System.out.println("0. Tilbage");
+
+            System.out.print("Vælg en mulighed: ");
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    pauseMember(choiceMember, scanner);
+                    break;
+                case "2":
+                    isCompetetive(choiceMember, scanner);
+                    break;
+                case "0":
+                    ConsoleHandler.memberMenu(scanner);
+                    break;
+                default:
+                    ConsoleHandler.inputFejl("Valg", "er ugyldigt. Indtast 1, 2 eller 0\n");
+                    editMember(scanner);
+            }
+        }
 
     }
 
-    public static void isCompetetive() {
+    public static void isCompetetive(Member m, Scanner scanner) {
+
+        System.out.print("Er medlemmet konkurrencesvømmer? (J/N): \n");
+
+        String choice = scanner.nextLine().trim();
+
+        if (choice.equalsIgnoreCase("J")) {
+            m.setIsCompetitionSwimmer(true);
+            System.out.println(Farver.GREEN + "Medlem er nu konkurrencesvømmer.\n" + Farver.RESET);
+            editMember(scanner);
+        } else if (choice.equalsIgnoreCase("N")) {
+            m.setIsCompetitionSwimmer(false);
+            System.out.println(Farver.ORANGE + "Medlem er nu IKKE konkurrencesvømmer.\n" + Farver.RESET);
+            editMember(scanner);
+        } else {
+            ConsoleHandler.inputFejl("valg", "Ugyldigt input – skriv J eller N\n");
+            editMember(scanner);
+        }
     }
+
 
     public static void addMember() {
     }
