@@ -98,6 +98,9 @@ public class ConsoleHandler {
             case 3:
                 //CompetitionManager.showCompetition();
                 break;
+            case 4:
+                MemberController.addTrainingResults();
+                break;
             case 0:
                 break;
 
@@ -108,10 +111,11 @@ public class ConsoleHandler {
     }
 
     public static String trainerMenuText() {
-        return "=== Træner Menu ===" + """
+        return "=== Træner Menu ===\n" + """
                 1. Konkurrencesvømmere
                 2. Top5
                 3. Konkurrencer
+                4. Tilføj træningsresultat
                 0. Tilbage
                 """;
     }
