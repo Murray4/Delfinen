@@ -244,8 +244,8 @@ public class ConsoleHandler {
                         """;
     }
 
-    public static String inputFejl(String enhed) {
-        System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen" + Farver.RESET);
+    public static String inputFejl(String enhed, String forklaring) {
+        System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen. " + forklaring + Farver.RESET);
         return "Ugyldig " + enhed + "prøv igen";
     }
 }

@@ -20,9 +20,17 @@ public class MemberController {
         Member x = new Member();
         scanner.nextLine();
 
-        // Navn TODO: FEJLHÅNDTERING
-        System.out.println("Navn: ");
-        String navn = scanner.nextLine();
+        // Navn
+        String navn = "";
+        while(true) {
+            System.out.println("Navn: ");
+            navn = scanner.nextLine().trim();
+            if (navn.matches("[A-Za-zÆØÅæøå ]+")) {     // "[A-Za-zÆØÅæøå ]+" "regex" <-- tjekker at der kun er bogstaver og mellemrum
+                break;
+            } else {
+                ConsoleHandler.inputFejl("navn", "Navn må kun indeholde bogstaver");
+            }
+        }
         x.setMemberName(navn);
 
         // Fødselsdato
@@ -30,12 +38,11 @@ public class MemberController {
         while (fødselsdato == null) {
             System.out.println("Fødselsdato: (dd-MM-yyyy)");
             String føds = scanner.nextLine();
-
             try {
-                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");       // Standard format for LocalDate er (yyyy-MM-dd) dette ændrer formattet til (dd-MM-yyyy)
                 fødselsdato = LocalDate.parse(føds, format);
             } catch (DateTimeParseException e) {
-                ConsoleHandler.inputFejl("fødselsdato");
+                ConsoleHandler.inputFejl("fødselsdato", "Forkert format! (dd-MM-yyyy)");
             }
         }
         x.setBirthDate(fødselsdato);
@@ -50,10 +57,10 @@ public class MemberController {
         while (true) {
             System.out.println("email: ");
             email = scanner.nextLine().trim();
-            if (email.matches(".+@.+\\..+")) {
+            if (email.matches(".+@.+\\..+")) {          // ".+@.+\\..+" "regex" <-- tjekker at der er . @ og at der er tekst før og efter @ og efter punktum
                 break;
             } else {
-                ConsoleHandler.inputFejl("Email");
+                ConsoleHandler.inputFejl("Email", "Forkert email format");
             }
         }
         x.setEmail(email);
@@ -66,7 +73,7 @@ public class MemberController {
             if (telefonnummer.matches("\\d{8}")) {     // "\\d{8}" "regex" <-- tjekker at det kun er cifre og der skal være 8 af dem
                 break;
             } else {
-                ConsoleHandler.inputFejl("telefonnummer");
+                ConsoleHandler.inputFejl("telefonnummer", "Telefonnummer må kun indeholde tal");
             }
         }
         x.setPhoneNumber(telefonnummer);
@@ -82,7 +89,7 @@ public class MemberController {
                 x.setIsActive(false);
                 break;
             } else {
-                ConsoleHandler.inputFejl("input");
+                ConsoleHandler.inputFejl("input", "Skriv A eller P");
             }
         }
 
@@ -97,10 +104,10 @@ public class MemberController {
         } else {
             x.setMembership(Membership.SENIORSVØMMER_60_PLUS);
             x.setIsSenior(true);
-            x.setMemberPrice((int) (1600 * 0.75));
+            x.setMemberPrice((int)(1600 * 0.75));
         }
 
-        // isCompetetive
+        // isCompetitive
         while (true) {
             System.out.println("Er medlem konkurrencesvømmer? (Y/N): ");
             String konksvøm = scanner.nextLine();
@@ -111,10 +118,10 @@ public class MemberController {
                 x.setIsCompetitionSwimmer(false);
                 break;
             } else {
-                ConsoleHandler.inputFejl("input");
+                ConsoleHandler.inputFejl("input", "Skriv Y eller N");
             }
-
         }
+
         // hasPayed
         while (true) {
             System.out.println("Betaler medlemmet nu? (Y/N): ");
@@ -125,7 +132,7 @@ public class MemberController {
             } else if (betaling.equalsIgnoreCase("N")){
                 x.setHasPayed(false);
             } else {
-                ConsoleHandler.inputFejl("input");
+                ConsoleHandler.inputFejl("input", "Skriv Y eller N");
             }
         }
 
