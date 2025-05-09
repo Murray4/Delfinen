@@ -11,6 +11,6 @@ public class Result {
 
     // METODER
     public String toString() {
-        return "TEST";
+        return ", Tid: " + time + ", Dato: " + date;
     }
 }

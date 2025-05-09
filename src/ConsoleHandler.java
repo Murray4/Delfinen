@@ -41,6 +41,7 @@ public class ConsoleHandler {
                     break;
                 case 0:
                     System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
+                    FileHandler.writeToFile("MedlemsListe.txt");
                     break;
                 default:
                     System.out.println("Ugyldigt valg. Prøv igen.");
@@ -183,7 +184,7 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                CompetitionResult.top5();
+                //CompetitionResult.top5();
                 break;
             case 2:
                 CompetitionSwimmer.getResultsByDicipline();

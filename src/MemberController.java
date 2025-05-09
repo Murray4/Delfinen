@@ -139,7 +139,6 @@ public class MemberController {
 
         x.setMemberID(FileHandler.readFileForID("MedlemsListe.txt"));
 
-        FileHandler.writeToFile(x.toString(), "MedlemsListe.txt");
         MemberList.add(x);
         System.out.println(Farver.GREEN + "\nNyt Medlem oprettet:\n" + Farver.RESET + x);
 
@@ -196,7 +195,6 @@ public class MemberController {
         TrainingResult nytResultat = TrainingResult.createTrainingResult(valgtDisciplin, tid, dato, kommentar, valgt);
         valgt.getTrainingResult().put(valgtDisciplin, nytResultat);
 
-        FileHandler.tilføjTræningsResultatTilFil("MedlemsListe.txt", id, nytResultat);
         System.out.println("Træningsresultat tilføjet!");
 
 
