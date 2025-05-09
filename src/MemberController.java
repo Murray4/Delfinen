@@ -131,6 +131,7 @@ public class MemberController {
                 break;
             } else if (betaling.equalsIgnoreCase("N")){
                 x.setHasPayed(false);
+                break;
             } else {
                 ConsoleHandler.inputFejl("input", "Skriv Y eller N");
             }
@@ -154,8 +155,7 @@ public class MemberController {
     }
 
 
-    public static void addTrainingResults() {
-        Scanner scanner = new Scanner(System.in);
+    public static void addTrainingResults(Scanner scanner) {
 
         System.out.print("Indtast medlems-ID: ");
         int id = scanner.nextInt();
@@ -196,7 +196,10 @@ public class MemberController {
         TrainingResult nytResultat = TrainingResult.createTrainingResult(valgtDisciplin, tid, dato, kommentar, valgt);
         valgt.getTrainingResult().put(valgtDisciplin, nytResultat);
 
+        FileHandler.tilføjTræningsResultatTilFil("MedlemsListe.txt", id, nytResultat);
         System.out.println("Træningsresultat tilføjet!");
+
+
     }
 
 

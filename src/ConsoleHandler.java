@@ -4,6 +4,8 @@ public class ConsoleHandler {
 
     public static void main(String[] args) {
         FileHandler.createFile("MedlemsListe.txt");
+        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
+        System.out.print(MemberController.MemberList);
         Scanner scanner = new Scanner(System.in);
         run(scanner);
 
@@ -99,7 +101,7 @@ public class ConsoleHandler {
                 competitionMenu(scanner);
                 break;
             case 4:
-                MemberController.addTrainingResults();
+                MemberController.addTrainingResults(scanner);
                 break;
             case 0:
                 break;
