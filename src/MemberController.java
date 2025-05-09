@@ -211,6 +211,4 @@ public class MemberController {
 
     public static void addMember() {
     }
-
-
 }

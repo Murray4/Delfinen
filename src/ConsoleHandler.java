@@ -96,7 +96,7 @@ public class ConsoleHandler {
                 CompetitionStatistic.getTopFive();
                 break;
             case 3:
-                //CompetitionManager.showCompetition();
+                competitionMenu(scanner);
                 break;
             case 4:
                 MemberController.addTrainingResults();
@@ -140,8 +140,7 @@ public class ConsoleHandler {
         }
     }
 
-/*
-    public static void competitionMenu(Scanner scanner) {
+ public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
 
@@ -151,7 +150,7 @@ public class ConsoleHandler {
                 CompetitionManager.showCompetition();
                 break;
             case 2:
-                CompetitionManager.createCompetition();
+                CompetitionManager.createCompetition(scanner);
                 break;
             case 3:
                 CompetitionManager.editCompetition();
@@ -165,7 +164,7 @@ public class ConsoleHandler {
         }
 
     }
-*/
+
     public static String competitionMenuText() {
         return "===Konkurrence Menu===" + """
                 1. Vis konkurrencer.
@@ -248,9 +247,8 @@ public class ConsoleHandler {
                         """;
     }
 
-    public static String inputFejl(String enhed, String forklaring) {
+    public static void inputFejl(String enhed, String forklaring) {
         System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen. " + forklaring + Farver.RESET);
-        return "Ugyldig " + enhed + "prøv igen";
     }
 }
 

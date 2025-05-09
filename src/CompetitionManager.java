@@ -4,37 +4,36 @@ import java.util.Scanner;
 
 public class CompetitionManager {
     // ATTRIBUTTER
-    private ArrayList<Competition> competitions = new ArrayList<>();
+    private static ArrayList<Competition> competitions = new ArrayList<>();
 
     // METODER
-    public void createCompetition(String name, String city, LocalDate date) {
-        Competition competition = new Competition(name, city, date);
-        competitions.add(competition);
-        System.out.println("Competition created: " + competition);
-    }
+    public static void createCompetition(Scanner scanner) {
+        Competition competition = new Competition();
 
-
-    public void createCompetition(Scanner scanner) {
         System.out.println("Enter competition name: ");
         String name = scanner.nextLine();
+        competition.setName(name);
 
         System.out.println("Enter city: ");
         String city = scanner.nextLine();
+        competition.setCity(city);
 
         System.out.println("Enter date (YYYY-MM-DD): ");
         String dateInput = scanner.nextLine();
         LocalDate date = LocalDate.parse(dateInput);
+        competition.setDate(date);
 
         // Call the regular createCompetition method
-        createCompetition(name, city, date);
+        competitions.add(competition);
+        System.out.println(Farver.GREEN + "Competition created: " + competition + Farver.RESET);
     }
 
-    public void editCompetition() {
+    public static void editCompetition() {
         // Logic to edit competition (to be implemented)
         System.out.println("Editing competition (not implemented yet)");
     }
 
-    public void showCompetition() {
+    public static void showCompetition() {
         System.out.println("All competitions:");
         for (Competition c : competitions) {
             System.out.println(c);
