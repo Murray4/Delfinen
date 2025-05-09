@@ -8,7 +8,7 @@ public class TrainingResult extends Result {
 
     // METODER
     public String toString() {
-        return "TEST"; // Du kan opdatere det senere
+        return  ""; // Du kan opdatere det senere
     }
 
     public static TrainingResult createTrainingResult(Dicipline discipline, LocalTime time, LocalDate date, String comment, Member member) {

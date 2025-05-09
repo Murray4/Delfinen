@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Member {
@@ -40,7 +41,10 @@ public class Member {
         this.memberID = memberID;
     }
 
-    public Member() {}
+    public Member() {
+        this.trainingResult = new HashMap<>();
+        this.competitionResult = new ArrayList<>();
+    }
 
 
     // GETTERS OG SETTERS
@@ -152,7 +156,7 @@ public class Member {
     // METODER
     @Override
     public String toString() {
-        return "[ID = " + memberID + "] , [MedlemsNavn = " + memberName + "]\n" +
+        return "\n" + "[ID = " + memberID + "] , [MedlemsNavn = " + memberName + "]\n" +
                 "[Medlemskab = " + membership + "]" +
                 ", [Aktiv = " + isActive + "]" +
                 ", [Medlemspris = " + memberPrice + "]" +
@@ -160,8 +164,8 @@ public class Member {
                 ", [Telefonnummer = " + phoneNumber + "]" +
                 ", [Betalt = " + hasPayed + "]" +
                 ", [Senior = " + isSenior + "]" +
-                ", [Træningsresultater = " + trainingResult + "]" +
-                ", [Konkurrencesvømmer = " + isCompetitionSwimmer + "]" +
-                ", [Konkurrenceresultater=" + competitionResult + "]\n";
+                ", [Konkurrencesvømmer = " + isCompetitionSwimmer + "]" + "\n" +
+                "[Træningsresultater = " + trainingResult + "]" + "\n" +
+                "[Konkurrenceresultater = " + competitionResult + "]";
     }
 }
