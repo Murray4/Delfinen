@@ -184,7 +184,7 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                //CompetitionResult.top5();
+                CompetitionResult.top5();
                 break;
             case 2:
                 CompetitionSwimmer.getResultsByDicipline();
