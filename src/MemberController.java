@@ -204,6 +204,8 @@ public class MemberController {
     }
 
     public static void editMember(Scanner scanner) {
+
+
     }
 
     public static void isCompetetive() {

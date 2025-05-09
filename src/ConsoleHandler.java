@@ -92,8 +92,8 @@ public class ConsoleHandler {
                 CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
-                Dicipline valgtDiciplin = askForDicipline(scanner);
-                CompetitionStatistic.getTopFive();
+                Dicipline diciplineChoice = askForDicipline(scanner);
+                CompetitionStatistic.getTopFive(diciplineChoice);
                 break;
             case 3:
                 competitionMenu(scanner);
@@ -129,11 +129,11 @@ public class ConsoleHandler {
         }
 
         System.out.print("Indtast nummer: ");
-        int valg = scanner.nextInt();
+        int choice  = scanner.nextInt();
         scanner.nextLine();
 
-        if (valg > 0 && valg <= discipliner.length) {
-            return discipliner[valg - 1];
+        if (choice  > 0 && choice  <= discipliner.length) {
+            return discipliner[choice - 1];
         } else {
             System.out.println("Ugyldigt valg. Prøv igen.\n");
             return askForDicipline(scanner);

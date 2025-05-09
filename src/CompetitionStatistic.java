@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class CompetitionStatistic {
 
     // METODER
-    public static void getTopFive() {
+    public static void getTopFive(Dicipline diciplineChoice) {
 
         //TODO: Top fem resultater i hver disciplin for konkurrencesvømmere
     }
