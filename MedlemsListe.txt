@@ -29,7 +29,7 @@
 [Konkurrenceresultater = []]
 
 [ID = 6] , [MedlemsNavn = Torben]
-[Medlemskab = SENIORSVØMMER_60_PLUS], [Aktiv = true], [Medlemspris = 1200], [Email = Torben@gmail.com], [Telefonnummer = 09120923], [Betalt = true], [Senior = true], [Konkurrencesvømmer = false]
+[Medlemskab = SENIORSVØMMER_60_PLUS], [Aktiv = true], [Medlemspris = 1200], [Email = Torben@gmail.com], [Telefonnummer = 09120923], [Betalt = true], [Senior = true], [Konkurrencesvømmer = true]
 [Træningsresultater = []]
 [Konkurrenceresultater = []]
 

@@ -20,11 +20,11 @@ public class ConsoleHandler {
         int choice;
 
         do {
-            System.out.println("\n" + "=== Hovedmenu ===");
-            System.out.println("1. Medlemsmenu");
-            System.out.println("2. Økonomimenu");
-            System.out.println("3. Trænermenu");
-            System.out.println("0. Afslut");
+            System.out.println(Farver.GREEN + "\n=== Hovedmenu ===" + Farver.RESET);
+            System.out.println("  1. Medlems-menu    \uD83D\uDC64");
+            System.out.println("  2. Økonomi-menu    \uD83D\uDCB0");
+            System.out.println("  3. Træner-menu     \uD83C\uDFCA");
+            System.out.println("  0. Afslut          ❌");
             System.out.print("\nVælg en mulighed: ");
 
             choice = scanner.nextInt();
@@ -59,6 +59,7 @@ public class ConsoleHandler {
     public static void economyMenu(Scanner scanner) {
 
         System.out.println(economyMenuText());
+        System.out.print("Vælg en mulighed: ");
 
         int choice = scanner.nextInt();
         switch (choice) {
@@ -81,17 +82,18 @@ public class ConsoleHandler {
     }
 
     public static String economyMenuText() {
-        return """
-                1. Se klubbens udestående.
-                2. Se forventet indkomst.
-                3. Registrer betaling.
-                0. Tilbage.
+        return Farver.ORANGE + "\n=== Økonomi-menu ===" + Farver.RESET + "\n" + """
+                  1. Se klubbens udestående.    🔴
+                  2. Se forventet indkomst.     📈
+                  3. Registrer betaling.        ✅
+                  0. Tilbage.                   🔙
                 """;
     }
 
     public static void trainerMenu(Scanner scanner) {
 
         System.out.println(trainerMenuText());
+        System.out.print("Vælg en mulighed: ");
 
         int choice = scanner.nextInt();
         switch (choice) {
@@ -118,12 +120,12 @@ public class ConsoleHandler {
     }
 
     public static String trainerMenuText() {
-        return "=== Træner Menu ===\n" + """
-                1. Konkurrencesvømmere
-                2. Top5
-                3. Konkurrencer
-                4. Tilføj træningsresultat
-                0. Tilbage
+        return Farver.GOLD + "\n=== Træner-menu ===\n" + Farver.RESET + """
+                  1. Konkurrencesvømmere        🏅
+                  2. Top5                       🔝
+                  3. Konkurrencer               🏆
+                  4. Tilføj træningsresultat    📊
+                  0. Tilbage                    🔙
                 """;
     }
 
@@ -150,6 +152,7 @@ public class ConsoleHandler {
     public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
+        System.out.print("Vælg en mulighed: ");
 
         int choice = scanner.nextInt();
         switch (choice) {
@@ -173,17 +176,18 @@ public class ConsoleHandler {
     }
 
     public static String competitionMenuText() {
-        return "===Konkurrence Menu===" + """
-                1. Vis konkurrencer.
-                2. Tilføj konkurrence.
-                3. Rediger konkurrence.
-                0. Tilbage.
+        return Farver.ORANGE + "===Konkurrence-menu===" + Farver.RESET + """
+                  1. Vis konkurrencer.      🗂️
+                  2. Tilføj konkurrence.    ➕
+                  3. Rediger konkurrence.   🏅
+                  0. Tilbage.               🔙
                 """;
     }
 
 
     public static void memberMenu(Scanner scanner) {
         System.out.println(memberMenuTekst());
+        System.out.print("Vælg en mulighed: ");
         int choice = scanner.nextInt();
 
         while (true) {
@@ -211,12 +215,12 @@ public class ConsoleHandler {
     }
 
     public static String memberMenuTekst() {
-        return Farver.CYAN + "=== Member Menu ===" + Farver.RESET + "\n" +
+        return Farver.CYAN + "\n=== Medlems-menu ===" + Farver.RESET + "\n" +
                 """
-                          1. Registrer Nyt Medlem
-                          2. Rediger Medlem
-                          3. Søg På Medlem
-                          0. Tilbage
+                          1. Registrer Nyt Medlem   ➕
+                          2. Rediger Medlem         ✏️
+                          3. Søg På Medlem          🔍
+                          0. Tilbage                🔙
                         """;
     }
 
