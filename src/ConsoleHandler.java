@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     public static void main(String[] args) {
+        System.out.println(FileHandler.sebber());
         Scanner scanner = new Scanner(System.in);
         run(scanner);
 
@@ -19,12 +20,16 @@ public class ConsoleHandler {
         int choice;
 
         do {
-            System.out.println("\n" + "=== Hovedmenu ===");
+            System.out.println("\n" +"       _\\`.___              ___,\"/_\n" +
+                    "    ,'`,-__.-.``=._    _.=``,-.__-.`'.\n" +
+                    "   /,--'-..,7-)/-`\"    \"'-\\(-7,..-'--.\\\n" +
+                    " ,\"`.         '            `         ,'\".");
+            System.out.println("\n" + Farver.CYAN + "=== Hovedmenu ===" + Farver.RESET);
             System.out.println("1. Medlemsmenu");
             System.out.println("2. Økonomimenu");
             System.out.println("3. Trænermenu");
             System.out.println("0. Afslut");
-            System.out.print("\nVælg en mulighed: ");
+            System.out.print("\n" + "Vælg en mulighed: ");
 
             choice = scanner.nextInt();
 
@@ -98,8 +103,8 @@ public class ConsoleHandler {
                 CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
-                Dicipline diciplineChoice = askForDicipline(scanner);
-                CompetitionStatistic.getTopFive(diciplineChoice);
+                //Dicipline diciplineChoice = askForDicipline(scanner);
+                CompetitionStatistic.getTopFiveTotal();
                 break;
             case 3:
                 competitionMenu(scanner);
