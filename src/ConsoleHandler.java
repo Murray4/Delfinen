@@ -3,9 +3,6 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     public static void main(String[] args) {
-        FileHandler.createFile("MedlemsListe.txt");
-        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
-        //System.out.print(MemberController.MemberList);      // TESTFUNKTION
         Scanner scanner = new Scanner(System.in);
         run(scanner);
 
@@ -13,6 +10,8 @@ public class ConsoleHandler {
 
     // METODER (- main)
     public static void run(Scanner scanner) {
+        FileHandler.createFile("MedlemsListe.txt");
+        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
         mainMenu(scanner);
     }
 
@@ -200,6 +199,9 @@ public class ConsoleHandler {
                     break;
                 case 3:
                     MemberController.searchByFilter(scanner);
+                    break;
+                case 4:
+                    System.out.println(MemberController.MemberList);
                     break;
                 case 0:
                     mainMenu(scanner);

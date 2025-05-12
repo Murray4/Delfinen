@@ -17,7 +17,6 @@ public class MemberController {
     }
 
     public static void registerNewMember(Scanner scanner) {
-        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
         System.out.println(Farver.MAGENTA + "Register New Member" + Farver.RESET);
         Member x = new Member();
         scanner.nextLine();
@@ -144,6 +143,7 @@ public class MemberController {
 
         MemberList.add(x);
         System.out.println(Farver.GREEN + "\nNyt Medlem oprettet:\n" + Farver.RESET + x);
+        FileHandler.writeToFile("MedlemsListe.txt", MemberController.MemberList);
         ConsoleHandler.memberMenu(scanner);
     }
 
@@ -212,8 +212,6 @@ public class MemberController {
         valgt.getTrainingResult().put(valgtDisciplin, nytResultat);
 
         System.out.println("Træningsresultat tilføjet!");
-
-
     }
 
 
@@ -284,7 +282,6 @@ public class MemberController {
                     editMember(scanner);
             }
         }
-
     }
 
     public static void isCompetetive(Member m, Scanner scanner) {
