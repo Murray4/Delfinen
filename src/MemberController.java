@@ -243,6 +243,8 @@ public class MemberController {
             System.out.println(Farver.RED + "Medlem med ID, " + id + ", blev ikke fundet." + Farver.RESET);
             return;
         }
+        System.out.println("\nDu har valgt " + choiceMember.getMemberName() + "\n");
+
 
         while (true) {
             System.out.println("\nHvad ønsker du at ændre?\n");

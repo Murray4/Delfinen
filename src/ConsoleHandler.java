@@ -20,7 +20,7 @@ public class ConsoleHandler {
         int choice;
 
         do {
-            System.out.println("=== Hovedmenu ===");
+            System.out.println("\n=== Hovedmenu ===");
             System.out.println("1. Medlemsmenu");
             System.out.println("2. Økonomimenu");
             System.out.println("3. Trænermenu");
