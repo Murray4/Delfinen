@@ -1,0 +1,65 @@
+[ID = 0] , [MedlemsNavn = Sebastian]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Sebastian@ggmail.com], [Telefonnummer = 30294024], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 1] , [MedlemsNavn = Rasmus]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Rasmus@gmail.com], [Telefonnummer = 42123212], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 2] , [MedlemsNavn = Magnus]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Magnus@gmail.com], [Telefonnummer = 32123212], [Betalt = false], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 3] , [MedlemsNavn = Raya]
+[Medlemskab = null], [Aktiv = false], [Medlemspris = 500], [Email = Raya@gmail.com], [Telefonnummer = 32439832], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 4] , [MedlemsNavn = Uffe]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Uffe@gmail.com], [Telefonnummer = 30201202], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 5] , [MedlemsNavn = tytte]
+[Medlemskab = SENIORSVØMMER_60_PLUS], [Aktiv = true], [Medlemspris = 1200], [Email = Tytte@gmail.com], [Telefonnummer = 32120099], [Betalt = true], [Senior = true], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 0] , [MedlemsNavn = Sebastian]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Sebastian@ggmail.com], [Telefonnummer = 30294024], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 1] , [MedlemsNavn = Rasmus]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Rasmus@gmail.com], [Telefonnummer = 42123212], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 2] , [MedlemsNavn = Magnus]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Magnus@gmail.com], [Telefonnummer = 32123212], [Betalt = false], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 3] , [MedlemsNavn = Raya]
+[Medlemskab = null], [Aktiv = false], [Medlemspris = 500], [Email = Raya@gmail.com], [Telefonnummer = 32439832], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 4] , [MedlemsNavn = Uffe]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Uffe@gmail.com], [Telefonnummer = 30201202], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 5] , [MedlemsNavn = tytte]
+[Medlemskab = SENIORSVØMMER_60_PLUS], [Aktiv = true], [Medlemspris = 1200], [Email = Tytte@gmail.com], [Telefonnummer = 32120099], [Betalt = true], [Senior = true], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 6] , [MedlemsNavn = Torben]
+[Medlemskab = SENIORSVØMMER_60_PLUS], [Aktiv = true], [Medlemspris = 1200], [Email = Torben@gmail.com], [Telefonnummer = 30292049], [Betalt = true], [Senior = true], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+

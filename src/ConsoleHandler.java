@@ -5,7 +5,7 @@ public class ConsoleHandler {
     public static void main(String[] args) {
         FileHandler.createFile("MedlemsListe.txt");
         FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
-        System.out.print(MemberController.MemberList);      // TESTFUNKTION
+        //System.out.print(MemberController.MemberList);      // TESTFUNKTION
         Scanner scanner = new Scanner(System.in);
         run(scanner);
     }
@@ -19,7 +19,7 @@ public class ConsoleHandler {
         int choice;
 
         do {
-            System.out.println("=== Hovedmenu ===");
+            System.out.println("\n" + "=== Hovedmenu ===");
             System.out.println("1. Medlemsmenu");
             System.out.println("2. Økonomimenu");
             System.out.println("3. Trænermenu");
@@ -40,7 +40,8 @@ public class ConsoleHandler {
                     break;
                 case 0:
                     scanner.close();
-                    FileHandler.writeToFile("MedlemsListe.txt");
+                    FileHandler.writeToFile("MedlemsListe.txt", MemberController.MemberList);
+                    System.out.println(Farver.GREEN + "MedlemsListe opdateret" + Farver.RESET);
                     System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
                     scanner.close();
                     System.exit(0);

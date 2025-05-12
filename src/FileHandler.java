@@ -25,14 +25,34 @@ public class FileHandler {
         }
     }
 
-    public static void writeToFile(String fileName) {
-        try (FileWriter writer = new FileWriter(fileName, false)) {     // false = overskriver filen
-            for (Member medlem : MemberController.MemberList) {
-                writer.write(medlem.toString() + System.lineSeparator());
+    public static void writeToFile(String fileName, ArrayList<Member> medlemmer) {
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName))) {
+            for (Member medlem : medlemmer) {
+                writer.write("[ID = " + medlem.getMemberID() + "] , [MedlemsNavn = " + medlem.getMemberName() + "]\n");
+                writer.write("[Medlemskab = " + medlem.getMembership() + "], [Aktiv = " + medlem.getIsActive() +
+                        "], [Medlemspris = " + medlem.getMemberPrice() + "], [Email = " + medlem.getEmail() +
+                        "], [Telefonnummer = " + medlem.getPhoneNumber() + "], [Betalt = " + medlem.getHasPayed() +
+                        "], [Senior = " + medlem.getIsSenior() + "], [Konkurrencesvømmer = " + medlem.getIsCompetitionSwimmer() + "]\n");
+
+                // Træningsresultater
+                Map<Dicipline, TrainingResult> resultater = medlem.getTrainingResult();
+                if (resultater != null && !resultater.isEmpty()) {
+                    List<String> entries = new ArrayList<>();
+                    for (Map.Entry<Dicipline, TrainingResult> entry : resultater.entrySet()) {
+                        Dicipline disciplin = entry.getKey();
+                        TrainingResult tr = entry.getValue();
+                        String tidStr = formatDuration(tr.getTid());
+                        entries.add("{" + disciplin.name() + "=, Tid:" + tidStr + ", Dato: " + tr.getDato() + "}");
+                    }
+                    writer.write("[Træningsresultater = " + String.join(", ", entries) + "]\n");
+                } else {
+                    writer.write("[Træningsresultater = []]\n");
+                }
+
+                writer.write("[Konkurrenceresultater = []]\n\n"); // tomt for nu
             }
-            System.out.println(Farver.GREEN + "MedlemsListe opdateret!" + Farver.RESET);
         } catch (IOException e) {
-            System.err.println(Farver.RED + "Fejl ved skrivning til fil: " + e.getMessage() + Farver.RESET);
+            System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
     }
 
@@ -173,6 +193,14 @@ public class FileHandler {
     private static Membership parseMembership(String linje) {
         String værdi = parseStringFromLine(linje, "Medlemskab");
         return (værdi != null && !værdi.equals("null")) ? Membership.valueOf(værdi) : null;
+    }
+
+    public static String formatDuration(Duration tid) {
+        long totalMillis = tid.toMillis();
+        long minutter = totalMillis / 60000;
+        long sekunder = (totalMillis % 60000) / 1000;
+        long millisekunder = totalMillis % 1000;
+        return String.format("%02d:%02d.%03d", minutter, sekunder, millisekunder);
     }
 }
 

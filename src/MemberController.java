@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
@@ -16,6 +17,7 @@ public class MemberController {
     }
 
     public static void registerNewMember(Scanner scanner) {
+        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
         System.out.println(Farver.MAGENTA + "Register New Member" + Farver.RESET);
         Member x = new Member();
         scanner.nextLine();
@@ -139,10 +141,10 @@ public class MemberController {
 
         x.setMemberID(FileHandler.readFileForID("MedlemsListe.txt"));
 
-        FileHandler.writeToFile(x.toString(), "MedlemsListe.txt");
+
         MemberList.add(x);
         System.out.println(Farver.GREEN + "\nNyt Medlem oprettet:\n" + Farver.RESET + x);
-
+        ConsoleHandler.memberMenu(scanner);
     }
 
     public static void cancelMembershio() {
@@ -183,12 +185,25 @@ public class MemberController {
         scanner.nextLine();
         Dicipline valgtDisciplin = discipliner[disciplinValg - 1];
 
-        System.out.print("Tid (mm:ss): ");
-        String tidInput = scanner.nextLine();
-        LocalTime tid = LocalTime.parse("00:" + tidInput);
 
-        System.out.print("Dato (yyyy-mm-dd): ");
-        LocalDate dato = LocalDate.parse(scanner.nextLine());
+        System.out.print("Tid (mm:ss.SSS): ");
+        String tidInput = scanner.nextLine();
+
+        // Split på punktum
+        String[] parts = tidInput.split("\\.");
+        String[] minSek = parts[0].split(":");
+
+        long minutter = Long.parseLong(minSek[0]);
+        long sekunder = Long.parseLong(minSek[1]);
+        long millisekunder = Long.parseLong(parts[1]);
+
+        Duration tid = Duration.ofMinutes(minutter)
+                .plusSeconds(sekunder)
+                .plusMillis(millisekunder);
+
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");       // Standard format for LocalDate er (yyyy-MM-dd) dette ændrer formattet til (dd-MM-yyyy)
+        System.out.print("Dato (dd-MM-yyyy): ");
+        LocalDate dato = LocalDate.parse(scanner.nextLine(),format);
 
         System.out.print("Kommentar: ");
         String kommentar = scanner.nextLine();
@@ -196,7 +211,6 @@ public class MemberController {
         TrainingResult nytResultat = TrainingResult.createTrainingResult(valgtDisciplin, tid, dato, kommentar, valgt);
         valgt.getTrainingResult().put(valgtDisciplin, nytResultat);
 
-        FileHandler.tilføjTræningsResultatTilFil("MedlemsListe.txt", id, nytResultat);
         System.out.println("Træningsresultat tilføjet!");
 
 
