@@ -52,6 +52,7 @@ public class MemberController {
         LocalDate iDag = LocalDate.now();
         Period periode = Period.between(fødselsdato, iDag);
         int alder = periode.getYears();
+        x.setAlder(alder);
 
         // Email
         String email = "";
@@ -163,13 +164,13 @@ public class MemberController {
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        Member valgt = null;
-        for (Member m : MemberList) {
+        Member valgt = null;for (Member m : MemberList) {
             if (m.getMemberID() == id) {
                 valgt = m;
                 break;
             }
         }
+
 
         if (valgt == null) {
             System.out.println("Medlem ikke fundet!");

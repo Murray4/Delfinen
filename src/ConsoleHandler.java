@@ -3,10 +3,9 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     public static void main(String[] args) {
-        System.out.println(FileHandler.sebber());
+        System.out.println(FileHandler.sebber());       // Tihi
         Scanner scanner = new Scanner(System.in);
         run(scanner);
-
     }
 
     // METODER (- main)
@@ -121,11 +120,11 @@ public class ConsoleHandler {
 
     public static String trainerMenuText() {
         return Farver.GOLD + "\n=== Træner-menu ===\n" + Farver.RESET + """
-                  1. Konkurrencesvømmere        🏅
-                  2. Top5                       🔝
-                  3. Konkurrencer               🏆
-                  4. Tilføj træningsresultat    📊
-                  0. Tilbage                    🔙
+                  1. Top5 - Konkurrencesvømmere     🏅
+                  2. Top5 - Alle svømmere           🔝
+                  3. Konkurrencer                   🏆
+                  4. Tilføj træningsresultat        📊
+                  0. Tilbage                        🔙
                 """;
     }
 
@@ -176,7 +175,8 @@ public class ConsoleHandler {
     }
 
     public static String competitionMenuText() {
-        return Farver.ORANGE + "===Konkurrence-menu===" + Farver.RESET + """
+        return Farver.ORANGE + "===Konkurrence-menu===" + Farver.RESET + "\n" +
+                """
                   1. Vis konkurrencer.      🗂️
                   2. Tilføj konkurrence.    ➕
                   3. Rediger konkurrence.   🏅
@@ -223,6 +223,7 @@ public class ConsoleHandler {
                           1. Registrer Nyt Medlem   ➕
                           2. Rediger Medlem         ✏️
                           3. Søg På Medlem          🔍
+                          4. Vis Medlemsliste
                           0. Tilbage                🔙
                         """;
     }
