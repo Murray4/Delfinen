@@ -5,7 +5,7 @@ public interface CompetitionSwimmer {
 
     static void getDiciplines() {}
 
-    static void registerResult() {}
+    static void registerCompetitionResult() {}
 
     static void isSenior() {}
 

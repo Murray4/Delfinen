@@ -8,6 +8,7 @@ public class ConsoleHandler {
         //System.out.print(MemberController.MemberList);      // TESTFUNKTION
         Scanner scanner = new Scanner(System.in);
         run(scanner);
+
     }
 
     // METODER (- main)
@@ -51,6 +52,8 @@ public class ConsoleHandler {
             }
 
         } while (choice != 0);
+
+        scanner.close();
     }
 
     public static void economyMenu(Scanner scanner) {
@@ -133,10 +136,10 @@ public class ConsoleHandler {
         }
 
         System.out.print("Indtast nummer: ");
-        int choice = scanner.nextInt();
+        int choice  = scanner.nextInt();
         scanner.nextLine();
 
-        if (choice > 0 && choice <= discipliner.length) {
+        if (choice  > 0 && choice  <= discipliner.length) {
             return discipliner[choice - 1];
         } else {
             System.out.println("Ugyldigt valg. Prøv igen.\n");
@@ -144,7 +147,7 @@ public class ConsoleHandler {
         }
     }
 
-    public static void competitionMenu(Scanner scanner) {
+ public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
 
@@ -178,40 +181,6 @@ public class ConsoleHandler {
                 """;
     }
 
-    public static void competitiveSwimmerMenu(Scanner scanner) {
-
-        System.out.println(competitionSwimmerMenuText());
-
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                //CompetitionResult.top5();
-                break;
-            case 2:
-                CompetitionSwimmer.getResultsByDicipline();
-                break;
-            case 3:
-                CompetitionSwimmer.registerResult();
-            case 0:
-                trainerMenu(scanner);
-                break;
-
-            default:
-                System.out.println("Ugyldigt valg. Prøv igen.");
-                break;
-
-        }
-
-    }
-
-    public static String competitionSwimmerMenuText() {
-        return "===Konkurrencesvømmer Menu===" + """
-                1. Top 5.
-                2. Vis resultat for disciplin.
-                3. Tilføj Resultat.
-                0. Tilbage.
-                """;
-    }
 
 
     public static void memberMenu(Scanner scanner) {
@@ -233,10 +202,11 @@ public class ConsoleHandler {
                     mainMenu(scanner);
                     break;
 
-                default:
-                    System.out.println("Ugyldigt valg. Prøv igen.");
-                    memberMenu(scanner);
-            }
+            default:
+                System.out.println("Ugyldigt valg. Prøv igen.");
+                memberMenu(scanner);
+
+
         }
     }
 

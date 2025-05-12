@@ -257,6 +257,8 @@ public class MemberController {
             System.out.println(Farver.RED + "Medlem med ID, " + id + ", blev ikke fundet." + Farver.RESET);
             return;
         }
+        System.out.println("\nDu har valgt " + choiceMember.getMemberName() + "\n");
+
 
         while (true) {
             System.out.println("\nHvad ønsker du at ændre?\n");
@@ -294,14 +296,14 @@ public class MemberController {
         if (choice.equalsIgnoreCase("J")) {
             m.setIsCompetitionSwimmer(true);
             System.out.println(Farver.GREEN + "Medlem er nu konkurrencesvømmer.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else if (choice.equalsIgnoreCase("N")) {
             m.setIsCompetitionSwimmer(false);
             System.out.println(Farver.ORANGE + "Medlem er nu IKKE konkurrencesvømmer.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else {
             ConsoleHandler.inputFejl("valg", "Ugyldigt input – skriv J eller N\n");
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         }
     }
 
