@@ -211,13 +211,13 @@ public class MemberController {
 
             m.setIsActive(true);
             System.out.println(Farver.GREEN + "Medlem er nu aktiv.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else if (choice.equalsIgnoreCase("N")) {
             m.setIsActive(false);
             System.out.println(Farver.GREEN + "Medlem er nu passiv.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else {
-            ConsoleHandler.inputFejl("valg", "er et ugyldigt input – skriv J eller N\n");
+            ConsoleHandler.inputFejl("valg", "skriv J eller N\n");
             editMember(scanner);
         }
     }
@@ -240,6 +240,7 @@ public class MemberController {
             }
         }
 
+
         while (true) {
             System.out.println("\nHvad ønsker du at ændre?\n");
             System.out.println("1. Aktivt / Passivt medlemskab");
@@ -260,7 +261,7 @@ public class MemberController {
                     ConsoleHandler.memberMenu(scanner);
                     break;
                 default:
-                    ConsoleHandler.inputFejl("Valg", "er ugyldigt. Indtast 1, 2 eller 0\n");
+                    ConsoleHandler.inputFejl("Valg", "Indtast 1, 2 eller 0\n");
                     editMember(scanner);
             }
         }

@@ -110,34 +110,29 @@ public class FileHandler {
 
                 // Træningsresultater
                 else if (linje.startsWith("[Træningsresultater =")) {
-                    Matcher matcher = Pattern.compile("\\[Træningsresultater = \\[(.*?)]").matcher(linje);
-                    if (matcher.find()) {
-                        String data = matcher.group(1); // fx: 2025-05-09 - CRAWL - 01:10 - God kommentar
-                        Map<Dicipline, TrainingResult> resultMap = new HashMap<>();
+                    Pattern p = Pattern.compile("\\{(\\w+)=, Tid:(\\d{2}:\\d{2}:\\d{2}), Dato: (\\d{4}-\\d{2}-\\d{2})}");
+                    Matcher m = p.matcher(linje);
+                    Map<Dicipline, TrainingResult> resultMap = new HashMap<>();
 
-                        String[] resultater = data.split(", (?=\\d{4}-\\d{2}-\\d{2})"); // split på dato-start
-                        for (String entry : resultater) {
-                            try {
-                                String[] parts = entry.trim().split(" - ", 4);
-                                if (parts.length >= 3) {
-                                    LocalDate dato = LocalDate.parse(parts[0].trim());
-                                    Dicipline disciplin = Dicipline.valueOf(parts[1].trim().toUpperCase());
-                                    LocalTime tid = LocalTime.parse("00:" + parts[2].trim());
-                                    String kommentar = (parts.length == 4) ? parts[3].trim() : "";
+                    while (m.find()) {
+                        try {
+                            Dicipline disciplin = Dicipline.valueOf(m.group(1).trim().toUpperCase());
+                            LocalTime tid = LocalTime.parse(m.group(2).trim());
+                            LocalDate dato = LocalDate.parse(m.group(3).trim());
+                            String kommentar = ""; // Kommentar ikke i fil
 
-                                    TrainingResult tr = TrainingResult.createTrainingResult(disciplin, tid, dato, kommentar, medlem);
-                                    resultMap.put(disciplin, tr);
-                                }
-                            } catch (Exception e) {
-                                System.out.println("Kunne ikke parse træningsresultat: " + entry);
-                            }
+                            TrainingResult tr = TrainingResult.createTrainingResult(disciplin, tid, dato, kommentar, medlem);
+                            resultMap.put(disciplin, tr);
+                        } catch (Exception e) {
+                            System.out.println("Kunne ikke parse træningsresultat: " + linje);
                         }
-
-                        medlem.setTrainingResult(resultMap);
                     }
+
+                    medlem.setTrainingResult(resultMap);
                 }
 
-                // TODO: Konkurrenceresultater kan tilføjes her
+                // Konkurrenceresultater
+
             }
 
             if (medlem != null) MemberController.MemberList.add(medlem); // Sidste medlem
@@ -148,6 +143,7 @@ public class FileHandler {
 
         return MemberController.MemberList;
     }
+
 
     private static String parseStringFromLine(String linje, String nøgle) {
         Pattern p = Pattern.compile("\\[" + nøgle + " = ([^\\]]+)]");

@@ -5,10 +5,9 @@ public class ConsoleHandler {
     public static void main(String[] args) {
         FileHandler.createFile("MedlemsListe.txt");
         FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
-        System.out.print(MemberController.MemberList);
+        System.out.print(MemberController.MemberList);      // TESTFUNKTION
         Scanner scanner = new Scanner(System.in);
         run(scanner);
-
     }
 
     // METODER (- main)
@@ -40,6 +39,7 @@ public class ConsoleHandler {
                     trainerMenu(scanner);
                     break;
                 case 0:
+                    scanner.close();
                     System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
                     FileHandler.writeToFile("MedlemsListe.txt");
                     break;
@@ -48,8 +48,6 @@ public class ConsoleHandler {
             }
 
         } while (choice != 0);
-
-        scanner.close();
     }
 
     public static void economyMenu(Scanner scanner) {
@@ -132,10 +130,10 @@ public class ConsoleHandler {
         }
 
         System.out.print("Indtast nummer: ");
-        int choice  = scanner.nextInt();
+        int choice = scanner.nextInt();
         scanner.nextLine();
 
-        if (choice  > 0 && choice  <= discipliner.length) {
+        if (choice > 0 && choice <= discipliner.length) {
             return discipliner[choice - 1];
         } else {
             System.out.println("Ugyldigt valg. Prøv igen.\n");
@@ -143,7 +141,7 @@ public class ConsoleHandler {
         }
     }
 
- public static void competitionMenu(Scanner scanner) {
+    public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
 
@@ -184,7 +182,7 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                CompetitionResult.top5();
+                //CompetitionResult.top5();
                 break;
             case 2:
                 CompetitionSwimmer.getResultsByDicipline();
@@ -216,27 +214,26 @@ public class ConsoleHandler {
     public static void memberMenu(Scanner scanner) {
         System.out.println(memberMenuTekst());
         int choice = scanner.nextInt();
-        boolean y = true;
 
-        switch (choice) {
-            case 1:
-                MemberController.registerNewMember(scanner);
-                break;
-            case 2:
-                MemberController.editMember(scanner);
-                break;
-            case 3:
-                MemberController.searchByFilter(scanner);
-                break;
-            case 0:
-                y = false;
-                break;
+        while (true) {
+            switch (choice) {
+                case 1:
+                    MemberController.registerNewMember(scanner);
+                    break;
+                case 2:
+                    MemberController.editMember(scanner);
+                    break;
+                case 3:
+                    MemberController.searchByFilter(scanner);
+                    break;
+                case 0:
+                    mainMenu(scanner);
+                    break;
 
-            default:
-                System.out.println("Ugyldigt valg. Prøv igen.");
-                memberMenu(scanner);
-
-
+                default:
+                    System.out.println("Ugyldigt valg. Prøv igen.");
+                    memberMenu(scanner);
+            }
         }
     }
 

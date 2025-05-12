@@ -12,7 +12,7 @@ public class TrainingResult extends Result {
 
     // METODER
     public String toString() {
-        return ", Tid:" + time + ", Dato: " + date;
+        return "Tid:" + time + ", Dato: " + date + "\n";
     }
 
     public static TrainingResult createTrainingResult(Dicipline discipline, LocalTime time, LocalDate date, String comment, Member member) {
