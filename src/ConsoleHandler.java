@@ -3,9 +3,6 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     public static void main(String[] args) {
-        FileHandler.createFile("MedlemsListe.txt");
-        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
-        //System.out.print(MemberController.MemberList);      // TESTFUNKTION
         Scanner scanner = new Scanner(System.in);
         run(scanner);
 
@@ -13,6 +10,8 @@ public class ConsoleHandler {
 
     // METODER (- main)
     public static void run(Scanner scanner) {
+        FileHandler.createFile("MedlemsListe.txt");
+        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
         mainMenu(scanner);
     }
 
@@ -197,6 +196,9 @@ public class ConsoleHandler {
                 case 3:
                     MemberController.searchByFilter(scanner);
                     break;
+                case 4:
+                    System.out.println(MemberController.MemberList);
+                    break;
                 case 0:
                     mainMenu(scanner);
                     break;
@@ -204,8 +206,6 @@ public class ConsoleHandler {
                 default:
                     System.out.println("Ugyldigt valg. Prøv igen.");
                     memberMenu(scanner);
-
-
             }
         }
     }
@@ -216,6 +216,7 @@ public class ConsoleHandler {
                           1. Registrer Nyt Medlem
                           2. Rediger Medlem
                           3. Søg På Medlem
+                          4. Vis MedlemsListe
                           0. Tilbage
                         """;
     }
