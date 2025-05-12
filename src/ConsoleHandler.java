@@ -136,10 +136,10 @@ public class ConsoleHandler {
         }
 
         System.out.print("Indtast nummer: ");
-        int choice  = scanner.nextInt();
+        int choice = scanner.nextInt();
         scanner.nextLine();
 
-        if (choice  > 0 && choice  <= discipliner.length) {
+        if (choice > 0 && choice <= discipliner.length) {
             return discipliner[choice - 1];
         } else {
             System.out.println("Ugyldigt valg. Prøv igen.\n");
@@ -147,7 +147,7 @@ public class ConsoleHandler {
         }
     }
 
- public static void competitionMenu(Scanner scanner) {
+    public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
 
@@ -182,7 +182,6 @@ public class ConsoleHandler {
     }
 
 
-
     public static void memberMenu(Scanner scanner) {
         System.out.println(memberMenuTekst());
         int choice = scanner.nextInt();
@@ -202,11 +201,12 @@ public class ConsoleHandler {
                     mainMenu(scanner);
                     break;
 
-            default:
-                System.out.println("Ugyldigt valg. Prøv igen.");
-                memberMenu(scanner);
+                default:
+                    System.out.println("Ugyldigt valg. Prøv igen.");
+                    memberMenu(scanner);
 
 
+            }
         }
     }
 
