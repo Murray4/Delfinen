@@ -155,7 +155,7 @@ public class ConsoleHandler {
                 CompetitionManager.createCompetition(scanner);
                 break;
             case 3:
-                CompetitionManager.editCompetition();
+                CompetitionManager.editCompetition(scanner);
                 break;
             case 0:
                 trainerMenu(scanner);
@@ -195,6 +195,7 @@ public class ConsoleHandler {
                 break;
             case 0:
                 y = false;
+                mainMenu(scanner);
                 break;
 
             default:

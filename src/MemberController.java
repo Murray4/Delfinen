@@ -213,11 +213,11 @@ public class MemberController {
 
             m.setIsActive(true);
             System.out.println(Farver.GREEN + "Medlem er nu aktiv.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else if (choice.equalsIgnoreCase("N")) {
             m.setIsActive(false);
             System.out.println(Farver.GREEN + "Medlem er nu passiv.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else {
             ConsoleHandler.inputFejl("valg", "er et ugyldigt input – skriv J eller N\n");
             editMember(scanner);
@@ -280,14 +280,14 @@ public class MemberController {
         if (choice.equalsIgnoreCase("J")) {
             m.setIsCompetitionSwimmer(true);
             System.out.println(Farver.GREEN + "Medlem er nu konkurrencesvømmer.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else if (choice.equalsIgnoreCase("N")) {
             m.setIsCompetitionSwimmer(false);
             System.out.println(Farver.ORANGE + "Medlem er nu IKKE konkurrencesvømmer.\n" + Farver.RESET);
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         } else {
             ConsoleHandler.inputFejl("valg", "Ugyldigt input – skriv J eller N\n");
-            editMember(scanner);
+            ConsoleHandler.memberMenu(scanner);
         }
     }
 
