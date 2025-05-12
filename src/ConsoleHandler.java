@@ -40,8 +40,10 @@ public class ConsoleHandler {
                     break;
                 case 0:
                     scanner.close();
-                    System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
                     FileHandler.writeToFile("MedlemsListe.txt");
+                    System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
+                    scanner.close();
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Ugyldigt valg. Prøv igen.");
@@ -154,7 +156,7 @@ public class ConsoleHandler {
                 CompetitionManager.createCompetition(scanner);
                 break;
             case 3:
-                CompetitionManager.editCompetition();
+                CompetitionManager.editCompetition(scanner);
                 break;
             case 0:
                 trainerMenu(scanner);

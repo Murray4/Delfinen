@@ -1,12 +1,14 @@
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TrainingResult extends Result {
 
     // ATTRIBUTTER
+    String newLine;
     String comment;
     Dicipline dicipline;
-    LocalTime time;             // muligvis bare int
+    Duration time;             // muligvis bare int
     LocalDate date;
     Member member;
 
@@ -15,8 +17,9 @@ public class TrainingResult extends Result {
         return "Tid:" + time + ", Dato: " + date + "\n";
     }
 
-    public static TrainingResult createTrainingResult(Dicipline discipline, LocalTime time, LocalDate date, String comment, Member member) {
+    public static TrainingResult createTrainingResult(String newLine, Dicipline discipline, Duration time, LocalDate date, String comment, Member member) {
         TrainingResult result = new TrainingResult();
+        result.newLine = newLine;
         result.dicipline = discipline;
         result.time = time;
         result.date = date;

@@ -1,6 +1,7 @@
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -25,7 +26,7 @@ public class FileHandler {
     }
 
     public static void writeToFile(String fileName) {
-        try (FileWriter writer = new FileWriter(fileName, false)) { // false = overskriv filen
+        try (FileWriter writer = new FileWriter(fileName, false)) {     // false = overskriver filen
             for (Member medlem : MemberController.MemberList) {
                 writer.write(medlem.toString() + System.lineSeparator());
             }
@@ -110,14 +111,27 @@ public class FileHandler {
 
                 // Træningsresultater
                 else if (linje.startsWith("[Træningsresultater =")) {
-                    Pattern p = Pattern.compile("\\{(\\w+)=, Tid:(\\d{2}:\\d{2}:\\d{2}), Dato: (\\d{4}-\\d{2}-\\d{2})}");
+                    Pattern p = Pattern.compile("\\{(\\w+)=, Tid:(\\d{2}:\\d{2}\\.\\d{3}), Dato: (\\d{4}-\\d{2}-\\d{2})}");
                     Matcher m = p.matcher(linje);
                     Map<Dicipline, TrainingResult> resultMap = new HashMap<>();
 
                     while (m.find()) {
                         try {
                             Dicipline disciplin = Dicipline.valueOf(m.group(1).trim().toUpperCase());
-                            LocalTime tid = LocalTime.parse(m.group(2).trim());
+
+                            // Parse Duration fra "mm:ss.SSS"
+                            String tidStr = m.group(2).trim(); // fx "01:24.321"
+                            String[] dele = tidStr.split("\\.");
+                            String[] minSek = dele[0].split(":");
+
+                            long minutter = Long.parseLong(minSek[0]);
+                            long sekunder = Long.parseLong(minSek[1]);
+                            long millisekunder = Long.parseLong(dele[1]);
+
+                            Duration tid = Duration.ofMinutes(minutter)
+                                    .plusSeconds(sekunder)
+                                    .plusMillis(millisekunder);
+
                             LocalDate dato = LocalDate.parse(m.group(3).trim());
                             String kommentar = ""; // Kommentar ikke i fil
 
