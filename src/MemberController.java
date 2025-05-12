@@ -22,7 +22,7 @@ public class MemberController {
 
         // Navn
         String navn = "";
-        while(true) {
+        while (true) {
             System.out.println("Navn: ");
             navn = scanner.nextLine().trim();
             if (navn.matches("[A-Za-zÆØÅæøå ]+")) {     // "[A-Za-zÆØÅæøå ]+" "regex" <-- tjekker at der kun er bogstaver og mellemrum
@@ -104,7 +104,7 @@ public class MemberController {
         } else {
             x.setMembership(Membership.SENIORSVØMMER_60_PLUS);
             x.setIsSenior(true);
-            x.setMemberPrice((int)(1600 * 0.75));
+            x.setMemberPrice((int) (1600 * 0.75));
         }
 
         // isCompetitive
@@ -114,7 +114,7 @@ public class MemberController {
             if (konksvøm.equalsIgnoreCase("Y")) {
                 x.setIsCompetitionSwimmer(true);
                 break;
-            } else if(konksvøm.equalsIgnoreCase("N")) {
+            } else if (konksvøm.equalsIgnoreCase("N")) {
                 x.setIsCompetitionSwimmer(false);
                 break;
             } else {
@@ -129,7 +129,7 @@ public class MemberController {
             if (betaling.equalsIgnoreCase("Y")) {
                 x.setHasPayed(true);
                 break;
-            } else if (betaling.equalsIgnoreCase("N")){
+            } else if (betaling.equalsIgnoreCase("N")) {
                 x.setHasPayed(false);
                 break;
             } else {
@@ -236,10 +236,12 @@ public class MemberController {
             if (m.getMemberID() == id) {
                 choiceMember = m;
                 break;
-            } else {
-                System.out.println(Farver.RED + "Medlem med ID " + id + " blev ikke fundet." + Farver.RESET);
-                return;
             }
+        }
+
+        if (choiceMember == null) {
+            System.out.println(Farver.RED + "Medlem med ID, " + id + ", blev ikke fundet." + Farver.RESET);
+            return;
         }
 
         while (true) {
@@ -289,7 +291,4 @@ public class MemberController {
         }
     }
 
-
-    public static void addMember() {
-    }
 }
