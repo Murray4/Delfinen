@@ -217,7 +217,7 @@ public class MemberController {
 
     public static void pauseMember(Member m, Scanner scanner) {
 
-        System.out.print("Skal medlemmet være aktiv? (J/N): \n");
+        System.out.print("\nSkal medlemmet være aktiv? (J/N): \n");
 
         String choice = scanner.nextLine().trim();
 
@@ -255,7 +255,7 @@ public class MemberController {
             System.out.println(Farver.RED + "Medlem med ID, " + id + ", blev ikke fundet." + Farver.RESET);
             return;
         }
-        System.out.println("\nDu har valgt " + choiceMember.getMemberName() + "\n");
+        System.out.println("\nDu har valgt " + choiceMember.getMemberName());
 
 
         while (true) {
@@ -264,7 +264,7 @@ public class MemberController {
             System.out.println("2. Konkurrencesvømmer status");
             System.out.println("0. Tilbage");
 
-            System.out.print("Vælg en mulighed: ");
+            System.out.print("\nVælg en mulighed: ");
             String choice = scanner.nextLine();
 
             switch (choice) {
