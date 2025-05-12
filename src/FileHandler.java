@@ -56,24 +56,6 @@ public class FileHandler {
         }
     }
 
-
-    public static void readFile(String fileName) {
-        try {
-            File fil = new File(fileName);
-            Scanner myReader = new Scanner(fil);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] words = data.split(",");
-                System.out.println(words);
-            }
-            myReader.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
     public static int readFileForID(String fileName) {
         Pattern pattern = Pattern.compile("\\[ID\\s*=\\s*(\\d+)]");
         int maxID = 0;
