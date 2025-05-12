@@ -22,7 +22,7 @@ public class MemberController {
 
         // Navn
         String navn = "";
-        while(true) {
+        while (true) {
             System.out.println("Navn: ");
             navn = scanner.nextLine().trim();
             if (navn.matches("[A-Za-zÆØÅæøå ]+")) {     // "[A-Za-zÆØÅæøå ]+" "regex" <-- tjekker at der kun er bogstaver og mellemrum
@@ -139,6 +139,7 @@ public class MemberController {
 
         x.setMemberID(FileHandler.readFileForID("MedlemsListe.txt"));
 
+        FileHandler.writeToFile(x.toString(), "MedlemsListe.txt");
         MemberList.add(x);
         System.out.println(Farver.GREEN + "\nNyt Medlem oprettet:\n" + Farver.RESET + x);
 
@@ -195,6 +196,7 @@ public class MemberController {
         TrainingResult nytResultat = TrainingResult.createTrainingResult(valgtDisciplin, tid, dato, kommentar, valgt);
         valgt.getTrainingResult().put(valgtDisciplin, nytResultat);
 
+        FileHandler.tilføjTræningsResultatTilFil("MedlemsListe.txt", id, nytResultat);
         System.out.println("Træningsresultat tilføjet!");
 
 
@@ -234,12 +236,13 @@ public class MemberController {
             if (m.getMemberID() == id) {
                 choiceMember = m;
                 break;
-            } else {
-                System.out.println(Farver.RED + "Medlem med ID " + id + " blev ikke fundet." + Farver.RESET);
-                return;
             }
         }
 
+        if (choiceMember == null) {
+            System.out.println(Farver.RED + "Medlem med ID, " + id + ", blev ikke fundet." + Farver.RESET);
+            return;
+        }
 
         while (true) {
             System.out.println("\nHvad ønsker du at ændre?\n");
