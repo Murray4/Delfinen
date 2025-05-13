@@ -222,6 +222,7 @@ public class ConsoleHandler {
                           1. Registrer Nyt Medlem   ➕
                           2. Rediger Medlem         ✏️
                           3. Søg På Medlem          🔍
+                          4. Vis Medlemsliste       📄
                           0. Tilbage                🔙
                         """;
     }
