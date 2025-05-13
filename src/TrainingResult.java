@@ -22,6 +22,13 @@ public class TrainingResult extends Result {
     public LocalDate getDato() {
         return date;
     }
+    public Member getMember() {
+        return member;
+    }
+
+    public Dicipline getDicipline() {
+        return dicipline;
+    }
 
     public static TrainingResult createTrainingResult(Dicipline discipline, Duration time, LocalDate date, String comment, Member member) {
         TrainingResult result = new TrainingResult();

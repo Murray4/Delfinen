@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +21,7 @@ public class Member {
     ArrayList<CompetitionResult> competitionResult;
     int memberPrice;
     int memberID;
+    int alder;
 
 
     public Member(String memberName, LocalDate birthDate, Membership membership, boolean isActive, String email,
@@ -151,12 +154,20 @@ public class Member {
         this.memberID = memberID;
     }
 
+    public int getAlder() {
+        return Period.between(birthDate, LocalDate.now()).getYears();
+    }
 
+    public void setAlder(int alder) {
+         this.alder = alder;
+    }
 
     // METODER
     @Override
     public String toString() {
-        return "\n" + "[ID = " + memberID + "] , [MedlemsNavn = " + memberName + "]\n" +
+        DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");       // Standard format for LocalDate er (yyyy-MM-dd) dette ændrer formattet til (dd-MM-yyyy)
+
+        return "\n" + "[ID = " + memberID + "] , [MedlemsNavn = " + memberName + "] , [Fødselsdato: " + birthDate.format(DKformat) + "]"+ ", [Alder: " + getAlder() + "]" + "\n" +
                 "[Medlemskab = " + membership + "]" +
                 ", [Aktiv = " + isActive + "]" +
                 ", [Medlemspris = " + memberPrice + "]" +
