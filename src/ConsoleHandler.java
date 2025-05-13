@@ -3,14 +3,15 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     public static void main(String[] args) {
-        FileHandler.createFile("MedlemsListe.txt");
+        System.out.println(FileHandler.sebber());       // Tihi
         Scanner scanner = new Scanner(System.in);
         run(scanner);
-
     }
 
     // METODER (- main)
     public static void run(Scanner scanner) {
+        FileHandler.createFile("MedlemsListe.txt");
+        FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
         mainMenu(scanner);
     }
 
@@ -18,11 +19,11 @@ public class ConsoleHandler {
         int choice;
 
         do {
-            System.out.println("=== Hovedmenu ===");
-            System.out.println("1. Medlemsmenu");
-            System.out.println("2. Økonomimenu");
-            System.out.println("3. Trænermenu");
-            System.out.println("0. Afslut");
+            System.out.println(Farver.GREEN + "\n=== Hovedmenu ===" + Farver.RESET);
+            System.out.println("  1. Medlems-menu    \uD83D\uDC64");
+            System.out.println("  2. Økonomi-menu    \uD83D\uDCB0");
+            System.out.println("  3. Træner-menu     \uD83C\uDFCA");
+            System.out.println("  0. Afslut          ❌");
             System.out.print("\nVælg en mulighed: ");
 
             choice = scanner.nextInt();
@@ -38,7 +39,12 @@ public class ConsoleHandler {
                     trainerMenu(scanner);
                     break;
                 case 0:
+                    scanner.close();
+                    FileHandler.writeToFile("MedlemsListe.txt", MemberController.MemberList);
+                    System.out.println(Farver.GREEN + "MedlemsListe opdateret" + Farver.RESET);
                     System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
+                    scanner.close();
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Ugyldigt valg. Prøv igen.");
@@ -52,6 +58,7 @@ public class ConsoleHandler {
     public static void economyMenu(Scanner scanner) {
 
         System.out.println(economyMenuText());
+        System.out.print("Vælg en mulighed: ");
 
         int choice = scanner.nextInt();
         switch (choice) {
@@ -74,17 +81,18 @@ public class ConsoleHandler {
     }
 
     public static String economyMenuText() {
-        return """
-                1. Se klubbens udestående.
-                2. Se forventet indkomst.
-                3. Registrer betaling.
-                0. Tilbage.
+        return Farver.ORANGE + "\n=== Økonomi-menu ===" + Farver.RESET + "\n" + """
+                  1. Se klubbens udestående.    🔴
+                  2. Se forventet indkomst.     📈
+                  3. Registrer betaling.        ✅
+                  0. Tilbage.                   🔙
                 """;
     }
 
     public static void trainerMenu(Scanner scanner) {
 
         System.out.println(trainerMenuText());
+        System.out.print("Vælg en mulighed: ");
 
         int choice = scanner.nextInt();
         switch (choice) {
@@ -92,14 +100,14 @@ public class ConsoleHandler {
                 CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
-                Dicipline valgtDiciplin = askForDicipline(scanner);
-                CompetitionStatistic.getTopFive();
+                //Dicipline diciplineChoice = askForDicipline(scanner);
+                CompetitionStatistic.getTopFiveTotal();
                 break;
             case 3:
-                //CompetitionManager.showCompetition();
+                competitionMenu(scanner);
                 break;
             case 4:
-                MemberController.addTrainingResults();
+                MemberController.addTrainingResults(scanner);
                 break;
             case 0:
                 break;
@@ -111,12 +119,12 @@ public class ConsoleHandler {
     }
 
     public static String trainerMenuText() {
-        return "=== Træner Menu ===\n" + """
-                1. Konkurrencesvømmere
-                2. Top5
-                3. Konkurrencer
-                4. Tilføj træningsresultat
-                0. Tilbage
+        return Farver.GOLD + "\n=== Træner-menu ===\n" + Farver.RESET + """
+                  1. Top5 - Konkurrencesvømmere     🏅
+                  2. Top5 - Alle svømmere           🔝
+                  3. Konkurrencer                   🏆
+                  4. Tilføj træningsresultat        📊
+                  0. Tilbage                        🔙
                 """;
     }
 
@@ -129,21 +137,21 @@ public class ConsoleHandler {
         }
 
         System.out.print("Indtast nummer: ");
-        int valg = scanner.nextInt();
+        int choice = scanner.nextInt();
         scanner.nextLine();
 
-        if (valg > 0 && valg <= discipliner.length) {
-            return discipliner[valg - 1];
+        if (choice > 0 && choice <= discipliner.length) {
+            return discipliner[choice - 1];
         } else {
             System.out.println("Ugyldigt valg. Prøv igen.\n");
             return askForDicipline(scanner);
         }
     }
 
-/*
     public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
+        System.out.print("Vælg en mulighed: ");
 
         int choice = scanner.nextInt();
         switch (choice) {
@@ -151,10 +159,10 @@ public class ConsoleHandler {
                 CompetitionManager.showCompetition();
                 break;
             case 2:
-                CompetitionManager.createCompetition();
+                CompetitionManager.createCompetition(scanner);
                 break;
             case 3:
-                CompetitionManager.editCompetition();
+                CompetitionManager.editCompetition(scanner);
                 break;
             case 0:
                 trainerMenu(scanner);
@@ -165,92 +173,63 @@ public class ConsoleHandler {
         }
 
     }
-*/
+
     public static String competitionMenuText() {
-        return "===Konkurrence Menu===" + """
-                1. Vis konkurrencer.
-                2. Tilføj konkurrence.
-                3. Rediger konkurrence.
-                0. Tilbage.
-                """;
-    }
-
-    public static void competitiveSwimmerMenu(Scanner scanner) {
-
-        System.out.println(competitionSwimmerMenuText());
-
-        int choice = scanner.nextInt();
-        switch (choice) {
-            case 1:
-                CompetitionResult.top5();
-                break;
-            case 2:
-                CompetitionSwimmer.getResultsByDicipline();
-                break;
-            case 3:
-                CompetitionSwimmer.registerResult();
-            case 0:
-                trainerMenu(scanner);
-                break;
-
-            default:
-                System.out.println("Ugyldigt valg. Prøv igen.");
-                break;
-
-        }
-
-    }
-
-    public static String competitionSwimmerMenuText() {
-        return "===Konkurrencesvømmer Menu===" + """
-                1. Top 5.
-                2. Vis resultat for disciplin.
-                3. Tilføj Resultat.
-                0. Tilbage.
+        return Farver.ORANGE + "===Konkurrence-menu===" + Farver.RESET + "\n" +
+                """
+                  1. Vis konkurrencer.      🗂️
+                  2. Tilføj konkurrence.    ➕
+                  3. Rediger konkurrence.   🏅
+                  0. Tilbage.               🔙
                 """;
     }
 
 
     public static void memberMenu(Scanner scanner) {
         System.out.println(memberMenuTekst());
+        System.out.print("Vælg en mulighed: ");
         int choice = scanner.nextInt();
-        boolean y = true;
 
-        switch (choice) {
-            case 1:
-                MemberController.registerNewMember(scanner);
-                break;
-            case 2:
-                MemberController.editMember(scanner);
-                break;
-            case 3:
-                MemberController.searchByFilter(scanner);
-                break;
-            case 0:
-                y = false;
-                break;
+        while (true) {
+            switch (choice) {
+                case 1:
+                    MemberController.registerNewMember(scanner);
+                    break;
+                case 2:
+                    MemberController.editMember(scanner);
+                    break;
+                case 3:
+                    MemberController.searchByFilter(scanner);
+                    break;
+                case 4:
+                    System.out.println(MemberController.MemberList);
+                    break;
+                case 0:
+                    mainMenu(scanner);
+                    break;
 
-            default:
-                System.out.println("Ugyldigt valg. Prøv igen.");
-                memberMenu(scanner);
+                default:
+                    System.out.println("Ugyldigt valg. Prøv igen.");
+                    memberMenu(scanner);
 
 
+            }
         }
     }
 
     public static String memberMenuTekst() {
-        return Farver.CYAN + "=== Member Menu ===" + Farver.RESET + "\n" +
+        return Farver.CYAN + "\n=== Medlems-menu ===" + Farver.RESET + "\n" +
                 """
-                          1. Registrer Nyt Medlem
-                          2. Rediger Medlem
-                          3. Søg På Medlem
-                          0. Tilbage
+                          1. Registrer Nyt Medlem   ➕
+                          2. Rediger Medlem         ✏️
+                          3. Søg På Medlem          🔍
+                          4. Vis Medlemsliste
+                          0. Tilbage                🔙
                         """;
     }
 
-    public static String inputFejl(String enhed) {
-        System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen" + Farver.RESET);
-        return "Ugyldig " + enhed + "prøv igen";
+    public static void inputFejl(String enhed, String forklaring) {
+        System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen. " + forklaring + Farver.RESET);
     }
 }
 

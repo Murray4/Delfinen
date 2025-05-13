@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -5,13 +6,31 @@ public class TrainingResult extends Result {
 
     // ATTRIBUTTER
     String comment;
+    Dicipline dicipline;
+    Duration time;             // muligvis bare int
+    LocalDate date;
+    Member member;
 
     // METODER
     public String toString() {
-        return "TEST"; // Du kan opdatere det senere
+        return "Tid:" + time + ", Dato: " + date + "\n";
     }
 
-    public static TrainingResult createTrainingResult(Dicipline discipline, LocalTime time, LocalDate date, String comment, Member member) {
+    public Duration getTid() {
+        return time;
+    }
+    public LocalDate getDato() {
+        return date;
+    }
+    public Member getMember() {
+        return member;
+    }
+
+    public Dicipline getDicipline() {
+        return dicipline;
+    }
+
+    public static TrainingResult createTrainingResult(Dicipline discipline, Duration time, LocalDate date, String comment, Member member) {
         TrainingResult result = new TrainingResult();
         result.dicipline = discipline;
         result.time = time;

@@ -18,6 +18,7 @@ public class Competition {
       this.date = date;
       this.results = new ArrayList<>();
   }
+  public Competition() {}
 
   //GETTERS
 public String getName(){

@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -11,6 +12,6 @@ public class Result {
 
     // METODER
     public String toString() {
-        return "TEST";
+        return ", Tid: " + time + ", Dato: " + date;
     }
 }

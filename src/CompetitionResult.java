@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 
@@ -14,9 +16,6 @@ public class CompetitionResult extends Result {
         return "TEST";
     }
 
-    public static void top5() {
 
-       // System.out.println("Top 5 for disciplinen: " + d);
-    }
 
 }
