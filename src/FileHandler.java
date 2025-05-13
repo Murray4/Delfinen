@@ -42,6 +42,16 @@ public class FileHandler {
                         ? String.valueOf(medlem.getAlder())
                         : "Ukendt";
 
+                // Sætter memberprice ud fra alderen, så hvis alderen opdateres, opdateres prisen også (i filen)
+            if (medlem.getAlder() < 18) {
+                medlem.setMemberPrice(1000);
+            } else if (medlem.getAlder() <= 60) {
+                medlem.setMemberPrice(1600);
+            } else {
+                medlem.setIsSenior(true);
+                medlem.setMemberPrice((int) (1600 * 0.75));
+            }
+
                 writer.write("[ID = " + medlem.getMemberID() + "] , [MedlemsNavn = " + medlem.getMemberName() +
                         "], [Fødselsdato = " + fødselsdatoStr + "], [Alder = " + alderStr + "]\n");
 
@@ -71,7 +81,6 @@ public class FileHandler {
             System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
     }
-
 
     public static int readFileForID(String fileName) {
         Pattern pattern = Pattern.compile("\\[ID\\s*=\\s*(\\d+)]");
@@ -204,6 +213,11 @@ public class FileHandler {
         long sekunder = (totalMillis % 60000) / 1000;
         long millisekunder = totalMillis % 1000;
         return String.format("%02d:%02d.%03d", minutter, sekunder, millisekunder);
+    }
+
+    public static void opretMedlemmer() {
+
+
     }
 }
 

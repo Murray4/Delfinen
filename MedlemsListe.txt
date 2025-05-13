@@ -1,6 +1,6 @@
 [ID = 1] , [MedlemsNavn = Sebastian], [Fødselsdato = 24-09-2000], [Alder = 24]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Sebastian@gmail.com], [Telefonnummer = 30294024], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = []]
+[Træningsresultater = {CRAWL=, Tid:00:30.422, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.467, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 2] , [MedlemsNavn = Rasmus], [Fødselsdato = 10-06-1994], [Alder = 30]
@@ -8,7 +8,7 @@
 [Træningsresultater = []]
 [Konkurrenceresultater = []]
 
-[ID = 3] , [MedlemsNavn = Magnus], [Fødselsdato = 10-10-2001], [Alder = 23]
+[ID = 3] , [MedlemsNavn = Magnus], [Fødselsdato = 10-10-2000], [Alder = 24]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Magnus@gmail.com], [Telefonnummer = 33445566], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
 [Træningsresultater = []]
 [Konkurrenceresultater = []]
@@ -19,7 +19,37 @@
 [Konkurrenceresultater = []]
 
 [ID = 5] , [MedlemsNavn = Kurt], [Fødselsdato = 14-05-1965], [Alder = 59]
-[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = KurtLas@gmail.com], [Telefonnummer = 69696969], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = KurtLas@gmail.com], [Telefonnummer = 69696969], [Betalt = true], [Senior = true], [Konkurrencesvømmer = false]
 [Træningsresultater = []]
+[Konkurrenceresultater = []]
+
+[ID = 6] , [MedlemsNavn = Jonas Hansen], [Fødselsdato = 15-08-1963], [Alder = 61]
+[Medlemskab = SENIORSVØMMER_60_PLUS], [Aktiv = true], [Medlemspris = 1200], [Email = jonas@mail.com], [Telefonnummer = 45823149], [Betalt = true], [Senior = true], [Konkurrencesvømmer = false]
+[Træningsresultater = {CRAWL=, Tid:00:40.272, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:47.671, Dato: 2025-05-13}]
+[Konkurrenceresultater = []]
+
+[ID = 7] , [MedlemsNavn = Emilie Pedersen], [Fødselsdato = 02-11-1997], [Alder = 27]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = emilie@mail.com], [Telefonnummer = 94621127], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
+[Træningsresultater = {CRAWL=, Tid:00:36.581, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.724, Dato: 2025-05-13}, {RYGCRAWL=, Tid:00:38.115, Dato: 2025-05-13}]
+[Konkurrenceresultater = []]
+
+[ID = 8] , [MedlemsNavn = Victor Madsen], [Fødselsdato = 17-07-2005], [Alder = 19]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = victor@mail.com], [Telefonnummer = 58742316], [Betalt = false], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = {BRYST=, Tid:00:39.811, Dato: 2025-05-13}, {RYGCRAWL=, Tid:00:42.927, Dato: 2025-05-13}]
+[Konkurrenceresultater = []]
+
+[ID = 9] , [MedlemsNavn = Lærke Christensen], [Fødselsdato = 04-03-2010], [Alder = 15]
+[Medlemskab = UNGDOMSSVØMMER], [Aktiv = true], [Medlemspris = 1000], [Email = lærke@mail.com], [Telefonnummer = 69548213], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
+[Træningsresultater = {BRYST=, Tid:00:34.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:35.417, Dato: 2025-05-13}]
+[Konkurrenceresultater = []]
+
+[ID = 10] , [MedlemsNavn = Sofie Larsen], [Fødselsdato = 09-06-1980], [Alder = 44]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = sofie@mail.com], [Telefonnummer = 78541239], [Betalt = false], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = {CRAWL=, Tid:00:38.193, Dato: 2025-05-13}, {RYGCRAWL=, Tid:00:41.052, Dato: 2025-05-13}]
+[Konkurrenceresultater = []]
+
+[ID = 11] , [MedlemsNavn = John], [Fødselsdato = 19-08-1967], [Alder = 57]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Jogn@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
+[Træningsresultater = {BRYST=, Tid:00:31.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:34.284, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:37.417, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 

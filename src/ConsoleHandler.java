@@ -11,6 +11,7 @@ public class ConsoleHandler {
     public static void run(Scanner scanner) {
         FileHandler.createFile("MedlemsListe.txt");
         FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
+        delfinLogo();
         mainMenu(scanner);
     }
 
@@ -99,7 +100,6 @@ public class ConsoleHandler {
                 CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
-                // Dicipline diciplineChoice = askForDicipline(scanner);
                 CompetitionStatistic.getTopFiveTotal();
                 break;
             case 3:
@@ -239,6 +239,31 @@ public class ConsoleHandler {
 
     public static void inputFejl(String enhed, String forklaring) {
         System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen. " + forklaring + Farver.RESET);
+    }
+
+    public static void delfinLogo() {
+        System.out.println(Farver.CYAN + """
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    ~                                                                                   ~
+                    ~                              _\\`.___              ___,"/_                         ~
+                    ~                           ,'`,-__.-.``=._    _.=``,-.__-.`'.                      ~
+                    ~                          /,--'-..,7-)/-`"    "'-\\(-7,..-'--.\\                     ~
+                    ~                        ,"`.         '            `         ,'".                   ~
+                    ~                                                                                   ~
+                    ~                                                                                   ~
+                    ~      _______   _______  __       _______  __  .__   __.  _______ .__   __.        ~
+                    ~     |       \\ |   ____||  |     |   ____||  | |  \\ |  | |   ____||  \\ |  |        ~
+                    ~     |  .--.  ||  |__   |  |     |  |__   |  | |   \\|  | |  |__   |   \\|  |        ~
+                    ~     |  |  |  ||   __|  |  |     |   __|  |  | |  . `  | |   __|  |  . `  |        ~
+                    ~     |  '--'  ||  |____ |  `----.|  |     |  | |  |\\   | |  |____ |  |\\   |        ~
+                    ~     |_______/ |_______||_______||__|     |__| |__| \\__| |_______||__| \\__|        ~
+                    ~                                                                                   ~
+                    ~                                                                                   ~
+                    ~                                                                                   ~
+                    ~                                                                                   ~
+                    ~                                                                                   ~
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    """ + Farver.RESET);
     }
 }
 

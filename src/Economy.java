@@ -3,7 +3,13 @@ import java.util.*;
 public class Economy {
 
     //METODER
-    public static void calculateExpectedYearlyIncome() {}
+    public static void calculateExpectedYearlyIncome() {
+        int indkomst = 0;
+        for (Member m : MemberController.MemberList) {
+            indkomst += m.getMemberPrice();
+        }
+        System.out.println(Farver.GREEN + "Antal Medlemmer: " + MemberController.MemberList.size() + "\nDen forventede årlige indkomst fra medlemskaber er: " + "\n" + indkomst + " kr" + Farver.RESET);
+    }
 
     public static void registerPayment(Scanner scanner) {
 
@@ -44,9 +50,7 @@ public class Economy {
                     found = true;
                     break;
                 }
-
             }
-
         }
         if (!found) {
             System.out.println(Farver.RED + "Ingen medlem funder med det indtastet ID" + Farver.RESET);
@@ -54,7 +58,16 @@ public class Economy {
         }
     }
 
-    public static void printOutstandingFeesReport() {}
+    public static void printOutstandingFeesReport() {
+        int udeståendeBeløb = 0;
+        for (Member m : MemberController.MemberList) {
+            if (!m.getHasPayed()) {
+                udeståendeBeløb += m.getMemberPrice();
+                System.out.println(("ID: " + m.getMemberID()) + " -- " + (m.getMemberName()) + "  Mangler at betale: " + m.getMemberPrice() + " Kr");
+            } else {}
+        }
+        System.out.println(Farver.RED + "Udestående i alt: " + udeståendeBeløb + " Kr" + Farver.RESET);
+    }
 
     public static void getPriceForMember() {}
 }
