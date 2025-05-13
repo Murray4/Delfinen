@@ -99,28 +99,16 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
+                CompetitionSwimmerMenu(scanner);
                 break;
             case 2:
-                CompetitionStatistic.getTopFiveTotal();
+                trainingResultMenu(scanner);
                 break;
             case 3:
                 competitionMenu(scanner);
                 break;
             case 4:
                 MemberController.addTrainingResults(scanner);
-                break;
-            case 5:
-                MemberController.registerCompetitionResult(scanner);
-                break;
-            case 6:
-                MemberController.showTrainingResults(scanner);
-                break;
-            case 7:
-                CompetitionStatistic.getResultsByDiscipline(scanner);
-                break;
-            case 8:
-                MemberController.showListOfCompetitionSwimmers(scanner);
                 break;
             case 0:
                 break;
@@ -129,20 +117,93 @@ public class ConsoleHandler {
                 System.out.println("Ugyldigt valg. Prøv igen.");
                 trainerMenu(scanner);
         }
-    }public static String trainerMenuText() {
+    }
+
+    public static String trainerMenuText() {
         return Farver.GOLD + "\n---------------------------------------\n" +
                 "=== Træner-menu ===\n" + Farver.RESET + """
-          1. Top5 - Konkurrencesvømmere       🥇
-          2. Top5 - Alle svømmere             🧢
+          1. Konkurrencesvømmere              🥇
+          2. Træningsresultater               📊
           3. Konkurrencer                     🏆
-          4. Tilføj træningsresultat          📋
-          5. Registrér konkurrenceresultat    📝
-          6. Vis træningsresultater           📊
-          7. Vis resultater efter disciplin   🧭
-          8. Vis alle konkurrencesvømmere     🏊
           0. Tilbage                          🔙
         """;
     }
+
+    public static void trainingResultMenu(Scanner scanner) {
+
+        System.out.println(trainingResultMenuText());
+        System.out.print("Vælg en mulighed: ");
+
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                CompetitionStatistic.getTopFiveTotal();
+                break;
+            case 2:
+                MemberController.addTrainingResults(scanner);
+                break;
+            case 3:
+                competitionMenu(scanner);
+                break;
+            case 0:
+                trainerMenu(scanner);
+                break;
+
+            default:
+                System.out.println("Ugyldigt valg. Prøv igen.");
+                trainerMenu(scanner);
+        }
+    }
+
+    public static String CompetitionSwimmerMenuText() {
+        return Farver.GOLD +
+                "\n=== Konkurrencesvømmere ===\n" + Farver.RESET + """
+          1. Top5 - Konkurrencesvømmere       🥇
+          2. Registrér konkurrenceresultat    📝
+          3. Vis resultater efter disciplin   🧭
+          4. Vis alle konkurrencesvømmere     🏊
+          0. Tilbage                          🔙
+        """;
+    }
+
+    public static void CompetitionSwimmerMenu(Scanner scanner) {
+
+        System.out.println(CompetitionSwimmerMenuText());
+        System.out.print("Vælg en mulighed: ");
+
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
+                break;
+            case 2:
+                MemberController.addCompetitionResult(scanner);
+                break;
+            case 3:
+                CompetitionStatistic.getResultsByDiscipline(scanner);
+                break;
+            case 4:
+                MemberController.showListOfCompetitionSwimmers(scanner);
+                break;
+            case 0:
+                trainerMenu(scanner);
+                break;
+
+            default:
+                System.out.println("Ugyldigt valg. Prøv igen.");
+                trainerMenu(scanner);
+        }
+    }
+
+    public static String trainingResultMenuText() {
+        return Farver.GOLD + "\n === Træningsresultater ===\n" + Farver.RESET + """
+          1. Top5 - Alle svømmere             🏊
+          2. Tilføj træningsresultat          📋
+          3. Vis træningsresultater           📊
+          0. Tilbage                          🔙
+        """;
+    }
+
 
     public static Dicipline askForDicipline(Scanner scanner) {
         System.out.println("Vælg en disciplin:");
@@ -191,8 +252,8 @@ public class ConsoleHandler {
     }
 
     public static String competitionMenuText() {
-        return Farver.ORANGE + "\n---------------------------------------\n" +
-                "===Konkurrence-menu===" + Farver.RESET + "\n" +
+        return Farver.GOLD  +
+                "\n===Konkurrence-menu===" + Farver.RESET + "\n" +
                 """
                   1. Vis konkurrencer.      🗂️
                   2. Tilføj konkurrence.    ➕
@@ -254,10 +315,10 @@ public class ConsoleHandler {
         System.out.println(Farver.CYAN + """
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                     ~                                                                                   ~
-                    ~                              _\\`.___              ___,"/_                         ~
-                    ~                           ,'`,-__.-.``=._    _.=``,-.__-.`'.                      ~
-                    ~                          /,--'-..,7-)/-`"    "'-\\(-7,..-'--.\\                     ~
-                    ~                        ,"`.         '            `         ,'".                   ~
+                    ~                          _\\`.___              ___,"/_                             ~
+                    ~                       ,'`,-__.-.``=._    _.=``,-.__-.`'.                          ~
+                    ~                      /,--'-..,7-)/-`"    "'-\\(-7,..-'--.\\                         ~
+                    ~                    ,"`.         '            `         ,'".                       ~
                     ~                                                                                   ~
                     ~                                                                                   ~
                     ~      _______   _______  __       _______  __  .__   __.  _______ .__   __.        ~

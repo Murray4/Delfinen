@@ -197,7 +197,7 @@ public class MemberController {
         for (Member m : MemberList) {
             if (m.isCompetitionSwimmer()) {
                 found = true;
-                System.out.printf("%-15s ID: %d%n", m.getMemberName(), m.getMemberID());
+                System.out.printf("%-20s ID: %d%n", m.getMemberName(), m.getMemberID());
             }
         }
 
@@ -380,57 +380,6 @@ public class MemberController {
     }
 
 
-    public static void registerCompetitionResult(Scanner scanner) {
-        System.out.print("Indtast medlems-ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
-        Member valgt = null;
-        for (Member m : MemberList) {
-            if (m.getMemberID() == id) {
-                valgt = m;
-                break;
-            }
-        }
-
-        if (valgt == null) {
-            System.out.println("Medlem ikke fundet!");
-            return;
-        }
-
-        System.out.print("Indtast stævnenavn: ");
-        String staevne = scanner.nextLine();
-
-        System.out.println("Vælg disciplin:");
-        Dicipline[] discipliner = Dicipline.values();
-        for (int i = 0; i < discipliner.length; i++) {
-            System.out.println((i + 1) + ". " + discipliner[i]);
-        }
-        int disciplinValg = scanner.nextInt();
-        scanner.nextLine();
-        Dicipline valgtDisciplin = discipliner[disciplinValg - 1];
-
-        System.out.print("Tid (mm:ss): ");
-        String tidInput = scanner.nextLine();
-        LocalTime tid = LocalTime.parse("00:" + tidInput); // fx "00:01:32" for 1 minut 32 sekunder
-
-        System.out.print("Placering (1, 2, 3, ...): ");
-        int placering = scanner.nextInt();
-        scanner.nextLine();
-
-        CompetitionResult result = new CompetitionResult();
-        result.dicipline = valgtDisciplin;
-        result.time = tid;
-        result.rank = placering;
-        result.member = valgt;
-        result.eventName = staevne;
-
-        valgt.getCompetitionResult().add(result);
-
-        System.out.println(Farver.GREEN + "Konkurrenceresultat registreret!" + Farver.RESET);
-    }
-
-
     public static void isCompetetive(Member m, Scanner scanner) {
 
         System.out.print("Er medlemmet konkurrencesvømmer? (J/N): \n");
@@ -454,4 +403,84 @@ public class MemberController {
 
     public static void addMember() {
     }
+
+    public static void addCompetitionResult(Scanner scanner) {
+
+        // Konkurrencesvømmer
+        List<Member> competitiveMembers = new ArrayList<>();
+        for (Member m : MemberList) {
+            if (m.getIsCompetitionSwimmer()) {
+                competitiveMembers.add(m);
+            }
+        }
+
+        if (competitiveMembers.isEmpty()) {
+            System.out.println("Ingen konkurrencesvømmere fundet.");
+            return;
+        }
+
+        System.out.println("\nVælg en konkurrencesvømmer:");
+        for (int i = 0; i < competitiveMembers.size(); i++) {
+            System.out.printf("%d. %s (ID: %d)%n", i + 1, competitiveMembers.get(i).getMemberName(), competitiveMembers.get(i).getMemberID());
+        }
+
+        int swimmerChoice = scanner.nextInt() - 1;
+        scanner.nextLine();
+        Member selectedSwimmer = competitiveMembers.get(swimmerChoice);
+        CompetitionSwimmer swimmer = (CompetitionSwimmer) selectedSwimmer;
+
+        // Vælg konkurrence
+        List<Competition> competitions = CompetitionManager.getCompetitions();
+        if (competitions.isEmpty()) {
+            System.out.println("Ingen konkurrencer fundet.");
+            return;
+        }
+
+        System.out.println("\nVælg konkurrence:");
+        for (int i = 0; i < competitions.size(); i++) {
+            System.out.printf("%d. %s (%s)%n", i + 1, competitions.get(i).getName(), competitions.get(i).getCity());
+        }
+
+        int compChoice = scanner.nextInt() - 1;
+        scanner.nextLine();
+        Competition competition = competitions.get(compChoice);
+
+        // disciplin
+        Dicipline[] discipliner = Dicipline.values();
+        System.out.println("\nVælg disciplin:");
+        for (int i = 0; i < discipliner.length; i++) {
+            System.out.println((i + 1) + ". " + discipliner[i]);
+        }
+        int discChoice = scanner.nextInt() - 1;
+        scanner.nextLine();
+        Dicipline valgtDisciplin = discipliner[discChoice];
+
+        // Tid
+        System.out.print("Tid (sekunder.millisekunder, fx 52.34): ");
+        double seconds = scanner.nextDouble();
+        scanner.nextLine();
+        int wholeSeconds = (int) seconds;
+        int millis = (int) ((seconds - wholeSeconds) * 1000);
+        LocalTime tid = LocalTime.of(0, 0, wholeSeconds, millis * 1_000_000);
+
+        // Placering
+        System.out.print("Placering: ");
+        int rank = scanner.nextInt();
+        scanner.nextLine();
+
+        // Opret resultat
+        CompetitionResult result = new CompetitionResult();
+        result.dicipline = valgtDisciplin;
+        result.time = tid;
+        result.rank = rank;
+        result.eventName = competition.getName();
+        result.swimmer = selectedSwimmer;
+        result.competition = competition;
+
+        // Tilføj resultat via interface
+        swimmer.registerCompetitionResult(result);
+        System.out.println("Resultat tilføjet.");
+    }
+
+
 }

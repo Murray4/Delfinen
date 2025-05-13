@@ -63,13 +63,20 @@ public class Economy {
 
     public static void printOutstandingFeesReport() {
         int udeståendeBeløb = 0;
+        System.out.println("\n" + Farver.ORANGE + "Klubben udestående:\n" + Farver.RESET);
+
         for (Member m : MemberController.MemberList) {
             if (!m.getHasPayed()) {
                 udeståendeBeløb += m.getMemberPrice();
-                System.out.println(("ID: " + m.getMemberID()) + " -- " + (m.getMemberName()) + "  Mangler at betale: " + m.getMemberPrice() + " Kr");
+                System.out.printf("ID: %-3d  %-20s  Mangler at betale: %6d Kr%n",
+                        m.getMemberID(),
+                        m.getMemberName(),
+                        m.getMemberPrice()
+                );
+
             } else {}
         }
-        System.out.println(Farver.RED + "Udestående i alt: " + udeståendeBeløb + " Kr" + Farver.RESET);
+        System.out.println(Farver.ORANGE + "Udestående i alt: " + Farver.RED + udeståendeBeløb + " Kr" + Farver.RESET);
     }
 
     public static void getPriceForMember() {}
