@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Map;
 import java.time.LocalTime;
+
 public class MemberController {
 
     // ATTRIBUTTER
@@ -14,6 +16,9 @@ public class MemberController {
 
     // METODER
     public static void searchByFilter(Scanner scanner) {
+    }
+    public static ArrayList<Member> getMemberList() {
+        return MemberList;
     }
 
     public static void registerNewMember(Scanner scanner) {
@@ -154,8 +159,36 @@ public class MemberController {
     public static void showListOfCompetetiveSwimmers() {
     }
 
-    public static void showTrainingResults() {
+    public static void showTrainingResults(Scanner scanner) {
+        System.out.print("Indtast medlems-ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Member valgt = null;
+        for (Member m : MemberList) {
+            if (m.getMemberID() == id) {
+                valgt = m;
+                break;
+            }
+        }
+
+        if (valgt == null) {
+            System.out.println("Medlem ikke fundet!");
+            return;
+        }
+
+        Map<Dicipline, TrainingResult> resultater = valgt.getTrainingResult();
+        if (resultater == null || resultater.isEmpty()) {
+            System.out.println("Ingen træningsresultater fundet.");
+            return;
+        }
+
+        System.out.println("Træningsresultater for " + valgt.getMemberName() + ":");
+        for (Map.Entry<Dicipline, TrainingResult> entry : resultater.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
     }
+
 
 
     public static void addTrainingResults(Scanner scanner) {
@@ -284,6 +317,56 @@ public class MemberController {
             }
         }
     }
+    public static void registerCompetitionResult(Scanner scanner) {
+        System.out.print("Indtast medlems-ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Member valgt = null;
+        for (Member m : MemberList) {
+            if (m.getMemberID() == id) {
+                valgt = m;
+                break;
+            }
+        }
+
+        if (valgt == null) {
+            System.out.println("Medlem ikke fundet!");
+            return;
+        }
+
+        System.out.print("Indtast stævnenavn: ");
+        String staevne = scanner.nextLine();
+
+        System.out.println("Vælg disciplin:");
+        Dicipline[] discipliner = Dicipline.values();
+        for (int i = 0; i < discipliner.length; i++) {
+            System.out.println((i + 1) + ". " + discipliner[i]);
+        }
+        int disciplinValg = scanner.nextInt();
+        scanner.nextLine();
+        Dicipline valgtDisciplin = discipliner[disciplinValg - 1];
+
+        System.out.print("Tid (mm:ss): ");
+        String tidInput = scanner.nextLine();
+        LocalTime tid = LocalTime.parse("00:" + tidInput); // fx "00:01:32" for 1 minut 32 sekunder
+
+        System.out.print("Placering (1, 2, 3, ...): ");
+        int placering = scanner.nextInt();
+        scanner.nextLine();
+
+        CompetitionResult result = new CompetitionResult();
+        result.dicipline = valgtDisciplin;
+        result.time = tid;
+        result.rank = placering;
+        result.member = valgt;
+        result.eventName = staevne;
+
+        valgt.getCompetitionResult().add(result);
+
+        System.out.println(Farver.GREEN + "Konkurrenceresultat registreret!" + Farver.RESET);
+    }
+
 
     public static void isCompetetive(Member m, Scanner scanner) {
 

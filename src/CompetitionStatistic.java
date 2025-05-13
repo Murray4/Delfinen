@@ -11,6 +11,36 @@ public class CompetitionStatistic {
 
         //TODO: Top fem resultater i hver disciplin for konkurrencesvømmere
     }
+    public static void getResultsByDiscipline(Scanner scanner) {
+        System.out.println("Vælg disciplin:");
+        Dicipline[] discipliner = Dicipline.values();
+        for (int i = 0; i < discipliner.length; i++) {
+            System.out.println((i + 1) + ". " + discipliner[i]);
+        }
+        int valg = scanner.nextInt();
+        scanner.nextLine();
+        Dicipline valgt = discipliner[valg - 1];
+
+        System.out.println("Resultater i disciplinen: " + valgt);
+        boolean found = false;
+
+        for (Member m : MemberController.getMemberList()) {
+            for (CompetitionResult r : m.getCompetitionResult()) {
+                if (r.dicipline == valgt) {
+                    System.out.println("Navn: " + m.getMemberName() +
+                            " | Tid: " + r.time +
+                            " | Placering: " + r.rank +
+                            " | Stævne: " + r.eventName);
+                    found = true;
+                }
+            }
+        }
+
+        if (!found) {
+            System.out.println("Ingen resultater fundet for denne disciplin.");
+        }
+    }
+
 
     public static void getTopFiveTotal() {
 

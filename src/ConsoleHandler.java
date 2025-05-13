@@ -100,7 +100,7 @@ public class ConsoleHandler {
                 CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
-                //Dicipline diciplineChoice = askForDicipline(scanner);
+                // Dicipline diciplineChoice = askForDicipline(scanner);
                 CompetitionStatistic.getTopFiveTotal();
                 break;
             case 3:
@@ -109,6 +109,15 @@ public class ConsoleHandler {
             case 4:
                 MemberController.addTrainingResults(scanner);
                 break;
+            case 5:
+                MemberController.registerCompetitionResult(scanner);
+                break;
+            case 6:
+                MemberController.showTrainingResults(scanner);
+                break;
+            case 7:
+                CompetitionStatistic.getResultsByDiscipline(scanner);
+                break;
             case 0:
                 break;
 
@@ -116,16 +125,17 @@ public class ConsoleHandler {
                 System.out.println("Ugyldigt valg. Prøv igen.");
                 trainerMenu(scanner);
         }
-    }
-
-    public static String trainerMenuText() {
+    }public static String trainerMenuText() {
         return Farver.GOLD + "\n=== Træner-menu ===\n" + Farver.RESET + """
-                  1. Top5 - Konkurrencesvømmere     🏅
-                  2. Top5 - Alle svømmere           🔝
-                  3. Konkurrencer                   🏆
-                  4. Tilføj træningsresultat        📊
-                  0. Tilbage                        🔙
-                """;
+        1. Top5 - Konkurrencesvømmere       🥇
+        2. Top5 - Alle svømmere             🧢
+        3. Konkurrencer                     🏆
+        4. Tilføj træningsresultat          📋
+        5. Registrér konkurrenceresultat    📝
+        6. Vis træningsresultater           📊
+        7. Vis resultater efter disciplin   🧭
+        0. Tilbage                          🔙
+        """;
     }
 
     public static Dicipline askForDicipline(Scanner scanner) {
