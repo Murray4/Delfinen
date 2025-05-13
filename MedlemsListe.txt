@@ -18,3 +18,8 @@
 [Træningsresultater = []]
 [Konkurrenceresultater = []]
 
+[ID = 5] , [MedlemsNavn = Kurt], [Fødselsdato = 14-05-1965], [Alder = 59]
+[Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = KurtLas@gmail.com], [Telefonnummer = 69696969], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
+[Træningsresultater = []]
+[Konkurrenceresultater = []]
+

@@ -1,13 +1,13 @@
 public interface CompetitionSwimmer {
 
     // METODER
-    static void getResultsByDicipline() {}
+    void getResultsByDicipline();
 
-    static void getDiciplines() {}
+    void getDiciplines();
 
-    static void registerCompetitionResult(CompetitionResult result) {}
+    void registerCompetitionResult(CompetitionResult result);
 
-    static void isSenior() {}
+    void isSenior();
 
-    static void getName() {}
+    void getName();
 }
