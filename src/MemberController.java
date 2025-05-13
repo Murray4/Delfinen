@@ -17,6 +17,9 @@ public class MemberController {
     // METODER
     public static void searchByFilter(Scanner scanner) {
     }
+    public static ArrayList<Member> getMemberList() {
+        return MemberList;
+    }
 
     public static void registerNewMember(Scanner scanner) {
         System.out.println(Farver.MAGENTA + "Register New Member" + Farver.RESET);
