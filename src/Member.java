@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Member {
+public class Member implements CompetitionSwimmer {
 
     // ATTRIBUTER
     String memberName;
@@ -178,5 +178,30 @@ public class Member {
                 ", [Konkurrencesvømmer = " + isCompetitionSwimmer + "]" + "\n" +
                 "[Træningsresultater = " + trainingResult + "]" + "\n" +
                 "[Konkurrenceresultater = " + competitionResult + "]";
+    }
+
+    @Override
+    public void getResultsByDicipline() {
+
+    }
+
+    @Override
+    public void getDiciplines() {
+
+    }
+
+    @Override
+    public void registerCompetitionResult(CompetitionResult result) {
+
+    }
+
+    @Override
+    public void isSenior() {
+
+    }
+
+    @Override
+    public void getName() {
+
     }
 }

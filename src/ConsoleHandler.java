@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class ConsoleHandler {
 
     public static void main(String[] args) {
-        System.out.println(FileHandler.sebber());       // Tihi
         Scanner scanner = new Scanner(System.in);
         run(scanner);
     }
