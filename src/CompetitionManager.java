@@ -1,10 +1,16 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class CompetitionManager {
     // ATTRIBUTTER
     private static ArrayList<Competition> competitions = new ArrayList<>();
+
+    //Getter
+
+    public static List<Competition> getCompetitions() {
+        return competitions; // competitions skal være en statisk liste i klassen
+    }
+
 
     // METODER
     public static void createCompetition(Scanner scanner) {
@@ -100,4 +106,7 @@ public class CompetitionManager {
                 System.out.println((i+1) + "."+ competitions.get(i));
             }
     }
+
+
+
 }
