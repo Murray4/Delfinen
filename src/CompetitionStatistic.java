@@ -11,6 +11,9 @@ public class CompetitionStatistic {
 
         //TODO: Top fem resultater i hver disciplin for konkurrencesvømmere
     }
+
+
+    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void getResultsByDiscipline(Scanner scanner) {
         System.out.println("Vælg disciplin:");
         Dicipline[] discipliner = Dicipline.values();
@@ -40,7 +43,6 @@ public class CompetitionStatistic {
             System.out.println("Ingen resultater fundet for denne disciplin.");
         }
     }
-
 
     public static void getTopFiveTotal() {
 

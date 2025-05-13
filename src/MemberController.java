@@ -155,7 +155,6 @@ public class MemberController {
         ConsoleHandler.memberMenu(scanner);
     }
 
-
     public static void cancelMembership(Member m, Scanner scanner) {
 
         System.out.println("\nVil du afmelde medlemmet? (J/N): \n");
@@ -187,7 +186,6 @@ public class MemberController {
         }
         }
 
-
     public static void showListOfCompetitionSwimmers(Scanner scanner) {
 
         System.out.println(Farver.GOLD + "\nListe over konkurrencesvømmere:\n" + Farver.RESET);
@@ -216,6 +214,8 @@ public class MemberController {
         }
     }
 
+
+    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void showTrainingResults(Scanner scanner) {
         System.out.print("Indtast medlems-ID: ");
         int id = scanner.nextInt();
@@ -245,7 +245,6 @@ public class MemberController {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
-
 
     public static void addTrainingResults(Scanner scanner) {
 
@@ -304,7 +303,6 @@ public class MemberController {
         System.out.println("Træningsresultat tilføjet!");
     }
 
-
     public static void pauseMember(Member m, Scanner scanner) {
 
         System.out.print("\nSkal medlemmet være aktiv? (J/N): \n");
@@ -325,7 +323,6 @@ public class MemberController {
             editMember(scanner);
         }
     }
-
 
     public static void editMember(Scanner scanner) {
 
@@ -380,6 +377,7 @@ public class MemberController {
     }
 
 
+    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void registerCompetitionResult(Scanner scanner) {
         System.out.print("Indtast medlems-ID: ");
         int id = scanner.nextInt();
@@ -398,6 +396,7 @@ public class MemberController {
             return;
         }
 
+        // TODO VÆLG competition udfra liste
         System.out.print("Indtast stævnenavn: ");
         String staevne = scanner.nextLine();
 
@@ -430,7 +429,6 @@ public class MemberController {
         System.out.println(Farver.GREEN + "Konkurrenceresultat registreret!" + Farver.RESET);
     }
 
-
     public static void isCompetetive(Member m, Scanner scanner) {
 
         System.out.print("Er medlemmet konkurrencesvømmer? (J/N): \n");
@@ -451,7 +449,5 @@ public class MemberController {
         }
     }
 
-
-    public static void addMember() {
-    }
+    public static void addMember() {}
 }
