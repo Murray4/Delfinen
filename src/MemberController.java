@@ -18,6 +18,7 @@ public class MemberController {
     // METODER
     public static void searchByFilter(Scanner scanner) {
     }
+
     public static ArrayList<Member> getMemberList() {
         return MemberList;
     }
@@ -117,31 +118,31 @@ public class MemberController {
 
         // isCompetitive
         while (true) {
-            System.out.println("Er medlem konkurrencesvømmer? (Y/N): ");
+            System.out.println("Er medlem konkurrencesvømmer? (J/N): ");
             String konksvøm = scanner.nextLine();
-            if (konksvøm.equalsIgnoreCase("Y")) {
+            if (konksvøm.equalsIgnoreCase("J")) {
                 x.setIsCompetitionSwimmer(true);
                 break;
             } else if(konksvøm.equalsIgnoreCase("N")) {
                 x.setIsCompetitionSwimmer(false);
                 break;
             } else {
-                ConsoleHandler.inputFejl("input", "Skriv Y eller N");
+                ConsoleHandler.inputFejl("input", "Skriv J eller N");
             }
         }
 
         // hasPayed
         while (true) {
-            System.out.println("Betaler medlemmet nu? (Y/N): ");
+            System.out.println("Betaler medlemmet nu? (J/N): ");
             String betaling = scanner.nextLine();
-            if (betaling.equalsIgnoreCase("Y")) {
+            if (betaling.equalsIgnoreCase("J")) {
                 x.setHasPayed(true);
                 break;
             } else if (betaling.equalsIgnoreCase("N")){
                 x.setHasPayed(false);
                 break;
             } else {
-                ConsoleHandler.inputFejl("input", "Skriv Y eller N");
+                ConsoleHandler.inputFejl("input", "Skriv J eller N");
             }
         }
 
