@@ -129,6 +129,7 @@ public class ConsoleHandler {
         """;
     }
 
+
     public static void trainingResultMenu(Scanner scanner) {
 
         System.out.println(trainingResultMenuText());
@@ -166,6 +167,8 @@ public class ConsoleHandler {
         """;
     }
 
+
+    // TODO: FIX Get ResultsForCompetitionSwimmer
     public static void CompetitionSwimmerMenu(Scanner scanner) {
 
         System.out.println(CompetitionSwimmerMenuText());
@@ -174,6 +177,7 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
+                // TODO: FIX DENNE
                 CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
