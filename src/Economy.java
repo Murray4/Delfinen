@@ -15,9 +15,12 @@ public class Economy {
 
         for (Member m : MemberController.MemberList) {
             if (m.getMemberID() == id) {
-                System.out.println("\nFundet medlem: \nNavn: " + m.getMemberName() + "\n Fødselsdag: " + m.getBirthDate());
+                System.out.println("\n" +
+                        Farver.GREEN + "Fundet medlem: \n" + Farver.RESET +
+                        "Navn:          " + m.getMemberName() + "\n" +
+                        "Fødselsdag:    " + m.getBirthDate());
 
-                System.out.println("Korrekt medlem? (J/N): \n");
+                System.out.println("\nKorrekt medlem?" + Farver.GREEN + "(J/N): \n" + Farver.RESET);
 
                 String answer = scanner.nextLine().trim();
                 scanner.nextLine();
@@ -29,7 +32,7 @@ public class Economy {
 
                     if (Payed.equalsIgnoreCase("J")) {
                         m.setHasPayed(true);
-                        System.out.println(Farver.GREEN + "Betaling registreret: " + Farver.RESET);
+                        System.out.println(Farver.GREEN + "Betaling registreret." + Farver.RESET);
                     } else if (Payed.equalsIgnoreCase("N")) {
                         m.setHasPayed(false);
                         System.out.println(Farver.ORANGE + "Betaling registreret som IKKE BETALT." + Farver.RESET);

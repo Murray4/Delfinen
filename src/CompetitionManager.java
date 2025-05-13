@@ -28,6 +28,7 @@ public class CompetitionManager {
         System.out.println(Farver.GREEN + "Competition created: " + competition + Farver.RESET);
     }
 
+
     public static void editCompetition(Scanner scanner) {
         // checking if the competition list is empty
         if (competitions.isEmpty()) {
@@ -83,7 +84,6 @@ public class CompetitionManager {
         //Update confirmation
         System.out.println(Farver.GREEN + "Competition updated: " + comp + Farver.RESET);
     }
-
 
 
     public static void showCompetition() {

@@ -51,6 +51,11 @@ public class Member implements CompetitionSwimmer {
 
 
     // GETTERS OG SETTERS
+
+    public boolean isCompetitionSwimmer() {
+        return isCompetitionSwimmer;
+    }
+
     public String getMemberName() {
         return memberName;
     }

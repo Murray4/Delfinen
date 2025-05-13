@@ -18,7 +18,8 @@ public class ConsoleHandler {
         int choice;
 
         do {
-            System.out.println(Farver.GREEN + "\n=== Hovedmenu ===" + Farver.RESET);
+            System.out.println(Farver.GREEN + "\n---------------------------------------\n" +
+                    "=== Hovedmenu ===" + Farver.RESET);
             System.out.println("  1. Medlems-menu    \uD83D\uDC64");
             System.out.println("  2. Økonomi-menu    \uD83D\uDCB0");
             System.out.println("  3. Træner-menu     \uD83C\uDFCA");
@@ -80,7 +81,8 @@ public class ConsoleHandler {
     }
 
     public static String economyMenuText() {
-        return Farver.ORANGE + "\n=== Økonomi-menu ===" + Farver.RESET + "\n" + """
+        return Farver.ORANGE + "\n---------------------------------------\n" +
+                "=== Økonomi-menu ===" + Farver.RESET + "\n" + """
                   1. Se klubbens udestående.    🔴
                   2. Se forventet indkomst.     📈
                   3. Registrer betaling.        ✅
@@ -117,6 +119,9 @@ public class ConsoleHandler {
             case 7:
                 CompetitionStatistic.getResultsByDiscipline(scanner);
                 break;
+            case 8:
+                MemberController.showListOfCompetitionSwimmers(scanner);
+                break;
             case 0:
                 break;
 
@@ -125,15 +130,17 @@ public class ConsoleHandler {
                 trainerMenu(scanner);
         }
     }public static String trainerMenuText() {
-        return Farver.GOLD + "\n=== Træner-menu ===\n" + Farver.RESET + """
-        1. Top5 - Konkurrencesvømmere       🥇
-        2. Top5 - Alle svømmere             🧢
-        3. Konkurrencer                     🏆
-        4. Tilføj træningsresultat          📋
-        5. Registrér konkurrenceresultat    📝
-        6. Vis træningsresultater           📊
-        7. Vis resultater efter disciplin   🧭
-        0. Tilbage                          🔙
+        return Farver.GOLD + "\n---------------------------------------\n" +
+                "=== Træner-menu ===\n" + Farver.RESET + """
+          1. Top5 - Konkurrencesvømmere       🥇
+          2. Top5 - Alle svømmere             🧢
+          3. Konkurrencer                     🏆
+          4. Tilføj træningsresultat          📋
+          5. Registrér konkurrenceresultat    📝
+          6. Vis træningsresultater           📊
+          7. Vis resultater efter disciplin   🧭
+          8. Vis alle konkurrencesvømmere     🏊
+          0. Tilbage                          🔙
         """;
     }
 
@@ -184,7 +191,8 @@ public class ConsoleHandler {
     }
 
     public static String competitionMenuText() {
-        return Farver.ORANGE + "===Konkurrence-menu===" + Farver.RESET + "\n" +
+        return Farver.ORANGE + "\n---------------------------------------\n" +
+                "===Konkurrence-menu===" + Farver.RESET + "\n" +
                 """
                   1. Vis konkurrencer.      🗂️
                   2. Tilføj konkurrence.    ➕
@@ -227,7 +235,8 @@ public class ConsoleHandler {
     }
 
     public static String memberMenuTekst() {
-        return Farver.CYAN + "\n=== Medlems-menu ===" + Farver.RESET + "\n" +
+        return Farver.CYAN + "\n---------------------------------------\n" +
+                "=== Medlems-menu ===" + Farver.RESET + "\n" +
                 """
                           1. Registrer Nyt Medlem   ➕
                           2. Rediger Medlem         ✏️

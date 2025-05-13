@@ -4,6 +4,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Map;
 import java.time.LocalTime;
@@ -153,10 +154,65 @@ public class MemberController {
         ConsoleHandler.memberMenu(scanner);
     }
 
-    public static void cancelMembershio() {
-    }
 
-    public static void showListOfCompetetiveSwimmers() {
+    public static void cancelMembership(Member m, Scanner scanner) {
+
+        System.out.println("\nVil du afmelde medlemmet? (J/N): \n");
+
+        String choice = scanner.nextLine().trim();
+
+        if (choice.equalsIgnoreCase("J")) {
+
+            System.out.println("Er du helt sikker? Medlemmet slettes fra databasen: J/N\n");
+
+            String choice2 = scanner.nextLine().trim();
+
+            if (choice2.equalsIgnoreCase("J")) {
+
+                System.out.println(Farver.RED + m.getMemberName() + " med ID: " + m.getMemberID() + ", er nu slettet" + Farver.RESET);
+                MemberList.remove(m);
+
+            } else if (choice2.equalsIgnoreCase("N")) {
+                System.out.println(Farver.GREEN + m.getMemberName() + " med ID: " + m.getMemberID() + ", blev IKKE slettet");
+                ConsoleHandler.memberMenu(scanner);
+            } else {
+                ConsoleHandler.inputFejl("valg", "Tast J eller N\n");
+            }
+        } else if (choice.equalsIgnoreCase("N")) {
+            System.out.println(Farver.GREEN + m.getMemberName() + " med ID: " + m.getMemberID() + ", blev IKKE slettet");
+            ConsoleHandler.memberMenu(scanner);
+        } else {
+            ConsoleHandler.inputFejl("valg", "Tast J eller N\n");
+        }
+        }
+
+
+    public static void showListOfCompetitionSwimmers(Scanner scanner) {
+
+        System.out.println(Farver.GOLD + "\nListe over konkurrencesvømmere:\n" + Farver.RESET);
+
+        boolean found = false;
+
+        for (Member m : MemberList) {
+            if (m.isCompetitionSwimmer()) {
+                found = true;
+                System.out.printf("%-15s ID: %d%n", m.getMemberName(), m.getMemberID());
+            }
+        }
+
+        if (!found) {
+            System.out.println("\nDer er ingen konkurrencesvømmere tilføjet\n");
+        }
+
+        System.out.println("\n  1. Tilbage  🔙");
+
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            ConsoleHandler.trainerMenu(scanner);
+        } else {
+            ConsoleHandler.inputFejl("valg", "Tast 1\n");
+        }
     }
 
     public static void showTrainingResults(Scanner scanner) {
@@ -188,7 +244,6 @@ public class MemberController {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
-
 
 
     public static void addTrainingResults(Scanner scanner) {
@@ -270,6 +325,7 @@ public class MemberController {
         }
     }
 
+
     public static void editMember(Scanner scanner) {
 
         System.out.print("Indtast ID på medlemmet du vil redigere:\n ");
@@ -294,9 +350,10 @@ public class MemberController {
 
         while (true) {
             System.out.println("\nHvad ønsker du at ændre?\n");
-            System.out.println("1. Aktivt / Passivt medlemskab");
-            System.out.println("2. Konkurrencesvømmer status");
-            System.out.println("0. Tilbage");
+            System.out.println("  1. Aktivt / Passivt medlemskab");
+            System.out.println("  2. Konkurrencesvømmer status");
+            System.out.println("  3. Slet medlem");
+            System.out.println("  0. Tilbage");
 
             System.out.print("\nVælg en mulighed: ");
             String choice = scanner.nextLine();
@@ -308,6 +365,9 @@ public class MemberController {
                 case "2":
                     isCompetetive(choiceMember, scanner);
                     break;
+                case "3":
+                    cancelMembership(choiceMember, scanner);
+                    break;
                 case "0":
                     ConsoleHandler.memberMenu(scanner);
                     break;
@@ -317,6 +377,8 @@ public class MemberController {
             }
         }
     }
+
+
     public static void registerCompetitionResult(Scanner scanner) {
         System.out.print("Indtast medlems-ID: ");
         int id = scanner.nextInt();
