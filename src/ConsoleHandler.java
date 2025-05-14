@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -21,15 +22,24 @@ public class ConsoleHandler {
         int choice;
 
         do {
-            System.out.println(Farver.GREEN + "\n---------------------------------------\n" +
-                    "=== Hovedmenu ===" + Farver.RESET);
-            System.out.println("  1. Medlems-menu    \uD83D\uDC64");
-            System.out.println("  2. Økonomi-menu    \uD83D\uDCB0");
-            System.out.println("  3. Træner-menu     \uD83C\uDFCA");
-            System.out.println("  0. Afslut          ❌");
+            System.out.println(Farver.GREEN + "\n-----------------------------------------\n" +
+                    "\t\t\t=== Hovedmenu ===" + Farver.RESET);
+            System.out.println("  1. Medlems-menu.................... \uD83D\uDC64");
+            System.out.println("  2. Økonomi-menu.................... \uD83D\uDCB0");
+            System.out.println("  3. Træner-menu..................... \uD83C\uDFCA");
+            System.out.println("  0. Afslut.......................... ❌");
             System.out.print("\nVælg en mulighed: ");
 
-            choice = scanner.nextInt();
+
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                inputFejl("Indtastning", "Vælg et tal fra listen.");
+                scanner.nextLine();
+                mainMenu(scanner);
+                return;
+            }
 
             switch (choice) {
                 case 1:
@@ -63,7 +73,18 @@ public class ConsoleHandler {
         System.out.println(economyMenuText());
         System.out.print("Vælg en mulighed: ");
 
-        int choice = scanner.nextInt();
+        int choice;
+
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            inputFejl("Indtastning", "Vælg et tal fra listen.");
+            scanner.nextLine();
+            economyMenu(scanner);
+            return;
+        }
+
         switch (choice) {
             case 1:
                 Economy.printOutstandingFeesReport();
@@ -84,12 +105,12 @@ public class ConsoleHandler {
     }
 
     public static String economyMenuText() {
-        return Farver.ORANGE + "\n---------------------------------------\n" +
-                "=== Økonomi-menu ===" + Farver.RESET + "\n" + """
-                  1. Se klubbens udestående.    🔴
-                  2. Se forventet indkomst.     📈
-                  3. Registrer betaling.        ✅
-                  0. Tilbage.                   🔙
+        return Farver.ORANGE + "\n-----------------------------------------\n" +
+                "\t\t  === Økonomi-menu ===" + Farver.RESET + "\n" + """
+                  1. Se klubbens udestående.......... 🔴
+                  2. Se forventet indkomst........... 📈
+                  3. Registrer betaling.............. ✅
+                  0. Tilbage......................... 🔙
                 """;
     }
 
@@ -98,7 +119,17 @@ public class ConsoleHandler {
         System.out.println(trainerMenuText());
         System.out.print("Vælg en mulighed: ");
 
-        int choice = scanner.nextInt();
+        int choice;
+
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            inputFejl("Indtastning", "Vælg et tal fra listen.");
+            scanner.nextLine();
+            trainerMenu(scanner);
+            return;
+        }
         switch (choice) {
             case 1:
                 CompetitionSwimmerMenu(scanner);
@@ -122,12 +153,12 @@ public class ConsoleHandler {
     }
 
     public static String trainerMenuText() {
-        return Farver.GOLD + "\n---------------------------------------\n" +
-                "=== Træner-menu ===\n" + Farver.RESET + """
-          1. Konkurrencesvømmere       🥇
-          2. Træningsresultater        📊
-          3. Konkurrencer              🏆
-          0. Tilbage                   🔙
+        return Farver.GOLD + "\n-----------------------------------------\n" +
+                "\t\t   === Træner-menu ===\n" + Farver.RESET + """
+          1. Konkurrencesvømmere............. 🥇
+          2. Træningsresultater.............. 📊
+          3. Konkurrencer.................... 🏆
+          0. Tilbage......................... 🔙
         """;
     }
 
@@ -137,7 +168,17 @@ public class ConsoleHandler {
         System.out.println(trainingResultMenuText());
         System.out.print("Vælg en mulighed: ");
 
-        int choice = scanner.nextInt();
+        int choice;
+
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            inputFejl("Indtastning", "Vælg et tal fra listen.");
+            scanner.nextLine();
+            trainingResultMenu(scanner);
+            return;
+        }
         switch (choice) {
             case 1:
                 CompetitionStatistic.getTopFiveTotal();
@@ -160,12 +201,13 @@ public class ConsoleHandler {
 
     public static String CompetitionSwimmerMenuText() {
         return Farver.GOLD +
-                "\n=== Konkurrencesvømmere ===\n" + Farver.RESET + """
-          1. Top5 - Konkurrencesvømmere       🥇
-          2. Registrér konkurrenceresultat    📝
-          3. Vis resultater efter disciplin   🧭
-          4. Vis alle konkurrencesvømmere     🏊
-          0. Tilbage                          🔙
+                "\n---------- Konkurrencesvømmere ----------\n" + Farver.RESET + """
+          1. Top5 - Konkurrencesvømmere...... 🥇
+          2. Registrér konkurrenceresultat... 📝
+          3. Vis resultater efter disciplin.. 🧭
+          4. Vis alle konkurrencesvømmere.... 🏊
+          0. Tilbage......................... 🔙
+          
         """;
     }
 
@@ -176,7 +218,17 @@ public class ConsoleHandler {
         System.out.println(CompetitionSwimmerMenuText());
         System.out.print("Vælg en mulighed: ");
 
-        int choice = scanner.nextInt();
+        int choice;
+
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            inputFejl("Indtastning", "Vælg et tal fra listen.");
+            scanner.nextLine();
+            CompetitionSwimmerMenu(scanner);
+            return;
+        }
         switch (choice) {
             case 1:
                 // TODO: FIX DENNE
@@ -202,11 +254,11 @@ public class ConsoleHandler {
     }
 
     public static String trainingResultMenuText() {
-        return Farver.GOLD + "\n === Træningsresultater ===\n" + Farver.RESET + """
-          1. Top5 - Alle svømmere             🏊
-          2. Tilføj træningsresultat          📋
-          3. Vis træningsresultater           📊
-          0. Tilbage                          🔙
+        return Farver.GOLD + "\n ---------- Træningsresultater ----------\n" + Farver.RESET + """
+          1. Top5 - Alle svømmere............ 🏊
+          2. Tilføj træningsresultat......... 📋
+          3. Vis træningsresultater.......... 📊
+          0. Tilbage......................... 🔙
         """;
     }
 
@@ -237,7 +289,17 @@ public class ConsoleHandler {
         System.out.println(competitionMenuText());
         System.out.print("Vælg en mulighed: ");
 
-        int choice = scanner.nextInt();
+        int choice;
+
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            inputFejl("Indtastning", "Vælg et tal fra listen.");
+            scanner.nextLine();
+            competitionMenu(scanner);
+            return;
+        }
         switch (choice) {
             case 1:
                 CompetitionManager.showCompetition();
@@ -259,21 +321,30 @@ public class ConsoleHandler {
 
     public static String competitionMenuText() {
         return Farver.GOLD  +
-                "\n===Konkurrence-menu===" + Farver.RESET + "\n" +
+                "\n-------------- Konkurrencer -------------" + Farver.RESET + "\n" +
                 """
-                  1. Vis konkurrencer.      🗂️
-                  2. Tilføj konkurrence.    ➕
-                  3. Rediger konkurrence.   🏅
-                  0. Tilbage.               🔙
+                  1. Vis konkurrencer................ 🗂️
+                  2. Tilføj konkurrence.............. ➕
+                  3. Rediger konkurrence............. 🏅
+                  0. Tilbage......................... 🔙
                 """;
     }
 
     public static void memberMenu(Scanner scanner) {
         System.out.println(memberMenuTekst());
         System.out.print("Vælg en mulighed: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
 
+        int choice;
+
+        try {
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        } catch (InputMismatchException e) {
+            inputFejl("Indtastning", "Vælg et tal fra listen.");
+            scanner.nextLine();
+            memberMenu(scanner);
+            return;
+        }
         while (true) {
             switch (choice) {
                 case 1:
@@ -302,14 +373,14 @@ public class ConsoleHandler {
     }
 
     public static String memberMenuTekst() {
-        return Farver.CYAN + "\n---------------------------------------\n" +
-                "=== Medlems-menu ===" + Farver.RESET + "\n" +
+        return Farver.CYAN + "\n-----------------------------------------\n" +
+                "\t\t   === Medlems-menu ===" + Farver.RESET + "\n" +
                 """
-                          1. Registrer Nyt Medlem   ➕
-                          2. Rediger Medlem         ✏️
-                          3. Søg På Medlem          🔍  
-                          4. Vis Medlemsliste       📄
-                          0. Tilbage                🔙
+                          1. Registrer Nyt Medlem............ ➕
+                          2. Rediger Medlem.................. ✏️
+                          3. Søg På Medlem................... 🔍  
+                          4. Vis Medlemsliste................ 📄
+                          0. Tilbage......................... 🔙
                         """;
     }
 

@@ -22,10 +22,12 @@ public class MemberController {
         List<Member> resultatListe = new ArrayList<>();   //ArrayList til at gemme vores resultat.
 
 
-        // input - ID
+        System.out.println(Farver.CYAN + "\nFiltrer søgning:\n" + Farver.RESET + "---------------------------------------\n");
+
+// input - ID
 
         while (true) {
-            System.out.println(Farver.CYAN + "\nSøg på et ID " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
+            System.out.println(Farver.CYAN + "Søg på et ID " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
             String inputID = scanner.nextLine().trim();
 
             if (inputID.isEmpty()) {
@@ -84,7 +86,7 @@ public class MemberController {
             }
 
 // Aktivt medlemsskab?
-            System.out.println(Farver.CYAN + "Vil du søge på aktive medlemmere?  J/N" + Farver.RESET + "(eller tryk ENTER for at gå videre): \n");
+            System.out.println(Farver.CYAN + "Vil du søge på aktive medlemmere?  J/N " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
             String inputIsActive = scanner.nextLine().trim();
 
             if (inputIsActive.isEmpty()) {
@@ -125,7 +127,9 @@ public class MemberController {
         }
 
 
-        System.out.println(Farver.CYAN + "\nListe over søgte medlemmer: \n" + Farver.RESET);
+        System.out.println(Farver.CYAN + "\n" +
+                "______________________________________________________\n" +
+                "Liste over søgte medlemmer: \n" + Farver.RESET);
         System.out.printf("%-4s %-20s %-10s %-20s%n", "#", "Navn", "ID", "Medlemsskab\n" +
                 Farver.CYAN + "------------------------------------------------------" + Farver.RESET);
 
@@ -138,6 +142,7 @@ public class MemberController {
                     m.getMembership().toString().replace("_", " "));
             i++;
         }
+        System.out.println("\n\n");
 
         ConsoleHandler.memberMenu(scanner);
     }
@@ -149,8 +154,9 @@ public class MemberController {
     }
 
     public static void registerNewMember(Scanner scanner) {
-        System.out.println(Farver.MAGENTA + "Register New Member" + Farver.RESET);
+        System.out.println(Farver.CYAN + "\nRegister New Member" + Farver.RESET);
         Member x = new Member();
+        scanner.nextLine();
 
         // Navn
         String navn = "";
@@ -386,6 +392,7 @@ public class MemberController {
             }
         }
 
+
         if (valgt == null) {
             System.out.println("Medlem ikke fundet!");
             return;
@@ -580,7 +587,6 @@ public class MemberController {
         Dicipline valgtDisciplin = discipliner[discChoice];
 
         // Tid
-        scanner.nextLine();
         System.out.print("Tid (mm:ss.SSS): ");
         String tidInput = scanner.nextLine();
 
