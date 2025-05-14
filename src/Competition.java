@@ -60,11 +60,8 @@ public void setResults(List<CompetitionResult> results) {
     // METODER
 @Override
     public String toString() {
-    return "Competition{" +
-            "name='" + name + '\'' +
-            ", city='" + city + '\'' +
-            ", date=" + date +
-            ", results=" + results +
-            '}';
+    return "Konkurrencer {" +
+            "Stævne navn: '" + name + " - Dato: " + date + " - By: " + city + "\n" +
+            "Resultater: " + "\n" + results + "\n}";
     }
 }

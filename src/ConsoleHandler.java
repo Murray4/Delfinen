@@ -10,7 +10,9 @@ public class ConsoleHandler {
     // METODER (- main)
     public static void run(Scanner scanner) {
         FileHandler.createFile("MedlemsListe.txt");
+        FileHandler.createFile("Konkurrencer.txt");
         FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
+        //FileHandler.indlæsKonkurrencerFraFil("Konkurrencer.txt");
         delfinLogo();
         mainMenu(scanner);
     }
@@ -41,7 +43,7 @@ public class ConsoleHandler {
                     break;
                 case 0:
                     scanner.close();
-                    FileHandler.writeToFile("MedlemsListe.txt", MemberController.MemberList);
+                    FileHandler.writeToMemberlistFile("MedlemsListe.txt", MemberController.MemberList);
                     System.out.println(Farver.GREEN + "MedlemsListe opdateret" + Farver.RESET);
                     System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
                     scanner.close();
@@ -273,7 +275,6 @@ public class ConsoleHandler {
         scanner.nextLine();
 
         while (true) {
-            int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     MemberController.registerNewMember(scanner);

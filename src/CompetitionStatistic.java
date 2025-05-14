@@ -84,8 +84,6 @@ public class CompetitionStatistic {
         }
     }
 
-
-    // TODO FIX DENNE HER!!
     public static void getResultsForCompetitionSwimmer(Scanner scanner) {
         //TODO: Top fem resultater for hver Disciplin for alle svømmere
 
@@ -103,8 +101,6 @@ public class CompetitionStatistic {
                                 .add(tr);
                     }
                 }
-            } else {
-                break;
             }
         }
 

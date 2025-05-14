@@ -18,7 +18,7 @@ public class FileHandler {
             if (fil.createNewFile()) {
                 System.out.println("File created: " + fil.getName());
             } else {
-                System.out.println("File already exists.");
+                System.out.println(fileName + " already exists.");
             }
         } catch (IOException e) {
             System.out.println("An error occurred");
@@ -49,7 +49,7 @@ public class FileHandler {
         return nextID;
     }
 
-    public static void writeToFile(String fileName, ArrayList<Member> medlemmer) {
+    public static void writeToMemberlistFile(String fileName, ArrayList<Member> medlemmer) {
         DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName))) {
@@ -105,6 +105,22 @@ public class FileHandler {
             System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
     }
+
+    public static void writeToCompetitionFile(String fileName, ArrayList<Competition> competition) {
+        DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName))) {
+            for (Competition c : competition) {
+
+                writer.write("[Stævne Navn: " + c.getName() + "] , [Dato: " + c.getDate() + "] By: " + c.getCity() + "]\n" +
+                        "Resultater: " + "\n" +
+                        c.getResults());
+            }
+        } catch (IOException e) {
+            System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
+        }
+    }
+
 
     public static ArrayList<Member> indlæsMedlemmerFraFil(String fileName) {
         try {
@@ -192,6 +208,44 @@ public class FileHandler {
         return MemberController.MemberList;
     }
 
+    /*public static ArrayList<Competition> indlæsKonkurrencerFraFil(String fileName) {
+        List<String> linjer = Files.readAllLines(Paths.get(fileName));
+        Member medlem = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        for (String linje : linjer) {
+            // Ny medlem starter
+            if (linje.startsWith("[ID =")) {
+                if (medlem != null) MemberController.MemberList.add(medlem);
+                medlem = new Member();
+
+                // ID, navn, fødselsdato og alder (hvis inkluderet)
+                Pattern p = Pattern.compile("\\[ID = (\\d+)] , \\[MedlemsNavn = (.*?)\\](?:, \\[Fødselsdato = (\\d{2}-\\d{2}-\\d{4})])?(?:, \\[Alder = (\\d{1,3})])?");
+                Matcher m = p.matcher(linje);
+                if (m.find()) {
+                    medlem.setMemberID(Integer.parseInt(m.group(1)));
+                    medlem.setMemberName(m.group(2));
+
+                    if (m.group(3) != null) {
+                        LocalDate stævneDag = LocalDate.parse(m.group(3), formatter);
+                        Competition.setDate(stævneDag);
+                    }
+                }
+            }
+
+            // Attributter
+            else if (linje.contains("[Medlemskab =")) {
+                medlem.setMembership(parseMembership(linje));
+                medlem.setIsActive(linje.contains("[Aktiv = true]"));
+                medlem.setMemberPrice(parseIntFromLine(linje, "Medlemspris"));
+                medlem.setEmail(parseStringFromLine(linje, "Email"));
+                medlem.setPhoneNumber(parseStringFromLine(linje, "Telefonnummer"));
+                medlem.setHasPayed(linje.contains("[Betalt = true]"));
+                medlem.setIsSenior(linje.contains("[Senior = true]"));
+                medlem.setIsCompetitionSwimmer(linje.contains("[Konkurrencesvømmer = true]"));
+            }
+    }
+*/
     private static String parseStringFromLine(String linje, String nøgle) {
         Pattern p = Pattern.compile("\\[" + nøgle + " = ([^\\]]+)]");
         Matcher m = p.matcher(linje);
@@ -214,11 +268,6 @@ public class FileHandler {
         long sekunder = (totalMillis % 60000) / 1000;
         long millisekunder = totalMillis % 1000;
         return String.format("%02d:%02d.%03d", minutter, sekunder, millisekunder);
-    }
-
-    public static void opretMedlemmer() {
-
-
     }
 }
 

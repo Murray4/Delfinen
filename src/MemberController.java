@@ -22,7 +22,7 @@ public class MemberController {
         List<Member> resultatListe = new ArrayList<>();   //ArrayList til at gemme vores resultat.
 
 
-// input - ID
+        // input - ID
 
         while (true) {
             System.out.println(Farver.CYAN + "\nSøg på et ID " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
@@ -151,7 +151,6 @@ public class MemberController {
     public static void registerNewMember(Scanner scanner) {
         System.out.println(Farver.MAGENTA + "Register New Member" + Farver.RESET);
         Member x = new Member();
-        scanner.nextLine();
 
         // Navn
         String navn = "";
@@ -276,7 +275,7 @@ public class MemberController {
 
         MemberList.add(x);
         System.out.println(Farver.GREEN + "\nNyt Medlem oprettet:\n" + Farver.RESET + x);
-        FileHandler.writeToFile("MedlemsListe.txt", MemberController.MemberList);
+        FileHandler.writeToMemberlistFile("MedlemsListe.txt", MemberController.MemberList);
         ConsoleHandler.memberMenu(scanner);
     }
 
@@ -386,7 +385,6 @@ public class MemberController {
                 break;
             }
         }
-
 
         if (valgt == null) {
             System.out.println("Medlem ikke fundet!");
@@ -506,59 +504,6 @@ public class MemberController {
         }
     }
 
-
-    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
-    public static void registerCompetitionResult(Scanner scanner) {
-        System.out.print("Indtast medlems-ID: ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
-
-        Member valgt = null;
-        for (Member m : MemberList) {
-            if (m.getMemberID() == id) {
-                valgt = m;
-                break;
-            }
-        }
-
-        if (valgt == null) {
-            System.out.println("Medlem ikke fundet!");
-            return;
-        }
-
-        // TODO VÆLG competition udfra liste
-        System.out.print("Indtast stævnenavn: ");
-        String staevne = scanner.nextLine();
-
-        System.out.println("Vælg disciplin:");
-        Dicipline[] discipliner = Dicipline.values();
-        for (int i = 0; i < discipliner.length; i++) {
-            System.out.println((i + 1) + ". " + discipliner[i]);
-        }
-        int disciplinValg = scanner.nextInt();
-        scanner.nextLine();
-        Dicipline valgtDisciplin = discipliner[disciplinValg - 1];
-
-        System.out.print("Tid (mm:ss): ");
-        String tidInput = scanner.nextLine();
-        LocalTime tid = LocalTime.parse("00:" + tidInput); // fx "00:01:32" for 1 minut 32 sekunder
-
-        System.out.print("Placering (1, 2, 3, ...): ");
-        int placering = scanner.nextInt();
-        scanner.nextLine();
-
-        CompetitionResult result = new CompetitionResult();
-        result.dicipline = valgtDisciplin;
-        result.time = tid;
-        result.rank = placering;
-        result.member = valgt;
-        result.eventName = staevne;
-
-        valgt.getCompetitionResult().add(result);
-
-        System.out.println(Farver.GREEN + "Konkurrenceresultat registreret!" + Farver.RESET);
-    }
-
     public static void isCompetetive(Member m, Scanner scanner) {
 
         System.out.print("Er medlemmet konkurrencesvømmer? (J/N): \n");
@@ -635,12 +580,21 @@ public class MemberController {
         Dicipline valgtDisciplin = discipliner[discChoice];
 
         // Tid
-        System.out.print("Tid (sekunder.millisekunder, fx 52.34): ");
-        double seconds = scanner.nextDouble();
         scanner.nextLine();
-        int wholeSeconds = (int) seconds;
-        int millis = (int) ((seconds - wholeSeconds) * 1000);
-        LocalTime tid = LocalTime.of(0, 0, wholeSeconds, millis * 1_000_000);
+        System.out.print("Tid (mm:ss.SSS): ");
+        String tidInput = scanner.nextLine();
+
+        // Split på punktum
+        String[] parts = tidInput.split("\\.");
+        String[] minSek = parts[0].split(":");
+
+        long minutter = Long.parseLong(minSek[0]);
+        long sekunder = Long.parseLong(minSek[1]);
+        long millisekunder = Long.parseLong(parts[1]);
+
+        Duration tid = Duration.ofMinutes(minutter)
+                .plusSeconds(sekunder)
+                .plusMillis(millisekunder);
 
         // Placering
         System.out.print("Placering: ");

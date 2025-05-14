@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CompetitionManager {
@@ -14,25 +15,28 @@ public class CompetitionManager {
 
     // METODER
     public static void createCompetition(Scanner scanner) {
+        DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
         Competition competition = new Competition();
         scanner.nextLine();
 
-        System.out.println("Enter competition name: ");
+        System.out.println("Konkurrencenavn: ");
         String name = scanner.nextLine();
         competition.setName(name);
 
-        System.out.println("Enter city: ");
+        System.out.println("By: ");
         String city = scanner.nextLine();
         competition.setCity(city);
 
-        System.out.println("Enter date (YYYY-MM-DD): ");
+        System.out.println("Dato for stævne (dd-MM-yyyy): ");
         String dateInput = scanner.nextLine();
-        LocalDate date = LocalDate.parse(dateInput);
+        LocalDate date = LocalDate.parse(dateInput, DKformat);
         competition.setDate(date);
 
         // Call the regular createCompetition method
         competitions.add(competition);
-        System.out.println(Farver.GREEN + "Competition created: " + competition + Farver.RESET);
+        System.out.println(Farver.GREEN + "Konkurrence oprettet: " + competition + Farver.RESET);
+        FileHandler.writeToCompetitionFile("Konkurrencer.txt", competitions);
     }
 
 
@@ -95,10 +99,10 @@ public class CompetitionManager {
 
     public static void showCompetition() {
             // Logic to edit competition (to be implemented)
-            System.out.println("Active competitions: "); //displaying the competitions
+            System.out.println("Konkurrencer: "); //displaying the competitions
             // checking if there are competitions in the list
             if (competitions.isEmpty()) {
-                System.out.println("There are no available competitions!");
+                System.out.println("Ingen konkurrencer at vise");
                 return;
             }
             // now we loop through each competition in the list

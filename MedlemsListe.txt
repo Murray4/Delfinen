@@ -18,7 +18,7 @@
 [Træningsresultater = []]
 [Konkurrenceresultater = []]
 
-[ID = 5] , [MedlemsNavn = Kurt], [Fødselsdato = 14-05-1965], [Alder = 59]
+[ID = 5] , [MedlemsNavn = Kurt], [Fødselsdato = 14-05-1965], [Alder = 60]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = KurtLas@gmail.com], [Telefonnummer = 69696969], [Betalt = true], [Senior = true], [Konkurrencesvømmer = false]
 [Træningsresultater = []]
 [Konkurrenceresultater = []]
@@ -35,7 +35,7 @@
 
 [ID = 9] , [MedlemsNavn = Lærke Christensen], [Fødselsdato = 04-03-2010], [Alder = 15]
 [Medlemskab = UNGDOMSSVØMMER], [Aktiv = true], [Medlemspris = 1000], [Email = lærke@mail.com], [Telefonnummer = 69548213], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {BUTTERFLY=, Tid:00:35.417, Dato: 2025-05-13}, {BRYST=, Tid:00:34.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
+[Træningsresultater = {BRYST=, Tid:00:34.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:35.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 10] , [MedlemsNavn = Sofie Larsen], [Fødselsdato = 09-06-1980], [Alder = 44]
@@ -45,7 +45,7 @@
 
 [ID = 11] , [MedlemsNavn = John], [Fødselsdato = 19-08-1967], [Alder = 57]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = John@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:41.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:37.417, Dato: 2025-05-13}, {BRYST=, Tid:00:31.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:34.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:41.052, Dato: 2025-05-13}, {BRYST=, Tid:00:31.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:37.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:34.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 12] , [MedlemsNavn = Karlos], [Fødselsdato = 15-09-1948], [Alder = 76]
@@ -55,116 +55,116 @@
 
 [ID = 13] , [MedlemsNavn = Bob], [Fødselsdato = 08-02-1951], [Alder = 74]
 [Medlemskab = SENIORSVØMMER], [Aktiv = false], [Medlemspris = 500], [Email = Bob@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = true], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:41.156, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:45.417, Dato: 2025-05-13}, {BRYST=, Tid:00:36.715, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.224, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:41.156, Dato: 2025-05-13}, {BRYST=, Tid:00:36.715, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:45.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.224, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 14] , [MedlemsNavn = Lis], [Fødselsdato = 08-08-1870], [Alder = 154]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1200], [Email = Lis@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = true], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:01:00.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:20.517, Dato: 2025-05-13}, {BRYST=, Tid:00:33.255, Dato: 2025-05-13}, {CRAWL=, Tid:01:30.424, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:01:00.052, Dato: 2025-05-13}, {BRYST=, Tid:00:33.255, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:20.517, Dato: 2025-05-13}, {CRAWL=, Tid:01:30.424, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 15] , [MedlemsNavn = Anders], [Fødselsdato = 19-08-1967], [Alder = 57]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Anders@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
-[Træningsresultater = {RYGCRAWL=, Tid:00:33.421, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:37.417, Dato: 2025-05-13}, {BRYST=, Tid:00:33.412, Dato: 2025-05-13}, {CRAWL=, Tid:00:32.312, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:33.421, Dato: 2025-05-13}, {BRYST=, Tid:00:33.412, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:37.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:32.312, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 16] , [MedlemsNavn = Joakim], [Fødselsdato = 06-07-2001], [Alder = 23]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = joakim@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:24.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {BRYST=, Tid:00:29.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:24.052, Dato: 2025-05-13}, {BRYST=, Tid:00:29.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 17] , [MedlemsNavn = Bobby Johnson], [Fødselsdato = 21-04-1988], [Alder = 37]
 [Medlemskab = SENIORSVØMMER], [Aktiv = false], [Medlemspris = 500], [Email = BobbyJohnson@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:44.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {BRYST=, Tid:00:37.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:44.052, Dato: 2025-05-13}, {BRYST=, Tid:00:37.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 18] , [MedlemsNavn = Torben], [Fødselsdato = 01-02-1978], [Alder = 47]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Torben@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = false]
-[Træningsresultater = {RYGCRAWL=, Tid:00:42.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:42.417, Dato: 2025-05-13}, {BRYST=, Tid:00:42.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:42.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:42.052, Dato: 2025-05-13}, {BRYST=, Tid:00:42.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:42.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:42.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 19] , [MedlemsNavn = Lisbeth], [Fødselsdato = 19-02-1955], [Alder = 70]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1200], [Email = Lisbeth@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = true], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:35.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:41.417, Dato: 2025-05-13}, {BRYST=, Tid:00:41.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:40.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:35.052, Dato: 2025-05-13}, {BRYST=, Tid:00:41.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:41.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:40.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 20] , [MedlemsNavn = Anna], [Fødselsdato = 10-02-1979], [Alder = 46]
 [Medlemskab = SENIORSVØMMER], [Aktiv = false], [Medlemspris = 500], [Email = Jogn@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = false]
-[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {BRYST=, Tid:00:40.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BRYST=, Tid:00:40.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 21] , [MedlemsNavn = Frida], [Fødselsdato = 24-01-1977], [Alder = 48]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Frida@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:33.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:29.417, Dato: 2025-05-13}, {BRYST=, Tid:00:32.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:33.052, Dato: 2025-05-13}, {BRYST=, Tid:00:32.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:29.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 22] , [MedlemsNavn = Vilma], [Fødselsdato = 28-02-2002], [Alder = 23]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Vilma@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:42.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:34.417, Dato: 2025-05-13}, {BRYST=, Tid:00:33.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:39.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:42.052, Dato: 2025-05-13}, {BRYST=, Tid:00:33.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:34.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:39.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 23] , [MedlemsNavn = Jens], [Fødselsdato = 27-08-2003], [Alder = 21]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Jens@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:44.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:32.417, Dato: 2025-05-13}, {BRYST=, Tid:00:35.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:54.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:44.052, Dato: 2025-05-13}, {BRYST=, Tid:00:35.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:32.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:54.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 24] , [MedlemsNavn = Theo], [Fødselsdato = 19-03-2000], [Alder = 25]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Theo@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:42.153, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:31.417, Dato: 2025-05-13}, {BRYST=, Tid:00:33.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:42.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:42.153, Dato: 2025-05-13}, {BRYST=, Tid:00:33.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:31.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:42.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 25] , [MedlemsNavn = Otto], [Fødselsdato = 11-03-1999], [Alder = 26]
 [Medlemskab = SENIORSVØMMER], [Aktiv = false], [Medlemspris = 500], [Email = Otto@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {BRYST=, Tid:00:37.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BRYST=, Tid:00:37.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:33.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:31.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 26] , [MedlemsNavn = Lucas], [Fødselsdato = 09-04-1992], [Alder = 33]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Lucas@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:41.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:31.417, Dato: 2025-05-13}, {BRYST=, Tid:00:27.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:36.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:41.052, Dato: 2025-05-13}, {BRYST=, Tid:00:27.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:31.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:36.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 27] , [MedlemsNavn = Isabella], [Fødselsdato = 09-02-1989], [Alder = 36]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Isabella@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:37.417, Dato: 2025-05-13}, {BRYST=, Tid:00:38.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BRYST=, Tid:00:38.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:37.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 28] , [MedlemsNavn = Charlotte], [Fødselsdato = 19-02-1984], [Alder = 41]
 [Medlemskab = SENIORSVØMMER], [Aktiv = false], [Medlemspris = 500], [Email = Charlotte@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:41.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:22.417, Dato: 2025-05-13}, {BRYST=, Tid:00:33.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:32.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:41.052, Dato: 2025-05-13}, {BRYST=, Tid:00:33.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:22.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:32.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 29] , [MedlemsNavn = Sheila], [Fødselsdato = 01-06-2016], [Alder = 8]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1000], [Email = Sheila@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:41.123, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:45.417, Dato: 2025-05-13}, {BRYST=, Tid:00:40.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:32.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:41.123, Dato: 2025-05-13}, {BRYST=, Tid:00:40.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:45.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:32.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 30] , [MedlemsNavn = Søren], [Fødselsdato = 12-05-2070], [Alder = -44]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1000], [Email = Søren@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:42.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:32.417, Dato: 2025-05-13}, {BRYST=, Tid:00:39.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:36.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:42.052, Dato: 2025-05-13}, {BRYST=, Tid:00:39.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:32.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:36.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 31] , [MedlemsNavn = Kim], [Fødselsdato = 21-08-1950], [Alder = 74]
 [Medlemskab = SENIORSVØMMER], [Aktiv = false], [Medlemspris = 500], [Email = Kim@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = true], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:44.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:47.417, Dato: 2025-05-13}, {BRYST=, Tid:00:49.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:50.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:44.052, Dato: 2025-05-13}, {BRYST=, Tid:00:49.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:47.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:50.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 32] , [MedlemsNavn = Gina], [Fødselsdato = 21-01-1967], [Alder = 58]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Gina@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:51.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:46.417, Dato: 2025-05-13}, {BRYST=, Tid:00:31.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:51.052, Dato: 2025-05-13}, {BRYST=, Tid:00:31.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:46.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 33] , [MedlemsNavn = Chloe], [Fødselsdato = 06-02-1948], [Alder = 77]
 [Medlemskab = SENIORSVØMMER], [Aktiv = false], [Medlemspris = 500], [Email = Chloe@gmail.com], [Telefonnummer = 44881166], [Betalt = false], [Senior = false], [Konkurrencesvømmer = false]
-[Træningsresultater = {RYGCRAWL=, Tid:00:43.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:59.417, Dato: 2025-05-13}, {BRYST=, Tid:00:39.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:43.052, Dato: 2025-05-13}, {BRYST=, Tid:00:39.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:59.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:33.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 34] , [MedlemsNavn = Selin], [Fødselsdato = 12-01-1970], [Alder = 55]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Selin@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:27.417, Dato: 2025-05-13}, {BRYST=, Tid:00:41.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:29.184, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:39.052, Dato: 2025-05-13}, {BRYST=, Tid:00:41.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:27.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:29.184, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
 [ID = 35] , [MedlemsNavn = Kalle], [Fødselsdato = 12-05-2001], [Alder = 24]
 [Medlemskab = SENIORSVØMMER], [Aktiv = true], [Medlemspris = 1600], [Email = Kalle@gmail.com], [Telefonnummer = 44881166], [Betalt = true], [Senior = false], [Konkurrencesvømmer = true]
-[Træningsresultater = {RYGCRAWL=, Tid:00:45.052, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:32.417, Dato: 2025-05-13}, {BRYST=, Tid:00:31.725, Dato: 2025-05-13}, {CRAWL=, Tid:00:26.284, Dato: 2025-05-13}]
+[Træningsresultater = {RYGCRAWL=, Tid:00:45.052, Dato: 2025-05-13}, {BRYST=, Tid:00:31.725, Dato: 2025-05-13}, {BUTTERFLY=, Tid:00:32.417, Dato: 2025-05-13}, {CRAWL=, Tid:00:26.284, Dato: 2025-05-13}]
 [Konkurrenceresultater = []]
 
