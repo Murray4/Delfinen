@@ -3,7 +3,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -27,6 +26,29 @@ public class FileHandler {
         }
     }
 
+    public static int readFileForID(String fileName) {
+        Pattern pattern = Pattern.compile("\\[ID\\s*=\\s*(\\d+)]");
+        int maxID = 0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String linje;
+            while ((linje = reader.readLine()) != null) {
+                Matcher matcher = pattern.matcher(linje);
+                if (matcher.find()) {
+                    int ID = Integer.parseInt(matcher.group(1));
+                    if (ID > maxID) {
+                        maxID = ID;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int nextID = maxID + 1;
+        return nextID;
+    }
+
     public static void writeToFile(String fileName, ArrayList<Member> medlemmer) {
         DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -43,14 +65,16 @@ public class FileHandler {
                         : "Ukendt";
 
                 // Sætter memberprice ud fra alderen, så hvis alderen opdateres, opdateres prisen også (i filen)
-            if (medlem.getAlder() < 18) {
-                medlem.setMemberPrice(1000);
-            } else if (medlem.getAlder() <= 60) {
-                medlem.setMemberPrice(1600);
-            } else {
-                medlem.setIsSenior(true);
-                medlem.setMemberPrice((int) (1600 * 0.75));
-            }
+                if (medlem.getAlder() < 18 && medlem.getIsActive()) {
+                    medlem.setMemberPrice(1000);
+                } else if (medlem.getAlder() <= 60 && medlem.getIsActive()) {
+                    medlem.setMemberPrice(1600);
+                } else if (!medlem.getIsActive()) {
+                    medlem.setMemberPrice(500);
+                } else {
+                    medlem.setIsSenior(true);
+                    medlem.setMemberPrice((int) (1600 * 0.75));
+                }
 
                 writer.write("[ID = " + medlem.getMemberID() + "] , [MedlemsNavn = " + medlem.getMemberName() +
                         "], [Fødselsdato = " + fødselsdatoStr + "], [Alder = " + alderStr + "]\n");
@@ -80,29 +104,6 @@ public class FileHandler {
         } catch (IOException e) {
             System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
-    }
-
-    public static int readFileForID(String fileName) {
-        Pattern pattern = Pattern.compile("\\[ID\\s*=\\s*(\\d+)]");
-        int maxID = 0;
-
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String linje;
-            while ((linje = reader.readLine()) != null) {
-                Matcher matcher = pattern.matcher(linje);
-                if (matcher.find()) {
-                    int ID = Integer.parseInt(matcher.group(1));
-                    if (ID > maxID) {
-                        maxID = ID;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        int nextID = maxID + 1;
-        return nextID;
     }
 
     public static ArrayList<Member> indlæsMedlemmerFraFil(String fileName) {

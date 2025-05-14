@@ -1,3 +1,4 @@
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Economy {
@@ -12,6 +13,7 @@ public class Economy {
     }
 
     public static void registerPayment(Scanner scanner) {
+        DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");       // Standard format for LocalDate er (yyyy-MM-dd) dette ændrer formattet til (dd-MM-yyyy)
 
         System.out.println("Indtast medlems ID, på det medlem du vil finde: \n");
         int id = scanner.nextInt();
@@ -24,17 +26,15 @@ public class Economy {
                 System.out.println("\n" +
                         Farver.GREEN + "Fundet medlem: \n" + Farver.RESET +
                         "Navn:          " + m.getMemberName() + "\n" +
-                        "Fødselsdag:    " + m.getBirthDate());
+                        "Fødselsdag:    " + m.getBirthDate().format(DKformat));
 
                 System.out.println("\nKorrekt medlem?" + Farver.GREEN + "(J/N): \n" + Farver.RESET);
 
                 String answer = scanner.nextLine().trim();
-                scanner.nextLine();
 
                 if (answer.equalsIgnoreCase("J")) {
                     System.out.println("Har personen betalt? (J/N)\n");
                     String Payed = scanner.nextLine().trim();
-                    scanner.nextLine();
 
                     if (Payed.equalsIgnoreCase("J")) {
                         m.setHasPayed(true);
@@ -79,5 +79,16 @@ public class Economy {
         System.out.println(Farver.ORANGE + "Udestående i alt: " + Farver.RED + udeståendeBeløb + " Kr" + Farver.RESET);
     }
 
-    public static void getPriceForMember() {}
+    public static double getPriceForMember(Member member) {
+        int age = member.getAlder();
+
+        if (age < 18) {
+            return 200.0; // Junior price
+        } else if (age >= 60) {
+            return 225.0; // Senior discount (e.g., 25% off 300)
+        } else {
+            return 300.0; // Standard adult price
+        }
+
+    }
 }

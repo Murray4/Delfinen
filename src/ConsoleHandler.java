@@ -129,6 +129,7 @@ public class ConsoleHandler {
         """;
     }
 
+
     public static void trainingResultMenu(Scanner scanner) {
 
         System.out.println(trainingResultMenuText());
@@ -166,6 +167,8 @@ public class ConsoleHandler {
         """;
     }
 
+
+    // TODO: FIX Get ResultsForCompetitionSwimmer
     public static void CompetitionSwimmerMenu(Scanner scanner) {
 
         System.out.println(CompetitionSwimmerMenuText());
@@ -174,6 +177,7 @@ public class ConsoleHandler {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
+                // TODO: FIX DENNE
                 CompetitionStatistic.getResultsForCompetitionSwimmer(scanner);
                 break;
             case 2:
@@ -225,6 +229,7 @@ public class ConsoleHandler {
         }
     }
 
+
     public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
@@ -248,7 +253,6 @@ public class ConsoleHandler {
             default:
                 System.out.println("Ugyldigt valg. Prøv igen.");
         }
-
     }
 
     public static String competitionMenuText() {
@@ -262,7 +266,6 @@ public class ConsoleHandler {
                 """;
     }
 
-
     public static void memberMenu(Scanner scanner) {
         System.out.println(memberMenuTekst());
         System.out.print("Vælg en mulighed: ");
@@ -270,6 +273,7 @@ public class ConsoleHandler {
         scanner.nextLine();
 
         while (true) {
+            int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     MemberController.registerNewMember(scanner);
@@ -281,7 +285,9 @@ public class ConsoleHandler {
                     MemberController.searchByFilter(scanner);
                     break;
                 case 4:
-                    System.out.println(MemberController.MemberList);
+                    for (Member m : MemberController.MemberList) {
+                        System.out.println(m);}
+                    memberMenu(scanner);
                     break;
                 case 0:
                     mainMenu(scanner);
@@ -290,8 +296,6 @@ public class ConsoleHandler {
                 default:
                     System.out.println("Ugyldigt valg. Prøv igen.");
                     memberMenu(scanner);
-
-
             }
         }
     }

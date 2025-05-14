@@ -181,8 +181,8 @@ public class Member implements CompetitionSwimmer {
                 ", [Betalt = " + hasPayed + "]" +
                 ", [Senior = " + isSenior + "]" +
                 ", [Konkurrencesvømmer = " + isCompetitionSwimmer + "]" + "\n" +
-                "[Træningsresultater = " + trainingResult + "]" + "\n" +
-                "[Konkurrenceresultater = " + competitionResult + "]";
+                "[Træningsresultater = " + trainingResult + "]" +
+                "[Konkurrenceresultater = " + competitionResult + "]\n";
     }
 
     @Override

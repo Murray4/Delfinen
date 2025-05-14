@@ -13,7 +13,7 @@ public class TrainingResult extends Result {
 
     // METODER
     public String toString() {
-        return "Tid:" + time + ", Dato: " + date + "\n";
+        return "Tid:" + time + ", Dato: " + date;
     }
 
     public Duration getTid() {

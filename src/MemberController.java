@@ -341,6 +341,8 @@ public class MemberController {
         }
     }
 
+
+    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void showTrainingResults(Scanner scanner) {
         System.out.print("Indtast medlems-ID: ");
         int id = scanner.nextInt();
@@ -504,6 +506,58 @@ public class MemberController {
         }
     }
 
+
+    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
+    public static void registerCompetitionResult(Scanner scanner) {
+        System.out.print("Indtast medlems-ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Member valgt = null;
+        for (Member m : MemberList) {
+            if (m.getMemberID() == id) {
+                valgt = m;
+                break;
+            }
+        }
+
+        if (valgt == null) {
+            System.out.println("Medlem ikke fundet!");
+            return;
+        }
+
+        // TODO VÆLG competition udfra liste
+        System.out.print("Indtast stævnenavn: ");
+        String staevne = scanner.nextLine();
+
+        System.out.println("Vælg disciplin:");
+        Dicipline[] discipliner = Dicipline.values();
+        for (int i = 0; i < discipliner.length; i++) {
+            System.out.println((i + 1) + ". " + discipliner[i]);
+        }
+        int disciplinValg = scanner.nextInt();
+        scanner.nextLine();
+        Dicipline valgtDisciplin = discipliner[disciplinValg - 1];
+
+        System.out.print("Tid (mm:ss): ");
+        String tidInput = scanner.nextLine();
+        LocalTime tid = LocalTime.parse("00:" + tidInput); // fx "00:01:32" for 1 minut 32 sekunder
+
+        System.out.print("Placering (1, 2, 3, ...): ");
+        int placering = scanner.nextInt();
+        scanner.nextLine();
+
+        CompetitionResult result = new CompetitionResult();
+        result.dicipline = valgtDisciplin;
+        result.time = tid;
+        result.rank = placering;
+        result.member = valgt;
+        result.eventName = staevne;
+
+        valgt.getCompetitionResult().add(result);
+
+        System.out.println(Farver.GREEN + "Konkurrenceresultat registreret!" + Farver.RESET);
+    }
 
     public static void isCompetetive(Member m, Scanner scanner) {
 

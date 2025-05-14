@@ -11,6 +11,9 @@ public class CompetitionStatistic {
 
         //TODO: Top fem resultater i hver disciplin for konkurrencesvømmere
     }
+
+
+    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void getResultsByDiscipline(Scanner scanner) {
         System.out.println("Vælg disciplin:");
         Dicipline[] discipliner = Dicipline.values();
@@ -41,27 +44,29 @@ public class CompetitionStatistic {
         }
     }
 
-
     public static void getTopFiveTotal() {
 
         Map<Dicipline, List<TrainingResult>> resultaterPrDisciplin = new HashMap<>();
 
         // Det her loop fylder vores nye HashMAP ^^ op med resultaterne fra getTrainingResult
         for (Member m : MemberController.MemberList) {
-            Map<Dicipline, TrainingResult> resultater = m.getTrainingResult();
-            if (resultater != null) {
-                for (TrainingResult tr : resultater.values()) {
-                    Dicipline disciplin = tr.getDicipline();
-                    resultaterPrDisciplin
-                            .computeIfAbsent(disciplin, k -> new ArrayList<>())
-                            .add(tr);
+            if (m.getIsActive()) {
+                Map<Dicipline, TrainingResult> resultater = m.getTrainingResult();
+                if (resultater != null) {
+                    for (TrainingResult tr : resultater.values()) {
+                        Dicipline disciplin = tr.getDicipline();
+                        resultaterPrDisciplin
+                                .computeIfAbsent(disciplin, k -> new ArrayList<>())
+                                .add(tr);
+                    }
                 }
             }
         }
 
 
         // Sorterer og viser os top 5 per disciplin
-        for (Map.Entry<Dicipline, List<TrainingResult>> entry : resultaterPrDisciplin.entrySet()) {
+        for (
+                Map.Entry<Dicipline, List<TrainingResult>> entry : resultaterPrDisciplin.entrySet()) {
             Dicipline disciplin = entry.getKey();
             List<TrainingResult> resultater = entry.getValue();
 
@@ -79,6 +84,8 @@ public class CompetitionStatistic {
         }
     }
 
+
+    // TODO FIX DENNE HER!!
     public static void getResultsForCompetitionSwimmer(Scanner scanner) {
         //TODO: Top fem resultater for hver Disciplin for alle svømmere
 
