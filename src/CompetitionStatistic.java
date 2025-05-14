@@ -7,10 +7,6 @@ public class CompetitionStatistic {
     Dicipline bryst = Dicipline.BRYST;
 
     // METODER
-    public static void getTopFive(Dicipline diciplineChoice) {
-
-        //TODO: Top fem resultater i hver disciplin for konkurrencesvømmere
-    }
 
 
     // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
@@ -73,14 +69,19 @@ public class CompetitionStatistic {
             // Sortér på tid
             resultater.sort(Comparator.comparing(TrainingResult::getTid));
 
-            System.out.println("\t" + Farver.CYAN + "Top 5 for disciplin: " + disciplin + Farver.RESET);
+            System.out.println(Farver.GOLD + "\nTop 5 for disciplin: " + disciplin + Farver.RESET);
+
+            System.out.printf("  %-3s %-20s %-6s %-20s%n", "#", "Navn", "ID", "Medlemsskab");
+            System.out.println("  " + "-".repeat(45)); // Justér længde efter behov
+
             for (int i = 0; i < Math.min(5, resultater.size()); i++) {
                 TrainingResult tr = resultater.get(i);
-                System.out.println("  " + (i + 1) + ". " + tr.getMember().getMemberName().trim() + "\t\t ID: " + tr.getMember().getMemberID() +
-                        " - Tid: " + FileHandler.formatDuration(tr.getTid()) +
-                        " - Dato: " + tr.getDato());
+                String navn = tr.getMember().getMemberName().trim();
+                String id = String.valueOf(tr.getMember().getMemberID());
+                String medlemskab = tr.getMember().getMembership().toString(); // Justér denne linje efter dit medlemskabsfelt
+
+                System.out.printf("  %-3d %-20s %-6s %-20s%n", (i + 1), navn, id, medlemskab);
             }
-            System.out.println();
         }
     }
 
@@ -116,13 +117,20 @@ public class CompetitionStatistic {
             // Sortér på tid
             resultater.sort(Comparator.comparing(TrainingResult::getTid));
 
-            System.out.println("\t" + Farver.CYAN + "Top 5 for disciplin: " + disciplin + Farver.RESET);
+            System.out.println(Farver.GOLD + "\nTop 5 for disciplin: " + disciplin + Farver.RESET);
+            System.out.printf("  %-3s %-20s %-6s %-10s %-12s%n", "#", "Navn", "ID", "Tid", "Dato");
+            System.out.println("  " + "-".repeat(55)); // Til pynt som adskillelse
+
             for (int i = 0; i < Math.min(5, resultater.size()); i++) {
                 TrainingResult tr = resultater.get(i);
-                System.out.println("  " + (i + 1) + ". " + tr.getMember().getMemberName().trim() + "\t\t ID: " + tr.getMember().getMemberID() +
-                        " - Tid: " + FileHandler.formatDuration(tr.getTid()) +
-                        " - Dato: " + tr.getDato());
+                String navn = tr.getMember().getMemberName().trim();
+                String id = String.valueOf(tr.getMember().getMemberID());
+                String tid = FileHandler.formatDuration(tr.getTid());
+                String dato = String.valueOf(tr.getDato());
+
+                System.out.printf("  %-3d %-20s %-6s %-10s %-12s%n", (i + 1), navn, id, tid, dato);
             }
+
             System.out.println();
         }
     }

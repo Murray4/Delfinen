@@ -154,9 +154,8 @@ public class MemberController {
     }
 
     public static void registerNewMember(Scanner scanner) {
-        System.out.println(Farver.CYAN + "Register New Member" + Farver.RESET);
+        System.out.println(Farver.CYAN + "\nRegister New Member" + Farver.RESET);
         Member x = new Member();
-        scanner.nextLine();
 
         // Navn
         String navn = "";
