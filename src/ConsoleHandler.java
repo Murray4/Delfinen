@@ -256,7 +256,6 @@ public class ConsoleHandler {
             default:
                 System.out.println("Ugyldigt valg. Prøv igen.");
         }
-
     }
 
     public static String competitionMenuText() {
