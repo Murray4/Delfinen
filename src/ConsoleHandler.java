@@ -273,7 +273,6 @@ public class ConsoleHandler {
         scanner.nextLine();
 
         while (true) {
-            int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     MemberController.registerNewMember(scanner);
