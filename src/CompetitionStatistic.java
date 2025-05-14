@@ -71,16 +71,16 @@ public class CompetitionStatistic {
 
             System.out.println(Farver.GOLD + "\nTop 5 for disciplin: " + disciplin + Farver.RESET);
 
-            System.out.printf("  %-3s %-20s %-6s %-20s%n", "#", "Navn", "ID", "Medlemsskab");
+            System.out.printf("  %-3s %-20s %-6s %-20s%n", "#", "Navn", "ID", "Tid");
             System.out.println("  " + "-".repeat(45)); // Justér længde efter behov
 
             for (int i = 0; i < Math.min(5, resultater.size()); i++) {
                 TrainingResult tr = resultater.get(i);
                 String navn = tr.getMember().getMemberName().trim();
                 String id = String.valueOf(tr.getMember().getMemberID());
-                String medlemskab = tr.getMember().getMembership().toString(); // Justér denne linje efter dit medlemskabsfelt
+                String tid = FileHandler.formatDuration(tr.getTid()); // Justér denne linje efter dit medlemskabsfelt
 
-                System.out.printf("  %-3d %-20s %-6s %-20s%n", (i + 1), navn, id, medlemskab);
+                System.out.printf("  %-3d %-20s %-6s %-20s%n", (i + 1), navn, id, tid);
             }
         }
     }
