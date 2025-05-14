@@ -13,7 +13,7 @@ public class ConsoleHandler {
         FileHandler.createFile("MedlemsListe.txt");
         FileHandler.createFile("Konkurrencer.txt");
         FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
-        //FileHandler.indlæsKonkurrencerFraFil("Konkurrencer.txt");
+        FileHandler.indlæsKonkurrencerFraFil("Konkurrencer.txt");
         delfinLogo();
         mainMenu(scanner);
     }
@@ -54,7 +54,9 @@ public class ConsoleHandler {
                 case 0:
                     scanner.close();
                     FileHandler.writeToMemberlistFile("MedlemsListe.txt", MemberController.MemberList);
+                    FileHandler.writeToCompetitionFile("Konkurrencer.txt", CompetitionManager.competitions);
                     System.out.println(Farver.GREEN + "MedlemsListe opdateret" + Farver.RESET);
+                    System.out.println(Farver.GREEN + "KonkurrenceListe opdateret" + Farver.RESET);
                     System.out.println(Farver.RED + "Afslutter programmet..." + Farver.RESET);
                     scanner.close();
                     System.exit(0);

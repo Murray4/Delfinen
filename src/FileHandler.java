@@ -107,15 +107,28 @@ public class FileHandler {
     }
 
     public static void writeToCompetitionFile(String fileName, ArrayList<Competition> competition) {
-        DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        List<Competition> competitions = CompetitionManager.getCompetitions();
 
-        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(fileName))) {
-            for (Competition c : competition) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            for (Competition c : competitions) {
+                writer.println("Konkurrencenavn: " + c.getName() + "    By: " + c.getCity() + "    Dato: " + c.getDate());
 
-                writer.write("[Stævne Navn: " + c.getName() + "] , [Dato: " + c.getDate() + "] By: " + c.getCity() + "]\n" +
-                        "Resultater: " + "\n" +
-                        c.getResults());
+                List<CompetitionResult> results = c.getResults();
+                if (results == null || results.isEmpty()) {
+                    writer.println("Ingen resultater.");
+                } else {
+                    for (CompetitionResult result : results) {
+                        writer.println("Medlem: " + result.getSwimmer().getMemberName() + "    ID: " + result.getSwimmer().getMemberID());
+                        writer.println("Disciplin: " + result.getDicipline() + "    Tid: " + formatDuration(result.getTime()) + "    Placering: " + result.getRank());
+                        writer.println();
+                    }
+                }
+                writer.println();
+                writer.println(); // ekstra linje mellem konkurrencer
             }
+
+            System.out.println("Resultater gemt i " + fileName);
+
         } catch (IOException e) {
             System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
@@ -208,44 +221,93 @@ public class FileHandler {
         return MemberController.MemberList;
     }
 
-    /*public static ArrayList<Competition> indlæsKonkurrencerFraFil(String fileName) {
-        List<String> linjer = Files.readAllLines(Paths.get(fileName));
-        Member medlem = null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static ArrayList<Competition> indlæsKonkurrencerFraFil(String fileName) {
+        ArrayList<Competition> konkurrencer = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Dit nye format
 
-        for (String linje : linjer) {
-            // Ny medlem starter
-            if (linje.startsWith("[ID =")) {
-                if (medlem != null) MemberController.MemberList.add(medlem);
-                medlem = new Member();
+        try {
+            List<String> linjer = Files.readAllLines(Paths.get(fileName));
+            Competition konkurrence = null;
+            ArrayList<CompetitionResult> resultater = null;
 
-                // ID, navn, fødselsdato og alder (hvis inkluderet)
-                Pattern p = Pattern.compile("\\[ID = (\\d+)] , \\[MedlemsNavn = (.*?)\\](?:, \\[Fødselsdato = (\\d{2}-\\d{2}-\\d{4})])?(?:, \\[Alder = (\\d{1,3})])?");
-                Matcher m = p.matcher(linje);
-                if (m.find()) {
-                    medlem.setMemberID(Integer.parseInt(m.group(1)));
-                    medlem.setMemberName(m.group(2));
+            for (String linje : linjer) {
+                if (linje.startsWith("Konkurrencenavn:")) {
+                    // Gem den forrige konkurrence, hvis den eksisterer
+                    if (konkurrence != null) {
+                        konkurrence.setResults(resultater);
+                        konkurrencer.add(konkurrence);
+                    }
 
-                    if (m.group(3) != null) {
-                        LocalDate stævneDag = LocalDate.parse(m.group(3), formatter);
-                        Competition.setDate(stævneDag);
+                    konkurrence = new Competition(); // Opret en ny konkurrence
+                    resultater = new ArrayList<>();
+
+                    // Matcher konkurrence-data (navn, by, dato)
+                    Pattern pattern = Pattern.compile("Konkurrencenavn: (.*?)\\s+By: (.*?)\\s+Dato: (\\d{2}-\\d{2}-\\d{4})");
+                    Matcher matcher = pattern.matcher(linje);
+                    if (matcher.find()) {
+                        konkurrence.setName(matcher.group(1).trim());
+                        konkurrence.setCity(matcher.group(2).trim());
+                        konkurrence.setDate(LocalDate.parse(matcher.group(3).trim(), formatter)); // Parsing efter dd-MM-yyyy
+                    }
+                } else if (linje.startsWith("Medlem:")) {
+                    // Parse medlem info
+                    Pattern pattern = Pattern.compile("Medlem: (.*?)\\s+ID: (\\d+)");
+                    Matcher matcher = pattern.matcher(linje);
+                    if (matcher.find()) {
+                        String medlemNavn = matcher.group(1).trim(); // bruges kun til kontrol
+                        int medlemID = Integer.parseInt(matcher.group(2));
+
+                        Member medlem = findMemberByID(medlemID);
+                        if (medlem == null) {
+                            System.out.println("Kunne ikke finde medlem med ID: " + medlemID);
+                            continue;
+                        }
+
+                        // Forvent at næste linje er resultater
+                        int index = linjer.indexOf(linje);
+                        if (index + 1 < linjer.size()) {
+                            String resultatLinje = linjer.get(index + 1);
+                            Pattern resultatPattern = Pattern.compile("Disciplin: (\\w+)\\s+Tid: (\\d{2}:\\d{2}\\.\\d{3})\\s+Placering: (\\d+)");
+                            Matcher resMatcher = resultatPattern.matcher(resultatLinje);
+                            if (resMatcher.find()) {
+                                Dicipline disciplin = Dicipline.valueOf(resMatcher.group(1).trim());
+                                Duration tid = parseDuration(resMatcher.group(2).trim());
+                                int rank = Integer.parseInt(resMatcher.group(3).trim());
+
+                                CompetitionResult resultat = new CompetitionResult();
+                                resultat.setDicipline(disciplin);
+                                resultat.setTime(tid);
+                                resultat.setRank(rank);
+                                resultat.setSwimmer(medlem);
+
+                                resultater.add(resultat); // Tilføj resultatet til resultater
+                            }
+                        }
                     }
                 }
             }
 
-            // Attributter
-            else if (linje.contains("[Medlemskab =")) {
-                medlem.setMembership(parseMembership(linje));
-                medlem.setIsActive(linje.contains("[Aktiv = true]"));
-                medlem.setMemberPrice(parseIntFromLine(linje, "Medlemspris"));
-                medlem.setEmail(parseStringFromLine(linje, "Email"));
-                medlem.setPhoneNumber(parseStringFromLine(linje, "Telefonnummer"));
-                medlem.setHasPayed(linje.contains("[Betalt = true]"));
-                medlem.setIsSenior(linje.contains("[Senior = true]"));
-                medlem.setIsCompetitionSwimmer(linje.contains("[Konkurrencesvømmer = true]"));
+            // Gem sidste konkurrence
+            if (konkurrence != null) {
+                konkurrence.setResults(resultater);
+                konkurrencer.add(konkurrence);
             }
+
+            // Tilføj til CompetitionManager
+            for (Competition c : konkurrencer) {
+                CompetitionManager.addCompetition(c);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Fejl ved læsning af konkurrencer: " + e.getMessage());
+        }
+
+        return konkurrencer;
     }
-*/
+
+
+
+
     private static String parseStringFromLine(String linje, String nøgle) {
         Pattern p = Pattern.compile("\\[" + nøgle + " = ([^\\]]+)]");
         Matcher m = p.matcher(linje);
@@ -268,6 +330,26 @@ public class FileHandler {
         long sekunder = (totalMillis % 60000) / 1000;
         long millisekunder = totalMillis % 1000;
         return String.format("%02d:%02d.%03d", minutter, sekunder, millisekunder);
+    }
+
+    private static Member findMemberByID(int id) {
+        for (Member m : MemberController.MemberList) {
+            if (m.getMemberID() == id) return m;
+        }
+        return null;
+    }
+
+    private static Duration parseDuration(String tidStr) {
+        String[] dele = tidStr.split("\\.");
+        String[] minSek = dele[0].split(":");
+
+        long minutter = Long.parseLong(minSek[0]);
+        long sekunder = Long.parseLong(minSek[1]);
+        long millisekunder = Long.parseLong(dele[1]);
+
+        return Duration.ofMinutes(minutter)
+                .plusSeconds(sekunder)
+                .plusMillis(millisekunder);
     }
 }
 

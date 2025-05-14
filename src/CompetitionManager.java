@@ -4,7 +4,7 @@ import java.util.*;
 
 public class CompetitionManager {
     // ATTRIBUTTER
-    private static ArrayList<Competition> competitions = new ArrayList<>();
+    public static ArrayList<Competition> competitions = new ArrayList<>();
 
     //Getter
 
@@ -16,9 +16,7 @@ public class CompetitionManager {
     // METODER
     public static void createCompetition(Scanner scanner) {
         DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
         Competition competition = new Competition();
-        scanner.nextLine();
 
         System.out.println("Konkurrencenavn: ");
         String name = scanner.nextLine();
@@ -35,10 +33,12 @@ public class CompetitionManager {
 
         // Call the regular createCompetition method
         competitions.add(competition);
-        System.out.println(Farver.GREEN + "Konkurrence oprettet: " + competition + Farver.RESET);
-        FileHandler.writeToCompetitionFile("Konkurrencer.txt", competitions);
+        System.out.println(Farver.GREEN + "Konkurrence oprettet: \n" + Farver.RESET + competition);
     }
 
+    public static void addCompetition(Competition competition) {
+        competitions.add(competition);
+    }
 
     public static void editCompetition(Scanner scanner) {
         // checking if the competition list is empty

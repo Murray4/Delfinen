@@ -10,6 +10,7 @@ public class MemberController {
 
     // ATTRIBUTTER
     public static ArrayList<Member> MemberList = new ArrayList<>();
+    public static ArrayList<CompetitionResult> resultsList = new ArrayList<>();
 
 
     // METODER
@@ -148,7 +149,6 @@ public class MemberController {
     }
 
 
-
     public static ArrayList<Member> getMemberList() {
         return MemberList;
     }
@@ -156,7 +156,6 @@ public class MemberController {
     public static void registerNewMember(Scanner scanner) {
         System.out.println(Farver.CYAN + "\nRegister New Member" + Farver.RESET);
         Member x = new Member();
-        scanner.nextLine();
 
         // Navn
         String navn = "";
@@ -234,6 +233,7 @@ public class MemberController {
 
         if (!x.getIsActive()) {
             x.setMemberPrice(500);
+            x.setMembership(Membership.PASSIVT_MEDLEMSKAB);
         } else if (alder < 18) {
             x.setMembership(Membership.UNGDOMSSVØMMER);
             x.setMemberPrice(1000);
@@ -531,10 +531,6 @@ public class MemberController {
         }
     }
 
-
-    public static void addMember() {
-    }
-
     public static void addCompetitionResult(Scanner scanner) {
 
         // Konkurrencesvømmer
@@ -609,15 +605,14 @@ public class MemberController {
 
         // Opret resultat
         CompetitionResult result = new CompetitionResult();
-        result.dicipline = valgtDisciplin;
-        result.time = tid;
-        result.rank = rank;
-        result.eventName = competition.getName();
-        result.swimmer = selectedSwimmer;
-        result.competition = competition;
+        result.setDicipline(valgtDisciplin);
+        result.setTime(tid);
+        result.setRank(rank);
+        result.setEventName(competition.getName());
+        result.setSwimmer(selectedSwimmer);
+        result.setCompetition(competition);
 
-        // Tilføj resultat via interface
-        swimmer.registerCompetitionResult(result);
+        competition.addResults(result);
         System.out.println("Resultat tilføjet.");
     }
 

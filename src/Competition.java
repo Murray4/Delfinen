@@ -9,48 +9,49 @@ public class Competition {
     String name;
     String city;
     LocalDate date;
-    List<CompetitionResult> results;
+    ArrayList<CompetitionResult> results;
 
-  //CONSTRUCTOR
-  public Competition(String name, String city, LocalDate date){
-      this.name = name;
-      this.city = city;
-      this.date = date;
-      this.results = new ArrayList<>();
-  }
-  public Competition() {}
+    public Competition() {
+        this.results = new ArrayList<>();
+    }
 
-  //GETTERS
-public String getName(){
-      return name;
-}
+    //GETTERS
+    public String getName() {
+        return name;
+    }
 
-public String getCity(){
-      return city;
-}
-public LocalDate getDate(){
-      return date;
-}
-public List<CompetitionResult> getResults() {
+    public String getCity() {
+        return city;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public ArrayList<CompetitionResult> getResults() {
         return results;
-}
+    }
 
+    //SETTERS
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  //SETTERS
-public void setName(String name){
-this.name = name;
-}
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-public void setCity(String city) {
-this.city = city;
-}
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
-public void setDate (LocalDate date) {
-this.date = date;
-}
-public void setResults(List<CompetitionResult> results) {
-    this.results = results;
-}
+    public void setResults(ArrayList<CompetitionResult> results) {
+         this.results = results;
+    }
+
+    public void addResults(CompetitionResult result) {
+        results.add(result);
+    }
 
     // Add a single result
     // public void addResult(CompetitionResult result) {
@@ -58,10 +59,9 @@ public void setResults(List<CompetitionResult> results) {
 
 
     // METODER
-@Override
+    @Override
     public String toString() {
-    return "Konkurrencer {" +
-            "Stævne navn: '" + name + " - Dato: " + date + " - By: " + city + "\n" +
-            "Resultater: " + "\n" + results + "\n}";
+        return "Konkurrencenavn: " + name + " - Dato: " + date + " - By: " + city + "\n" +
+                "Resultater: \n" + results;
     }
 }

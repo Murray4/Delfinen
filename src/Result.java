@@ -12,7 +12,7 @@ public class Result {
 
     // METODER
     public String toString() {
-        return ", Tid: " + time + ", Dato: " + date;
+        return "Tid: " + time + " Dato: " + date;
     }
 
     public Dicipline getDicipline() {

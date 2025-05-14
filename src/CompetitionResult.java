@@ -18,25 +18,44 @@ public class CompetitionResult extends Result {
     // METODER
     CompetitionResult() {}
 
-    public void setCompetition() {
+    public void setCompetition(Competition competition) {
         this.competition = competition;
     }
 
-    public void setMember() {
+    public void setSwimmer(Member swimmer) {
         this.swimmer = swimmer;
     }
 
-    public void setResult() {
+    public void setResult(ArrayList<Result> result) {
         this.result = result;
     }
 
-    public void setRank() {
+    public void setRank(int rank) {
         this.rank = rank;
     }
 
+    public void setTime(Duration time) {
+        this.time = time;
+    }
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public ArrayList<Result> getResult() {
+        return result;
+    }
+    public Duration getTime() {
+        return time;
+    }
+    public Member getSwimmer() {
+        return swimmer;
+    }
+    public int getRank() {
+        return rank;
+    }
+
     public String toString() {
-        return "Medlem: " + swimmer.getMemberName() + "ID: " + swimmer.getMemberID() +
-                "Resultater: " + "\n" +
-                result;
+        return "Medlem: " + swimmer.getMemberName() + "      ID: " + swimmer.getMemberID() + "      " +
+                "Rank: " + rank + "      " + "Disciplin: " + dicipline + "      Tid: " + FileHandler.formatDuration(time) + "\n";
     }
 }
