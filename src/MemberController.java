@@ -3,10 +3,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Map;
+import java.util.*;
 import java.time.LocalTime;
 
 public class MemberController {
@@ -17,7 +14,135 @@ public class MemberController {
 
     // METODER
     public static void searchByFilter(Scanner scanner) {
+
+        int id = -1;
+        String name = null;
+        Membership memberShip = null;
+        Boolean isActive = null;  //BOOLEAN med stort 'B' for at vi kan sætte den til Null
+        List<Member> resultatListe = new ArrayList<>();   //ArrayList til at gemme vores resultat.
+
+
+// input - ID
+
+        while (true) {
+            System.out.println(Farver.CYAN + "\nSøg på et ID " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
+            String inputID = scanner.nextLine().trim();
+
+            if (inputID.isEmpty()) {
+      // Hvis input er tomt, gemmes der ikke noget og vi går videre.
+            } else {
+                try {
+                    id = Integer.parseInt(inputID);
+                    System.out.println(Farver.GREEN + "Du indtastede " + id + "\n" + Farver.RESET);
+                    break;
+                } catch (NumberFormatException e) {
+                    ConsoleHandler.inputFejl("input.", "Skal være et ID-nummer\n");
+                }
+            }
+
+// input - navn
+            System.out.println(Farver.CYAN + "Søg på et navn " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
+            name = scanner.nextLine().trim();
+
+            if (name.isEmpty()) {
+        // Hvis input er tomt, gemmes der ikke noget og vi går videre.
+            } else {
+                System.out.println(Farver.GREEN + "Du indtastede " + name + ". \n" + Farver.RESET);
+            }
+
+// input is senior
+            System.out.println(Farver.CYAN + "Vil du søge på seniorsvømmere?  J/N " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
+            String inputSenior = scanner.nextLine().trim();
+
+            if (inputSenior.isEmpty()) {
+        // Hvis input er tomt, gemmes der ikke noget og vi går videre.
+            } else if (inputSenior.equalsIgnoreCase("J")) {
+                memberShip = Membership.SENIORSVØMMER;
+                System.out.println(Farver.GREEN + "Du søger på Senior-medlemmere\n" + Farver.RESET);
+            } else if (inputSenior.equalsIgnoreCase("N")) {
+                memberShip = Membership.UNGDOMSSVØMMER;
+                System.out.println(Farver.GREEN + "Du søger på Junior-medlemmere\n" + Farver.RESET);
+            } else {
+                ConsoleHandler.inputFejl("input.", "Skal være et 'J' eller 'N' eller ENTER");
+            }
+
+// alder 60+ ?
+            System.out.println(Farver.CYAN + "Vil du søge på medlemmere der er 60+ år?  J/N " + Farver.RESET + " (eller tryk ENTER for at gå videre): \n");
+            String inputOver60 = scanner.nextLine().trim();
+
+            if (inputOver60.isEmpty()) {
+
+            } else if (inputOver60.equalsIgnoreCase("J")) {
+                memberShip = Membership.SENIORSVØMMER_60_PLUS;
+                System.out.println(Farver.GREEN + "Du søger på medlemmere over 60 år\n" + Farver.RESET);
+
+            } else if (inputOver60.equalsIgnoreCase("N")) {
+                System.out.println(Farver.GREEN + "Du søger på medlemmere under 60 år\n" + Farver.RESET);
+
+            } else {
+                ConsoleHandler.inputFejl("input.", "Skal være et 'J' eller 'N' eller ENTER");
+            }
+
+// Aktivt medlemsskab?
+            System.out.println(Farver.CYAN + "Vil du søge på aktive medlemmere?  J/N" + Farver.RESET + "(eller tryk ENTER for at gå videre): \n");
+            String inputIsActive = scanner.nextLine().trim();
+
+            if (inputIsActive.isEmpty()) {
+
+                break;
+            } else if (inputIsActive.equalsIgnoreCase("J")) {
+                isActive = true;
+                System.out.println(Farver.GREEN + "Du søger på aktive medlemmere\n" + Farver.RESET);
+                break;
+            } else if (inputIsActive.equalsIgnoreCase("N")) {
+                isActive = false;
+                System.out.println(Farver.GREEN + "Du søger på passive medlemmere\n" + Farver.RESET);
+                break;
+            } else {
+                ConsoleHandler.inputFejl("input.", "Skal være et 'J' eller 'N' eller ENTER");
+            }
+
+        }
+
+  // Vi looper MemberListen igennem.
+        for (Member m : MemberList) {
+            if (id != -1 && m.getMemberID() != id) {   //Hvis ikke dette er tilfældet, så springer vi over.
+                continue;
+            }
+            if (name != null && !m.getMemberName().toLowerCase().contains(name.toLowerCase())) {
+                continue;
+            }
+            if (memberShip != null && memberShip != m.getMembership()) {
+                continue;
+            }
+            if (isActive != null && m.getIsActive() != isActive) {
+                continue;
+            }
+
+    // Vi tilføjer det fremsøgte til en arrayliste så vi kan printe den nummerisk.
+            resultatListe.add(m);
+
+        }
+
+
+        System.out.println(Farver.CYAN + "\nListe over søgte medlemmer: \n" + Farver.RESET);
+        System.out.printf("%-4s %-20s %-10s %-20s%n", "#", "Navn", "ID", "Medlemsskab\n" +
+                Farver.CYAN + "------------------------------------------------------" + Farver.RESET);
+
+        int i = 1;
+        for (Member m : resultatListe) {
+            System.out.printf("%-4d %-20s %-10d %-20s%n",
+                    i,
+                    m.getMemberName(),
+                    m.getMemberID(),
+                    m.getMembership().toString().replace("_", " "));
+            i++;
+        }
+
+        ConsoleHandler.memberMenu(scanner);
     }
+
+
 
     public static ArrayList<Member> getMemberList() {
         return MemberList;

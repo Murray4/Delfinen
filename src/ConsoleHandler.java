@@ -122,10 +122,10 @@ public class ConsoleHandler {
     public static String trainerMenuText() {
         return Farver.GOLD + "\n---------------------------------------\n" +
                 "=== Træner-menu ===\n" + Farver.RESET + """
-          1. Konkurrencesvømmere              🥇
-          2. Træningsresultater               📊
-          3. Konkurrencer                     🏆
-          0. Tilbage                          🔙
+          1. Konkurrencesvømmere       🥇
+          2. Træningsresultater        📊
+          3. Konkurrencer              🏆
+          0. Tilbage                   🔙
         """;
     }
 
@@ -267,6 +267,7 @@ public class ConsoleHandler {
         System.out.println(memberMenuTekst());
         System.out.print("Vælg en mulighed: ");
         int choice = scanner.nextInt();
+        scanner.nextLine();
 
         while (true) {
             switch (choice) {
