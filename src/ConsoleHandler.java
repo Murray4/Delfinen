@@ -230,7 +230,6 @@ public class ConsoleHandler {
     }
 
 
-    // TODO: EditCompetition + CreateCompetition VIRKER IKKE!!
     public static void competitionMenu(Scanner scanner) {
 
         System.out.println(competitionMenuText());
@@ -242,11 +241,9 @@ public class ConsoleHandler {
                 CompetitionManager.showCompetition();
                 break;
             case 2:
-                // TODO: VIRKER IKKE!!
                 CompetitionManager.createCompetition(scanner);
                 break;
             case 3:
-                // TODO: VIRKER IKKE!!
                 CompetitionManager.editCompetition(scanner);
                 break;
             case 0:
@@ -256,7 +253,6 @@ public class ConsoleHandler {
             default:
                 System.out.println("Ugyldigt valg. Prøv igen.");
         }
-
     }
 
     public static String competitionMenuText() {

@@ -15,6 +15,7 @@ public class CompetitionManager {
     // METODER
     public static void createCompetition(Scanner scanner) {
         Competition competition = new Competition();
+        scanner.nextLine();
 
         System.out.println("Enter competition name: ");
         String name = scanner.nextLine();

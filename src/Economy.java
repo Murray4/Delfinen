@@ -79,5 +79,16 @@ public class Economy {
         System.out.println(Farver.ORANGE + "Udestående i alt: " + Farver.RED + udeståendeBeløb + " Kr" + Farver.RESET);
     }
 
-    public static void getPriceForMember() {}
+    public static double getPriceForMember(Member member) {
+        int age = member.getAlder();
+
+        if (age < 18) {
+            return 200.0; // Junior price
+        } else if (age >= 60) {
+            return 225.0; // Senior discount (e.g., 25% off 300)
+        } else {
+            return 300.0; // Standard adult price
+        }
+
+    }
 }
