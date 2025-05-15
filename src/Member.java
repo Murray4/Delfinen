@@ -24,33 +24,10 @@ public class Member implements CompetitionSwimmer {
     int alder;
 
 
-    public Member(String memberName, LocalDate birthDate, Membership membership, boolean isActive, String email,
-                  String phoneNumber, Boolean isCompetitionSwimmer, boolean hasPayed, boolean isSenior,
-                  Map<Dicipline, TrainingResult> trainingResult, ArrayList<CompetitionResult> competitionResult,
-                  int memberPrice, int memberID) {
-
-        this.memberName = memberName;
-        this.birthDate = birthDate;
-        this.membership = membership;
-        this.isActive = isActive;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.isCompetitionSwimmer = isCompetitionSwimmer;
-        this.hasPayed = hasPayed;
-        this.isSenior = isSenior;
-        this.trainingResult = trainingResult;
-        this.competitionResult = competitionResult;
-        this.memberPrice = memberPrice;
-        this.memberID = memberID;
-    }
-
     public Member() {
         this.trainingResult = new HashMap<>();
         this.competitionResult = new ArrayList<>();
     }
-
-
-    // GETTERS OG SETTERS
 
     public boolean isCompetitionSwimmer() {
         return isCompetitionSwimmer;
@@ -67,6 +44,7 @@ public class Member implements CompetitionSwimmer {
     public LocalDate getBirthDate()  {
         return birthDate;
     }
+
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
@@ -139,10 +117,6 @@ public class Member implements CompetitionSwimmer {
         return competitionResult;
     }
 
-    public void setCompetitionResult(ArrayList<CompetitionResult> competitionResult) {
-        this.competitionResult = competitionResult;
-    }
-
     public int getMemberPrice() {
         return memberPrice;
     }
@@ -167,7 +141,6 @@ public class Member implements CompetitionSwimmer {
          this.alder = alder;
     }
 
-    // METODER
     @Override
     public String toString() {
         DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");       // Standard format for LocalDate er (yyyy-MM-dd) dette ændrer formattet til (dd-MM-yyyy)

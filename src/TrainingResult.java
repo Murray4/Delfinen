@@ -7,7 +7,7 @@ public class TrainingResult extends Result {
     // ATTRIBUTTER
     String comment;
     Dicipline dicipline;
-    Duration time;             // muligvis bare int
+    Duration time;
     LocalDate date;
     Member member;
 
@@ -19,9 +19,11 @@ public class TrainingResult extends Result {
     public Duration getTid() {
         return time;
     }
+
     public LocalDate getDato() {
         return date;
     }
+
     public Member getMember() {
         return member;
     }

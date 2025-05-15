@@ -6,7 +6,7 @@ public class Result {
 
     // ATTRIBUTTER
     private Dicipline dicipline;
-    Duration time;             // muligvis bare int
+    Duration time;
     LocalDate date;
     Member member;
 

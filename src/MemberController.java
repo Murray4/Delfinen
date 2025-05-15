@@ -8,10 +8,7 @@ import java.time.LocalTime;
 
 public class MemberController {
 
-    // ATTRIBUTTER
     public static ArrayList<Member> MemberList = new ArrayList<>();
-    public static ArrayList<CompetitionResult> resultsList = new ArrayList<>();
-
 
     // METODER
     public static void searchByFilter(Scanner scanner) {
@@ -147,7 +144,6 @@ public class MemberController {
 
         ConsoleHandler.memberMenu(scanner);
     }
-
 
     public static ArrayList<Member> getMemberList() {
         return MemberList;
@@ -285,7 +281,6 @@ public class MemberController {
         ConsoleHandler.memberMenu(scanner);
     }
 
-
     public static void cancelMembership(Member m, Scanner scanner) {
 
         System.out.println("\nVil du afmelde medlemmet? (J/N): \n");
@@ -317,7 +312,6 @@ public class MemberController {
         }
         }
 
-
     public static void showListOfCompetitionSwimmers(Scanner scanner) {
 
         System.out.println(Farver.GOLD + "\nListe over konkurrencesvømmere:\n" + Farver.RESET);
@@ -345,6 +339,7 @@ public class MemberController {
             ConsoleHandler.inputFejl("valg", "Tast 1\n");
         }
     }
+
 
 
     // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
@@ -377,6 +372,8 @@ public class MemberController {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
+
+
 
 
     public static void addTrainingResults(Scanner scanner) {
@@ -436,7 +433,6 @@ public class MemberController {
         System.out.println("Træningsresultat tilføjet!");
     }
 
-
     public static void pauseMember(Member m, Scanner scanner) {
 
         System.out.print("\nSkal medlemmet være aktiv? (J/N): \n");
@@ -457,7 +453,6 @@ public class MemberController {
             editMember(scanner);
         }
     }
-
 
     public static void editMember(Scanner scanner) {
 
@@ -641,6 +636,4 @@ public class MemberController {
         competition.addResults(result);
         System.out.println("Resultat tilføjet.");
     }
-
-
 }

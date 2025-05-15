@@ -146,8 +146,6 @@ public class FileHandler {
         }
     }
 
-
-
     public static ArrayList<Member> indlæsMedlemmerFraFil(String fileName) {
         try {
             List<String> linjer = Files.readAllLines(Paths.get(fileName));
@@ -317,11 +315,6 @@ public class FileHandler {
 
         return konkurrencer;
     }
-
-
-
-
-
 
     private static String parseStringFromLine(String linje, String nøgle) {
         Pattern p = Pattern.compile("\\[" + nøgle + " = ([^\\]]+)]");

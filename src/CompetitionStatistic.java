@@ -1,14 +1,8 @@
 import java.util.*;
 
 public class CompetitionStatistic {
-    Dicipline crawl = Dicipline.CRAWL;
-    Dicipline butterfly = Dicipline.BUTTERFLY;
-    Dicipline rygcrawl = Dicipline.RYGCRAWL;
-    Dicipline bryst = Dicipline.BRYST;
 
     // METODER
-
-
     // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void getResultsByDiscipline(Scanner scanner) {
         System.out.println("Vælg disciplin:");

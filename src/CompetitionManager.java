@@ -3,11 +3,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CompetitionManager {
-    // ATTRIBUTTER
+
     public static ArrayList<Competition> competitions = new ArrayList<>();
 
-    //Getter
 
+    // METODER
     public static List<Competition> getCompetitions() {
         return competitions; // competitions skal være en statisk liste i klassen
     }
@@ -16,7 +16,6 @@ public class CompetitionManager {
         competitions = (ArrayList<Competition>) newCompetitions;
     }
 
-    // METODER
     public static void createCompetition(Scanner scanner) {
         DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         Competition competition = new Competition();
@@ -37,10 +36,6 @@ public class CompetitionManager {
         // Call the regular createCompetition method
         competitions.add(competition);
         System.out.println(Farver.GREEN + "Konkurrence oprettet: \n" + Farver.RESET + competition);
-    }
-
-    public static void addCompetition(Competition competition) {
-        competitions.add(competition);
     }
 
     public static void editCompetition(Scanner scanner) {
@@ -98,7 +93,6 @@ public class CompetitionManager {
         //Update confirmation
         System.out.println(Farver.GREEN + "Competition updated: " + comp + Farver.RESET);
     }
-
 
     public static void showCompetition() {
         // Logic to edit competition (to be implemented)

@@ -53,11 +53,6 @@ public class Competition {
         results.add(result);
     }
 
-    // Add a single result
-    // public void addResult(CompetitionResult result) {
-    // this.results.add(result);
-
-
     // METODER
     @Override
     public String toString() {

@@ -1,6 +1,4 @@
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class CompetitionResult extends Result {
@@ -37,6 +35,7 @@ public class CompetitionResult extends Result {
     public void setTime(Duration time) {
         this.time = time;
     }
+
     public void setEventName(String eventName) {
         this.eventName = eventName;
     }
@@ -44,12 +43,15 @@ public class CompetitionResult extends Result {
     public ArrayList<Result> getResult() {
         return result;
     }
+
     public Duration getTime() {
         return time;
     }
+
     public Member getSwimmer() {
         return swimmer;
     }
+
     public int getRank() {
         return rank;
     }

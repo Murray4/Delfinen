@@ -164,7 +164,6 @@ public class ConsoleHandler {
         """;
     }
 
-
     public static void trainingResultMenu(Scanner scanner) {
 
         System.out.println(trainingResultMenuText());
@@ -213,8 +212,6 @@ public class ConsoleHandler {
         """;
     }
 
-
-    // TODO: FIX Get ResultsForCompetitionSwimmer
     public static void CompetitionSwimmerMenu(Scanner scanner) {
 
         System.out.println(CompetitionSwimmerMenuText());
@@ -263,28 +260,6 @@ public class ConsoleHandler {
           0. Tilbage......................... 🔙
         """;
     }
-
-
-    public static Dicipline askForDicipline(Scanner scanner) {
-        System.out.println("Vælg en disciplin:");
-        Dicipline[] discipliner = Dicipline.values();
-
-        for (int i = 0; i < discipliner.length; i++) {
-            System.out.println((i + 1) + ". " + discipliner[i]);
-        }
-
-        System.out.print("Indtast nummer: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-
-        if (choice > 0 && choice <= discipliner.length) {
-            return discipliner[choice - 1];
-        } else {
-            System.out.println("Ugyldigt valg. Prøv igen.\n");
-            return askForDicipline(scanner);
-        }
-    }
-
 
     public static void competitionMenu(Scanner scanner) {
 
