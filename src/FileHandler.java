@@ -223,7 +223,7 @@ public class FileHandler {
 
     public static ArrayList<Competition> indlæsKonkurrencerFraFil(String fileName) {
         ArrayList<Competition> konkurrencer = new ArrayList<>();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Dit nye format
+        DateTimeFormatter DKformat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         try {
             List<String> linjer = Files.readAllLines(Paths.get(fileName));
@@ -238,7 +238,7 @@ public class FileHandler {
                         konkurrencer.add(konkurrence);
                     }
 
-                    konkurrence = new Competition(); // Opret en ny konkurrence
+                    konkurrence = new Competition();
                     resultater = new ArrayList<>();
 
                     // Matcher konkurrence-data (navn, by, dato)
@@ -247,14 +247,14 @@ public class FileHandler {
                     if (matcher.find()) {
                         konkurrence.setName(matcher.group(1).trim());
                         konkurrence.setCity(matcher.group(2).trim());
-                        konkurrence.setDate(LocalDate.parse(matcher.group(3).trim(), formatter)); // Parsing efter dd-MM-yyyy
+                        konkurrence.setDate(LocalDate.parse(matcher.group(3).trim(), DKformat));
                     }
                 } else if (linje.startsWith("Medlem:")) {
-                    // Parse medlem info
+                    // Parse medlemsinfo
                     Pattern pattern = Pattern.compile("Medlem: (.*?)\\s+ID: (\\d+)");
                     Matcher matcher = pattern.matcher(linje);
                     if (matcher.find()) {
-                        String medlemNavn = matcher.group(1).trim(); // bruges kun til kontrol
+                        String medlemNavn = matcher.group(1).trim(); // bruges til kontrol
                         int medlemID = Integer.parseInt(matcher.group(2));
 
                         Member medlem = findMemberByID(medlemID);
@@ -263,7 +263,7 @@ public class FileHandler {
                             continue;
                         }
 
-                        // Forvent at næste linje er resultater
+                        // Resultater
                         int index = linjer.indexOf(linje);
                         if (index + 1 < linjer.size()) {
                             String resultatLinje = linjer.get(index + 1);
@@ -280,14 +280,14 @@ public class FileHandler {
                                 resultat.setRank(rank);
                                 resultat.setSwimmer(medlem);
 
-                                resultater.add(resultat); // Tilføj resultatet til resultater
+                                resultater.add(resultat); // Tilføjer CompetitionResult til resultatet
                             }
                         }
                     }
                 }
             }
 
-            // Gem sidste konkurrence
+            // Sikkerhed, gemmer sidste konkurrence, hvis det er en
             if (konkurrence != null) {
                 konkurrence.setResults(resultater);
                 konkurrencer.add(konkurrence);
