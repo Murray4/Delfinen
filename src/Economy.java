@@ -91,4 +91,21 @@ public class Economy {
         }
 
     }
+
+    //UNITTEST PÅ calculateExpectedYearlyIncome()
+
+    // Da man ikke kan lave UNITTEST på en metode der ikke returnerer noget,
+    // kopierer vi metoden og laver en der returner en integer.
+
+    public static int getExpectedYearlyIncome() {
+        int indkomst = 0;
+        for (Member m : MemberController.MemberList) {
+            indkomst += m.getMemberPrice();
+        }
+        return indkomst;
+    }
+
+
+
+
 }
