@@ -106,33 +106,46 @@ public class FileHandler {
         }
     }
 
-    public static void writeToCompetitionFile(String fileName, ArrayList<Competition> competition) {
-        List<Competition> competitions = CompetitionManager.getCompetitions();
+    public static void writeToCompetitionFile(String fileName, List<Competition> competitions) {
+        if (competitions == null || competitions.isEmpty()) {
+            System.out.println("Ingen konkurrencer at gemme – fil ikke overskrevet.");
+            return;
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (Competition c : competitions) {
-                writer.println("Konkurrencenavn: " + c.getName() + "    By: " + c.getCity() + "    Dato: " + c.getDate());
+                String name = (c.getName() != null) ? c.getName() : "Ukendt";
+                String city = (c.getCity() != null) ? c.getCity() : "Ukendt";
+                String date = (c.getDate() != null) ? c.getDate().format(formatter) : "01-01-2000";
+
+                writer.println("Konkurrencenavn: " + name + "    By: " + city + "    Dato: " + date);
 
                 List<CompetitionResult> results = c.getResults();
                 if (results == null || results.isEmpty()) {
                     writer.println("Ingen resultater.");
                 } else {
                     for (CompetitionResult result : results) {
-                        writer.println("Medlem: " + result.getSwimmer().getMemberName() + "    ID: " + result.getSwimmer().getMemberID());
-                        writer.println("Disciplin: " + result.getDicipline() + "    Tid: " + formatDuration(result.getTime()) + "    Placering: " + result.getRank());
+                        writer.println("Medlem: " + result.getSwimmer().getMemberName() +
+                                "    ID: " + result.getSwimmer().getMemberID());
+                        writer.println("Disciplin: " + result.getDicipline() +
+                                "    Tid: " + formatDuration(result.getTime()) +
+                                "    Placering: " + result.getRank());
                         writer.println();
                     }
                 }
-                writer.println();
-                writer.println(); // ekstra linje mellem konkurrencer
+
+                writer.println(); // mellemrum mellem konkurrencer
             }
 
-            System.out.println("Resultater gemt i " + fileName);
+            System.out.println("Konkurrencer gemt i " + fileName);
 
         } catch (IOException e) {
             System.out.println("Fejl ved skrivning til fil: " + e.getMessage());
         }
     }
+
 
 
     public static ArrayList<Member> indlæsMedlemmerFraFil(String fileName) {
@@ -223,39 +236,44 @@ public class FileHandler {
 
     public static ArrayList<Competition> indlæsKonkurrencerFraFil(String fileName) {
         ArrayList<Competition> konkurrencer = new ArrayList<>();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy"); // Dit nye format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         try {
             List<String> linjer = Files.readAllLines(Paths.get(fileName));
             Competition konkurrence = null;
             ArrayList<CompetitionResult> resultater = null;
 
-            for (String linje : linjer) {
+            for (int i = 0; i < linjer.size(); i++) {
+                String linje = linjer.get(i);
+
                 if (linje.startsWith("Konkurrencenavn:")) {
-                    // Gem den forrige konkurrence, hvis den eksisterer
+                    // Gem forrige konkurrence, hvis den eksisterer
                     if (konkurrence != null) {
                         konkurrence.setResults(resultater);
                         konkurrencer.add(konkurrence);
                     }
 
-                    konkurrence = new Competition(); // Opret en ny konkurrence
+                    konkurrence = new Competition();
                     resultater = new ArrayList<>();
 
-                    // Matcher konkurrence-data (navn, by, dato)
-                    Pattern pattern = Pattern.compile("Konkurrencenavn: (.*?)\\s+By: (.*?)\\s+Dato: (\\d{2}-\\d{2}-\\d{4})");
-                    Matcher matcher = pattern.matcher(linje);
-                    if (matcher.find()) {
-                        konkurrence.setName(matcher.group(1).trim());
-                        konkurrence.setCity(matcher.group(2).trim());
-                        konkurrence.setDate(LocalDate.parse(matcher.group(3).trim(), formatter)); // Parsing efter dd-MM-yyyy
-                    }
-                } else if (linje.startsWith("Medlem:")) {
-                    // Parse medlem info
+                    // Robust parsing med split
+                    String[] dele = linje.split(" {2,}"); // split ved 2 eller flere mellemrum
+
+                    String name = dele[0].split(": ")[1];
+                    String city = dele[1].split(": ")[1];
+                    String dateStr = dele[2].split(": ")[1];
+
+                    konkurrence.setName(name.trim());
+                    konkurrence.setCity(city.trim());
+                    konkurrence.setDate(LocalDate.parse(dateStr.trim(), formatter));
+                }
+
+                else if (linje.startsWith("Medlem:")) {
                     Pattern pattern = Pattern.compile("Medlem: (.*?)\\s+ID: (\\d+)");
                     Matcher matcher = pattern.matcher(linje);
                     if (matcher.find()) {
-                        String medlemNavn = matcher.group(1).trim(); // bruges kun til kontrol
-                        int medlemID = Integer.parseInt(matcher.group(2));
+                        String medlemNavn = matcher.group(1).trim();
+                        int medlemID = Integer.parseInt(matcher.group(2).trim());
 
                         Member medlem = findMemberByID(medlemID);
                         if (medlem == null) {
@@ -263,10 +281,8 @@ public class FileHandler {
                             continue;
                         }
 
-                        // Forvent at næste linje er resultater
-                        int index = linjer.indexOf(linje);
-                        if (index + 1 < linjer.size()) {
-                            String resultatLinje = linjer.get(index + 1);
+                        if (i + 1 < linjer.size()) {
+                            String resultatLinje = linjer.get(i + 1);
                             Pattern resultatPattern = Pattern.compile("Disciplin: (\\w+)\\s+Tid: (\\d{2}:\\d{2}\\.\\d{3})\\s+Placering: (\\d+)");
                             Matcher resMatcher = resultatPattern.matcher(resultatLinje);
                             if (resMatcher.find()) {
@@ -280,30 +296,27 @@ public class FileHandler {
                                 resultat.setRank(rank);
                                 resultat.setSwimmer(medlem);
 
-                                resultater.add(resultat); // Tilføj resultatet til resultater
+                                resultater.add(resultat);
                             }
                         }
                     }
                 }
             }
 
-            // Gem sidste konkurrence
+            // Tilføj sidste konkurrence
             if (konkurrence != null) {
                 konkurrence.setResults(resultater);
                 konkurrencer.add(konkurrence);
             }
 
-            // Tilføj til CompetitionManager
-            for (Competition c : konkurrencer) {
-                CompetitionManager.addCompetition(c);
-            }
-
         } catch (IOException e) {
-            System.out.println("Fejl ved læsning af konkurrencer: " + e.getMessage());
+            System.out.println("Fejl ved indlæsning af konkurrencer: " + e.getMessage());
         }
 
         return konkurrencer;
     }
+
+
 
 
 

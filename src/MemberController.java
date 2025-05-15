@@ -154,7 +154,7 @@ public class MemberController {
     }
 
     public static void registerNewMember(Scanner scanner) {
-        System.out.println(Farver.CYAN + "\nRegister New Member" + Farver.RESET);
+        System.out.println(Farver.CYAN + "\nRegistrer nyt medlem" + Farver.RESET);
         Member x = new Member();
 
         // Navn
@@ -546,10 +546,18 @@ public class MemberController {
             return;
         }
 
-        System.out.println("\nVælg en konkurrencesvømmer:");
+        System.out.println(Farver.GOLD + "\nVælg en konkurrencesvømmer:" + Farver.RESET);
+        System.out.println("=".repeat(40));
+        System.out.printf("%-4s %-20s %-10s\n", "#", "Navn", "ID");
+        System.out.println("-".repeat(40));
+
         for (int i = 0; i < competitiveMembers.size(); i++) {
-            System.out.printf("%d. %s (ID: %d)%n", i + 1, competitiveMembers.get(i).getMemberName(), competitiveMembers.get(i).getMemberID());
+            Member m = competitiveMembers.get(i);
+            System.out.printf("%-4d %-20s %-10d\n", i + 1, m.getMemberName(), m.getMemberID());
         }
+
+        System.out.println("=".repeat(40));
+
 
         int swimmerChoice = scanner.nextInt() - 1;
         scanner.nextLine();
@@ -563,10 +571,18 @@ public class MemberController {
             return;
         }
 
-        System.out.println("\nVælg konkurrence:");
+        System.out.println(Farver.GOLD + "\nVælg konkurrence:" + Farver.RESET);
+        System.out.println("=".repeat(50));
+        System.out.printf("%-4s %-30s %-15s\n", "#", "Stævne", "Sted");
+        System.out.println("-".repeat(50));
+
         for (int i = 0; i < competitions.size(); i++) {
-            System.out.printf("%d. %s (%s)%n", i + 1, competitions.get(i).getName(), competitions.get(i).getCity());
+            Competition c = competitions.get(i);
+            System.out.printf("%-4d %-30s %-15s\n", i + 1, c.getName(), c.getCity());
         }
+
+        System.out.println("=".repeat(50));
+
 
         int compChoice = scanner.nextInt() - 1;
         scanner.nextLine();
@@ -574,16 +590,26 @@ public class MemberController {
 
         // disciplin
         Dicipline[] discipliner = Dicipline.values();
-        System.out.println("\nVælg disciplin:");
+
+        System.out.println(Farver.GOLD + "\nVælg disciplin:" + Farver.RESET);
+        System.out.println("=".repeat(30));
+        System.out.printf("%-4s %-20s\n", "#", "Disciplin");
+        System.out.println("-".repeat(30));
+
         for (int i = 0; i < discipliner.length; i++) {
-            System.out.println((i + 1) + ". " + discipliner[i]);
+            System.out.printf("%-4d %-20s\n", i + 1, discipliner[i]);
         }
+
+        System.out.println("=".repeat(30));
+
+// Brugervalg
         int discChoice = scanner.nextInt() - 1;
         scanner.nextLine();
         Dicipline valgtDisciplin = discipliner[discChoice];
 
+
         // Tid
-        System.out.print("Tid (mm:ss.SSS): ");
+        System.out.print(Farver.GOLD + "\nTid" + Farver.RESET + " (mm:ss.SSS): ");
         String tidInput = scanner.nextLine();
 
         // Split på punktum

@@ -1,27 +1,21 @@
-Konkurrencenavn: null    By: null    Dato: null
-Medlem: Sebastian    ID: 1
-Disciplin: CRAWL    Tid: 00:22.123    Placering: 4
+Konkurrencenavn: Raya RygCrawl    By: Roskilde    Dato: 04-06-2025
+Medlem: John    ID: 11
+Disciplin: RYGCRAWL    Tid: 01:25.234    Placering: 4
 
 Medlem: Selin    ID: 34
-Disciplin: BUTTERFLY    Tid: 00:19.213    Placering: 4
+Disciplin: RYGCRAWL    Tid: 01:15.517    Placering: 2
 
-Medlem: Gina    ID: 32
-Disciplin: CRAWL    Tid: 00:44.123    Placering: 7
-
-
-
-Konkurrencenavn: null    By: null    Dato: null
-Medlem: Søren    ID: 30
-Disciplin: CRAWL    Tid: 00:12.312    Placering: 3
+Medlem: Frida    ID: 21
+Disciplin: RYGCRAWL    Tid: 01:19.311    Placering: 3
 
 Medlem: Lucas    ID: 26
-Disciplin: BUTTERFLY    Tid: 00:15.123    Placering: 1
+Disciplin: RYGCRAWL    Tid: 01:12.109    Placering: 1
 
 
+Konkurrencenavn: SommerSprint    By: Aarhus    Dato: 20-07-2025
+Medlem: Sheila    ID: 29
+Disciplin: CRAWL    Tid: 00:52.200    Placering: 1
 
-Konkurrencenavn: null    By: null    Dato: null
-Medlem: Lærke Christensen    ID: 9
-Disciplin: BUTTERFLY    Tid: 00:19.234    Placering: 2
-
-
+Medlem: Charlotte    ID: 28
+Disciplin: CRAWL    Tid: 00:53.880    Placering: 2
 

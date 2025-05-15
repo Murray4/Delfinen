@@ -12,6 +12,9 @@ public class CompetitionManager {
         return competitions; // competitions skal være en statisk liste i klassen
     }
 
+    public static void setCompetitions(List<Competition> newCompetitions) {
+        competitions = (ArrayList<Competition>) newCompetitions;
+    }
 
     // METODER
     public static void createCompetition(Scanner scanner) {
@@ -98,19 +101,56 @@ public class CompetitionManager {
 
 
     public static void showCompetition() {
-            // Logic to edit competition (to be implemented)
-            System.out.println("Konkurrencer: "); //displaying the competitions
-            // checking if there are competitions in the list
-            if (competitions.isEmpty()) {
-                System.out.println("Ingen konkurrencer at vise");
-                return;
+        // Logic to edit competition (to be implemented)
+        System.out.println(Farver.GOLD + "\nKonkurrencer: " + Farver.RESET); //displaying the competitions
+
+        // Henter konkurrencer fra listen i CompetitionManager
+        List<Competition> competitions = CompetitionManager.getCompetitions();
+
+        // checking if there are competitions in the list
+        if (competitions == null || competitions.isEmpty()) {
+            System.out.println("Ingen konkurrencer at vise");
+            return;
+        }
+
+        // now we loop through each competition in the list
+        for (int i = 0; i < competitions.size(); i++) {
+            Competition c = competitions.get(i);
+
+            // Udskriver konkurrenceinfo med formatering
+            System.out.println("=".repeat(90));
+            System.out.printf("Stævne: %-31s Sted: %-15s Dato: %s\n",
+                    c.getName(),
+                    c.getCity(),
+                    c.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+            System.out.println(Farver.GOLD + "-".repeat(90) + Farver.RESET);
+            System.out.printf("%-7s %-20s %-10s %-21s %-10s\n", "Plads", "Navn", "ID", "Disciplin", "Tid");
+            System.out.println("-".repeat(90));
+
+            // Henter resultater for konkurrencen
+            List<CompetitionResult> results = c.getResults();
+            if (results != null && !results.isEmpty()) {
+                // printer hver svømmers resultat
+                for (CompetitionResult result : results) {
+                    System.out.printf("%-7d %-20s %-10d %-21s %-10s\n",
+                            result.getRank(),
+                            result.getSwimmer().getMemberName(),
+                            result.getSwimmer().getMemberID(),
+                            result.getDicipline().toString(),
+                            FileHandler.formatDuration(result.getTime()));
+                }
+            } else {
+                System.out.println("Ingen resultater.");
             }
-            // now we loop through each competition in the list
-            for (int i = 0; i< competitions.size(); i++) {
-                //printing each competition with index number from 1.
-                System.out.println((i+1) + "."+ competitions.get(i));
-            }
+
+            System.out.println(Farver.GOLD + "=".repeat(90) + Farver.RESET);
+            System.out.println(); // ekstra linje mellem konkurrencer
+        }
     }
+
+
+
+
 
 
 

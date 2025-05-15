@@ -13,7 +13,7 @@ public class ConsoleHandler {
         FileHandler.createFile("MedlemsListe.txt");
         FileHandler.createFile("Konkurrencer.txt");
         FileHandler.indlæsMedlemmerFraFil("MedlemsListe.txt");
-        FileHandler.indlæsKonkurrencerFraFil("Konkurrencer.txt");
+        CompetitionManager.setCompetitions(FileHandler.indlæsKonkurrencerFraFil("Konkurrencer.txt"));
         delfinLogo();
         mainMenu(scanner);
     }
@@ -387,7 +387,7 @@ public class ConsoleHandler {
     }
 
     public static void inputFejl(String enhed, String forklaring) {
-        System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen. " + forklaring + Farver.RESET);
+        System.out.println(Farver.RED + "Ugyldig " + enhed + " prøv igen. \n" + forklaring + Farver.RESET);
     }
 
     public static void delfinLogo() {
