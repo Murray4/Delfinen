@@ -297,6 +297,7 @@ public class FileHandler {
                                 resultat.setSwimmer(medlem);
 
                                 resultater.add(resultat);
+                                resultater.add(resultat); // Tilføjer CompetitionResult til resultatet
                             }
                         }
                     }
@@ -304,6 +305,7 @@ public class FileHandler {
             }
 
             // Tilføj sidste konkurrence
+            // Sikkerhed, gemmer sidste konkurrence, hvis det er en
             if (konkurrence != null) {
                 konkurrence.setResults(resultater);
                 konkurrencer.add(konkurrence);

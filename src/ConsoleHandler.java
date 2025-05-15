@@ -189,7 +189,7 @@ public class ConsoleHandler {
                 MemberController.addTrainingResults(scanner);
                 break;
             case 3:
-                competitionMenu(scanner);
+                MemberController.showTrainingResults(scanner);
                 break;
             case 0:
                 trainerMenu(scanner);
