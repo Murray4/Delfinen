@@ -29,7 +29,7 @@ public class MemberController {
             String inputID = scanner.nextLine().trim();
 
             if (inputID.isEmpty()) {
-      // Hvis input er tomt, gemmes der ikke noget og vi går videre.
+                // Hvis input er tomt, gemmes der ikke noget og vi går videre.
             } else {
                 try {
                     id = Integer.parseInt(inputID);
@@ -45,7 +45,7 @@ public class MemberController {
             name = scanner.nextLine().trim();
 
             if (name.isEmpty()) {
-        // Hvis input er tomt, gemmes der ikke noget og vi går videre.
+                // Hvis input er tomt, gemmes der ikke noget og vi går videre.
             } else {
                 System.out.println(Farver.GREEN + "Du indtastede " + name + ". \n" + Farver.RESET);
             }
@@ -55,7 +55,7 @@ public class MemberController {
             String inputSenior = scanner.nextLine().trim();
 
             if (inputSenior.isEmpty()) {
-        // Hvis input er tomt, gemmes der ikke noget og vi går videre.
+                // Hvis input er tomt, gemmes der ikke noget og vi går videre.
             } else if (inputSenior.equalsIgnoreCase("J")) {
                 memberShip = Membership.SENIORSVØMMER;
                 System.out.println(Farver.GREEN + "Du søger på Senior-medlemmere\n" + Farver.RESET);
@@ -104,7 +104,7 @@ public class MemberController {
 
         }
 
-  // Vi looper MemberListen igennem.
+        // Vi looper MemberListen igennem.
         for (Member m : MemberList) {
             if (id != -1 && m.getMemberID() != id) {   //Hvis ikke dette er tilfældet, så springer vi over.
                 continue;
@@ -119,7 +119,7 @@ public class MemberController {
                 continue;
             }
 
-    // Vi tilføjer det fremsøgte til en arrayliste så vi kan printe den nummerisk.
+            // Vi tilføjer det fremsøgte til en arrayliste så vi kan printe den nummerisk.
             resultatListe.add(m);
 
         }
@@ -239,7 +239,7 @@ public class MemberController {
         } else {
             x.setMembership(Membership.SENIORSVØMMER_60_PLUS);
             x.setIsSenior(true);
-            x.setMemberPrice((int)(1600 * 0.75));
+            x.setMemberPrice((int) (1600 * 0.75));
         }
 
         // isCompetitive
@@ -249,7 +249,7 @@ public class MemberController {
             if (konksvøm.equalsIgnoreCase("J")) {
                 x.setIsCompetitionSwimmer(true);
                 break;
-            } else if(konksvøm.equalsIgnoreCase("N")) {
+            } else if (konksvøm.equalsIgnoreCase("N")) {
                 x.setIsCompetitionSwimmer(false);
                 break;
             } else {
@@ -264,7 +264,7 @@ public class MemberController {
             if (betaling.equalsIgnoreCase("J")) {
                 x.setHasPayed(true);
                 break;
-            } else if (betaling.equalsIgnoreCase("N")){
+            } else if (betaling.equalsIgnoreCase("N")) {
                 x.setHasPayed(false);
                 break;
             } else {
@@ -310,7 +310,7 @@ public class MemberController {
         } else {
             ConsoleHandler.inputFejl("valg", "Tast J eller N\n");
         }
-        }
+    }
 
     public static void showListOfCompetitionSwimmers(Scanner scanner) {
 
@@ -340,10 +340,9 @@ public class MemberController {
         }
     }
 
-
-
-    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void showTrainingResults(Scanner scanner) {
+        DateTimeFormatter dkFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
         System.out.print("Indtast medlems-ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -369,26 +368,26 @@ public class MemberController {
 
         System.out.println("Træningsresultater for " + valgt.getMemberName() + ":");
         for (Map.Entry<Dicipline, TrainingResult> entry : resultater.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            Dicipline disciplin = entry.getKey();
+            TrainingResult tr = entry.getValue();
+            String tid = FileHandler.formatDuration(tr.getTid());
+            String dato = tr.getDato().format(dkFormat);
+            System.out.println(disciplin + ": Tid = " + tid + ", Dato = " + dato);
         }
     }
 
-
-
-
     public static void addTrainingResults(Scanner scanner) {
-
         System.out.print("Indtast medlems-ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        Member valgt = null;for (Member m : MemberList) {
+        Member valgt = null;
+        for (Member m : MemberList) {
             if (m.getMemberID() == id) {
                 valgt = m;
                 break;
             }
         }
-
 
         if (valgt == null) {
             System.out.println("Medlem ikke fundet!");
@@ -400,34 +399,59 @@ public class MemberController {
         for (int i = 0; i < discipliner.length; i++) {
             System.out.println((i + 1) + ". " + discipliner[i]);
         }
+
         int disciplinValg = scanner.nextInt();
         scanner.nextLine();
         Dicipline valgtDisciplin = discipliner[disciplinValg - 1];
 
+        Duration tid = null;
+            while (tid == null) {
+                System.out.print("Tid (mm:ss.SSS): ");
+                String tidInput = scanner.nextLine();
 
-        System.out.print("Tid (mm:ss.SSS): ");
-        String tidInput = scanner.nextLine();
+                try {
+                    String[] parts = tidInput.split("\\.");
+                    if (parts.length != 2) {
+                        throw new IllegalArgumentException("Formatfejl: Tid skal være i formatet mm:ss.SSS");
+                    }
 
-        // Split på punktum
-        String[] parts = tidInput.split("\\.");
-        String[] minSek = parts[0].split(":");
+                    String[] minSek = parts[0].split(":");
+                    if (minSek.length != 2) {
+                        throw new IllegalArgumentException("Formatfejl: Tid skal være i formatet mm:ss.SSS");
+                    }
 
-        long minutter = Long.parseLong(minSek[0]);
-        long sekunder = Long.parseLong(minSek[1]);
-        long millisekunder = Long.parseLong(parts[1]);
+                    long minutter = Long.parseLong(minSek[0]);
+                    long sekunder = Long.parseLong(minSek[1]);
+                    long millisekunder = Long.parseLong(parts[1]);
 
-        Duration tid = Duration.ofMinutes(minutter)
-                .plusSeconds(sekunder)
-                .plusMillis(millisekunder);
+                    tid = Duration.ofMinutes(minutter)
+                            .plusSeconds(sekunder)
+                            .plusMillis(millisekunder);
 
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");       // Standard format for LocalDate er (yyyy-MM-dd) dette ændrer formattet til (dd-MM-yyyy)
-        System.out.print("Dato (dd-MM-yyyy): ");
-        LocalDate dato = LocalDate.parse(scanner.nextLine(),format);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Fejl: " + e.getMessage());
+                }
+            }
+
+        LocalDate dato = null;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        while (dato == null) {
+            System.out.print("Dato (dd-MM-yyyy): ");
+
+            try {
+                dato = LocalDate.parse(scanner.nextLine(), format);
+            } catch (Exception e) {
+                System.out.println("Fejl: Dato skal være i formatet dd-MM-yyyy");
+            }
+        }
 
         System.out.print("Kommentar: ");
         String kommentar = scanner.nextLine();
 
-        TrainingResult nytResultat = TrainingResult.createTrainingResult(valgtDisciplin, tid, dato, kommentar, valgt);
+        TrainingResult nytResultat = TrainingResult.createTrainingResult(
+                valgtDisciplin, tid, dato, kommentar, valgt
+        );
         valgt.getTrainingResult().put(valgtDisciplin, nytResultat);
 
         System.out.println("Træningsresultat tilføjet!");
@@ -527,7 +551,6 @@ public class MemberController {
     }
 
     public static void addCompetitionResult(Scanner scanner) {
-
         // Konkurrencesvømmer
         List<Member> competitiveMembers = new ArrayList<>();
         for (Member m : MemberList) {
@@ -553,10 +576,16 @@ public class MemberController {
 
         System.out.println("=".repeat(40));
 
+        Member selectedSwimmer = null;
+        while (selectedSwimmer == null) {
+            try {
+                int swimmerChoice = Integer.parseInt(scanner.nextLine()) - 1;
+                selectedSwimmer = competitiveMembers.get(swimmerChoice);
+            } catch (Exception e) {
+                System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
 
-        int swimmerChoice = scanner.nextInt() - 1;
-        scanner.nextLine();
-        Member selectedSwimmer = competitiveMembers.get(swimmerChoice);
         CompetitionSwimmer swimmer = (CompetitionSwimmer) selectedSwimmer;
 
         // Vælg konkurrence
@@ -568,7 +597,7 @@ public class MemberController {
 
         System.out.println(Farver.GOLD + "\nVælg konkurrence:" + Farver.RESET);
         System.out.println("=".repeat(50));
-        System.out.printf("%-4s %-30s %-15s\n", "#", "Stævne", "Sted");
+        System.out.printf("%-4s %-30s %-15s\n", "#", "Stævne", "By");
         System.out.println("-".repeat(50));
 
         for (int i = 0; i < competitions.size(); i++) {
@@ -578,10 +607,15 @@ public class MemberController {
 
         System.out.println("=".repeat(50));
 
-
-        int compChoice = scanner.nextInt() - 1;
-        scanner.nextLine();
-        Competition competition = competitions.get(compChoice);
+        Competition competition = null;
+        while (competition == null) {
+            try {
+                int compChoice = Integer.parseInt(scanner.nextLine()) - 1;
+                competition = competitions.get(compChoice);
+            } catch (Exception e) {
+                System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
 
         // disciplin
         Dicipline[] discipliner = Dicipline.values();
@@ -597,32 +631,49 @@ public class MemberController {
 
         System.out.println("=".repeat(30));
 
-// Brugervalg
-        int discChoice = scanner.nextInt() - 1;
-        scanner.nextLine();
-        Dicipline valgtDisciplin = discipliner[discChoice];
+        Dicipline valgtDisciplin = null;
+        while (valgtDisciplin == null) {
+            try {
+                int discChoice = Integer.parseInt(scanner.nextLine()) - 1;
+                valgtDisciplin = discipliner[discChoice];
+            } catch (Exception e) {
+                System.out.println("Ugyldigt valg. Prøv igen.");
+            }
+        }
 
+        // Tid input med retry
+        Duration tid = null;
+        while (tid == null) {
+            System.out.print(Farver.GOLD + "\nTid" + Farver.RESET + " (mm:ss.SSS): ");
+            String tidInput = scanner.nextLine();
+            try {
+                String[] parts = tidInput.split("\\.");
+                if (parts.length != 2) throw new IllegalArgumentException("Tid skal være i formatet mm:ss.SSS");
 
-        // Tid
-        System.out.print(Farver.GOLD + "\nTid" + Farver.RESET + " (mm:ss.SSS): ");
-        String tidInput = scanner.nextLine();
+                String[] minSek = parts[0].split(":");
+                if (minSek.length != 2) throw new IllegalArgumentException("Tid skal være i formatet mm:ss.SSS");
 
-        // Split på punktum
-        String[] parts = tidInput.split("\\.");
-        String[] minSek = parts[0].split(":");
+                long minutter = Long.parseLong(minSek[0]);
+                long sekunder = Long.parseLong(minSek[1]);
+                long millisekunder = Long.parseLong(parts[1]);
 
-        long minutter = Long.parseLong(minSek[0]);
-        long sekunder = Long.parseLong(minSek[1]);
-        long millisekunder = Long.parseLong(parts[1]);
+                tid = Duration.ofMinutes(minutter).plusSeconds(sekunder).plusMillis(millisekunder);
+            } catch (Exception e) {
+                System.out.println("Fejl: " + e.getMessage());
+            }
+        }
 
-        Duration tid = Duration.ofMinutes(minutter)
-                .plusSeconds(sekunder)
-                .plusMillis(millisekunder);
-
-        // Placering
-        System.out.print("Placering: ");
-        int rank = scanner.nextInt();
-        scanner.nextLine();
+        // Placering input med retry
+        int rank = -1;
+        while (rank < 1) {
+            System.out.print("Placering: ");
+            try {
+                rank = Integer.parseInt(scanner.nextLine());
+                if (rank < 1) throw new NumberFormatException();
+            } catch (Exception e) {
+                System.out.println("Fejl: Placering skal være et positivt tal.");
+            }
+        }
 
         // Opret resultat
         CompetitionResult result = new CompetitionResult();

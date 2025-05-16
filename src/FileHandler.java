@@ -294,7 +294,6 @@ public class FileHandler {
                                 resultat.setRank(rank);
                                 resultat.setSwimmer(medlem);
 
-                                resultater.add(resultat);
                                 resultater.add(resultat); // Tilføjer CompetitionResult til resultatet
                             }
                         }

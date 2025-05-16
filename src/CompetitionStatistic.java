@@ -3,38 +3,47 @@ import java.util.*;
 public class CompetitionStatistic {
 
     // METODER
-    // TODO: TROUBLESHOOT!! --- VIRKER IKKE!
     public static void getResultsByDiscipline(Scanner scanner) {
         System.out.println("Vælg disciplin:");
         Dicipline[] discipliner = Dicipline.values();
         for (int i = 0; i < discipliner.length; i++) {
             System.out.println((i + 1) + ". " + discipliner[i]);
         }
+
         int valg = scanner.nextInt();
         scanner.nextLine();
         Dicipline valgt = discipliner[valg - 1];
 
-        System.out.println("Resultater i disciplinen: " + valgt);
+        System.out.println("\nResultater for disciplin: " + valgt);
+        System.out.printf("  %-3s %-20s %-6s %-10s %-12s\n", "#", "Navn", "ID", "Tid", "Dato");
+        System.out.println("  -------------------------------------------------------");
+
+        int placering = 1;
         boolean found = false;
 
         for (Member m : MemberController.getMemberList()) {
-            for (CompetitionResult r : m.getCompetitionResult()) {
-                if (r.dicipline == valgt) {
-                    System.out.println("Navn: " + m.getMemberName() +
-                            " | Tid: " + r.time +
-                            " | Placering: " + r.rank +
-                            " | Stævne: " + r.eventName);
+            if (m.getIsCompetitionSwimmer()) {
+                Map<Dicipline, TrainingResult> resultater = m.getTrainingResult();
+                if (resultater != null && resultater.containsKey(valgt)) {
+                    TrainingResult r = resultater.get(valgt);
+                    System.out.printf("  %-3d %-20s %-6d %-10s %-12s\n",
+                            placering++,
+                            m.getMemberName(),
+                            m.getMemberID(),
+                            FileHandler.formatDuration(r.getTid()),
+                            r.getDato());
                     found = true;
                 }
             }
         }
 
         if (!found) {
-            System.out.println("Ingen resultater fundet for denne disciplin.");
+            System.out.println("Ingen træningsresultater fundet for denne disciplin.");
         }
     }
 
     public static void getTopFiveTotal() {
+        // Top 5 træningsresultater for alle svømmere
 
         Map<Dicipline, List<TrainingResult>> resultaterPrDisciplin = new HashMap<>();
 
@@ -80,7 +89,7 @@ public class CompetitionStatistic {
     }
 
     public static void getResultsForCompetitionSwimmer(Scanner scanner) {
-        //TODO: Top fem resultater for hver Disciplin for alle svømmere
+        //Top fem resultater for hver Disciplin for Konkurrencesvømmere
 
         Map<Dicipline, List<TrainingResult>> resultaterPrDisciplinForKonk = new HashMap<>();
 
@@ -124,5 +133,6 @@ public class CompetitionStatistic {
             System.out.println();
         }
     }
+
 }
 

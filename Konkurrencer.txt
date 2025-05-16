@@ -19,3 +19,7 @@ Disciplin: CRAWL    Tid: 00:52.200    Placering: 1
 Medlem: Charlotte    ID: 28
 Disciplin: CRAWL    Tid: 00:53.880    Placering: 2
 
+Medlem: Sebastian    ID: 1
+Disciplin: BUTTERFLY    Tid: 00:29.543    Placering: 2
+
+

@@ -6,7 +6,7 @@ public class TrainingResult extends Result {
 
     // ATTRIBUTTER
     String comment;
-    Dicipline dicipline;
+    Dicipline discipline;
     Duration time;
     LocalDate date;
     Member member;
@@ -28,13 +28,13 @@ public class TrainingResult extends Result {
         return member;
     }
 
-    public Dicipline getDicipline() {
-        return dicipline;
+    public Dicipline getDiscipline() {
+        return discipline;
     }
 
     public static TrainingResult createTrainingResult(Dicipline discipline, Duration time, LocalDate date, String comment, Member member) {
         TrainingResult result = new TrainingResult();
-        result.dicipline = discipline;
+        result.discipline = discipline;
         result.time = time;
         result.date = date;
         result.comment = comment;
